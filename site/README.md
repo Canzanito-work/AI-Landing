@@ -15,6 +15,7 @@ npx serve site
 | `index.html` | Marcado. Cada bloque lleva `data-module="…"` y equivale a un módulo de HubSpot CMS. |
 | `css/styles.css` | Tokens (`:root`), componentes compartidos (`.btn`, `.eyebrow`, `.pend`, `.chip`, `.sec-head`) y un bloque por sección. |
 | `js/main.js` | Variantes, validación y estados del formulario, desplegable RGPD y barra CTA fija en móvil. |
+| `js/globe.js` + `js/globe-data.js` | Globo giratorio de «Quiénes somos» (canvas, sin dependencias). Los datos se generan con `tools/gen-globe.cjs` a partir de Natural Earth 1:50m; para cambiar los países de presencia, edita la lista `PRESENCE` y vuelve a generarlos. |
 | `assets/` | Imágenes WebP generadas a partir de `project/assets` (≈0,6 MB en total frente a 2,9 MB), más versiones `-m` para móvil. |
 
 Módulos, en orden: `hero` → `clientes` → `quienes-somos` → `que-hacemos` → (línea de texto gigante) → `ia-aplicada` → `casos-de-exito` → `modelos-colaboracion` → `sectores` → `grupo-presencia` → `cierre` (con `formulario`) → `pie`.
@@ -33,6 +34,10 @@ Se eligen con parámetros de URL:
 - `?cta=experto`: cambia todos los CTA a «Hablar con un experto en IA» y adapta los textos del cierre y del formulario.
 - `?pendientes=0`: oculta los marcadores `[PENDIENTE]`, que por defecto se ven.
 - `?form=error` o `?form=success`: fuerza un estado del formulario para revisarlo.
+
+## Versión en un solo archivo
+
+`python3 tools/build-single.py` regenera `landing-ia.html` en la raíz del repo, con CSS, JS, imágenes y la tipografía Figtree incluidos. Se abre con doble clic y funciona sin conexión. Vuelve a ejecutarlo después de cada cambio en `site/`.
 
 ## Formulario
 
