@@ -1,0 +1,9 @@
+<!doctype html><html><body style="margin:0;background:#888"><div id="o" style="display:grid;grid-template-columns:repeat(var(--c,3),1fr);gap:6px;padding:6px"></div>
+<script type="module">
+import * as pdfjs from 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.4.168/build/pdf.min.mjs';
+pdfjs.GlobalWorkerOptions.workerSrc='https://cdn.jsdelivr.net/npm/pdfjs-dist@4.4.168/build/pdf.worker.min.mjs';
+const q=new URLSearchParams(location.search);const from=+(q.get('from')||1),to=+(q.get('to')||21);
+const doc=await pdfjs.getDocument('../uploads/corporativa.pdf').promise;
+document.getElementById('o').style.setProperty('--c',q.get('c')||3);for(let i=from;i<=Math.min(to,doc.numPages);i++){const p=await doc.getPage(i);const vp=p.getViewport({scale:+(q.get('s')||0.45)});const c=document.createElement('canvas');c.width=vp.width;c.height=vp.height;c.style.width='100%';document.getElementById('o').appendChild(c);await p.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;}
+document.title='done';
+</script></body></html>

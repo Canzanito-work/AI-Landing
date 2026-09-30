@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap"><style>body{margin:0}</style></helmet>
+<div id="km-form-diagnostico" style="box-sizing:border-box;width:100%;background:#FFFFFF;border:1px solid #E4E2EA;border-radius:20px;padding:24px;box-shadow:0 12px 40px rgba(25,20,51,.08);font-family:Figtree,system-ui,sans-serif;color:#191433">
+<sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+<form onSubmit="{{ submit }}" style="display:flex;flex-direction:column;gap:14px;margin:0">
+<div style="display:flex;flex-direction:column;gap:8px">
+<h3 style="margin:0;font:700 20px/26px Figtree,system-ui,sans-serif;color:#191433;text-wrap:pretty">{{ title }}</h3>
+<p style="margin:0;font:400 14px/20px Figtree,system-ui,sans-serif;color:#55516A;text-wrap:pretty">{{ text }} <sc-if value="{{ isDiag }}"><span style="background:#FFE45C;color:#191433;font:600 11.5px/1.6 ui-monospace,Menlo,monospace;padding:1px 5px;border-radius:4px;-webkit-box-decoration-break:clone;box-decoration-break:clone">[PENDIENTE: validar formato de la sesión de diagnóstico]</span></sc-if></p>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<label style="display:flex;flex-direction:column;gap:6px;flex:1 1 190px;min-width:0">
+<span style="font:600 13px/17px Figtree,system-ui,sans-serif">Nombre y apellidos</span>
+<input type="text" autocomplete="name" value="{{ v.nombre }}" onChange="{{ on.nombre }}" style="box-sizing:border-box;width:100%;height:44px;border:1px solid;border-color:{{ bc.nombre }};box-shadow:{{ bs.nombre }};border-radius:10px;padding:0 14px;font:400 15px Figtree,system-ui,sans-serif;color:#191433;background:#fff" style-focus="outline:2px solid #191433;outline-offset:1px">
+<sc-if value="{{ e.nombre }}"><span style="display:flex;gap:6px;align-items:center;font:500 12.5px/16px Figtree,system-ui,sans-serif;color:#B42318"><span style="flex:none;width:14px;height:14px;border-radius:50%;background:#B42318;color:#fff;font:700 10px/14px Figtree,sans-serif;text-align:center">!</span>{{ e.nombre }}</span></sc-if>
+</label>
+<label style="display:flex;flex-direction:column;gap:6px;flex:1 1 190px;min-width:0">
+<span style="font:600 13px/17px Figtree,system-ui,sans-serif">Email corporativo</span>
+<input type="email" autocomplete="email" value="{{ v.email }}" onChange="{{ on.email }}" style="box-sizing:border-box;width:100%;height:44px;border:1px solid;border-color:{{ bc.email }};box-shadow:{{ bs.email }};border-radius:10px;padding:0 14px;font:400 15px Figtree,system-ui,sans-serif;color:#191433;background:#fff" style-focus="outline:2px solid #191433;outline-offset:1px">
+<sc-if value="{{ e.email }}"><span style="display:flex;gap:6px;align-items:center;font:500 12.5px/16px Figtree,system-ui,sans-serif;color:#B42318"><span style="flex:none;width:14px;height:14px;border-radius:50%;background:#B42318;color:#fff;font:700 10px/14px Figtree,sans-serif;text-align:center">!</span>{{ e.email }}</span></sc-if>
+</label>
+<label style="display:flex;flex-direction:column;gap:6px;flex:1 1 190px;min-width:0">
+<span style="font:600 13px/17px Figtree,system-ui,sans-serif">Empresa</span>
+<input type="text" autocomplete="organization" value="{{ v.empresa }}" onChange="{{ on.empresa }}" style="box-sizing:border-box;width:100%;height:44px;border:1px solid;border-color:{{ bc.empresa }};box-shadow:{{ bs.empresa }};border-radius:10px;padding:0 14px;font:400 15px Figtree,system-ui,sans-serif;color:#191433;background:#fff" style-focus="outline:2px solid #191433;outline-offset:1px">
+<sc-if value="{{ e.empresa }}"><span style="display:flex;gap:6px;align-items:center;font:500 12.5px/16px Figtree,system-ui,sans-serif;color:#B42318"><span style="flex:none;width:14px;height:14px;border-radius:50%;background:#B42318;color:#fff;font:700 10px/14px Figtree,sans-serif;text-align:center">!</span>{{ e.empresa }}</span></sc-if>
+</label>
+<label style="display:flex;flex-direction:column;gap:6px;flex:1 1 190px;min-width:0">
+<span style="font:600 13px/17px Figtree,system-ui,sans-serif">Cargo</span>
+<input type="text" autocomplete="organization-title" value="{{ v.cargo }}" onChange="{{ on.cargo }}" style="box-sizing:border-box;width:100%;height:44px;border:1px solid;border-color:{{ bc.cargo }};box-shadow:{{ bs.cargo }};border-radius:10px;padding:0 14px;font:400 15px Figtree,system-ui,sans-serif;color:#191433;background:#fff" style-focus="outline:2px solid #191433;outline-offset:1px">
+<sc-if value="{{ e.cargo }}"><span style="display:flex;gap:6px;align-items:center;font:500 12.5px/16px Figtree,system-ui,sans-serif;color:#B42318"><span style="flex:none;width:14px;height:14px;border-radius:50%;background:#B42318;color:#fff;font:700 10px/14px Figtree,sans-serif;text-align:center">!</span>{{ e.cargo }}</span></sc-if>
+</label>
+</div>
+<label style="display:flex;flex-direction:column;gap:6px">
+<span style="font:600 13px/17px Figtree,system-ui,sans-serif">Área de interés</span>
+<span style="position:relative;display:block">
+<select value="{{ v.area }}" onChange="{{ on.area }}" style="box-sizing:border-box;width:100%;height:44px;border:1px solid;border-color:{{ bc.area }};box-shadow:{{ bs.area }};border-radius:10px;padding:0 40px 0 14px;font:400 15px Figtree,system-ui,sans-serif;color:{{ areaColor }};background:#fff;appearance:none;-webkit-appearance:none" style-focus="outline:2px solid #191433;outline-offset:1px">
+<option value="">Selecciona una opción</option>
+<sc-for list="{{ areas }}" as="a" hint-placeholder-count="0"><option value="{{ a }}">{{ a }}</option></sc-for>
+</select>
+<span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;font:600 12px Figtree,sans-serif;color:#191433">▼</span>
+</span>
+<sc-if value="{{ e.area }}"><span style="display:flex;gap:6px;align-items:center;font:500 12.5px/16px Figtree,system-ui,sans-serif;color:#B42318"><span style="flex:none;width:14px;height:14px;border-radius:50%;background:#B42318;color:#fff;font:700 10px/14px Figtree,sans-serif;text-align:center">!</span>{{ e.area }}</span></sc-if>
+</label>
+<fieldset style="border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:7px;min-width:0">
+<legend style="padding:0;margin:0 0 8px;font:600 13px/17px Figtree,system-ui,sans-serif;color:#191433">¿En qué punto está tu organización con la IA? <span style="font-weight:400;color:#55516A">(opcional)</span></legend>
+<sc-for list="{{ madurez }}" as="m" hint-placeholder-count="4">
+<label style="display:flex;gap:10px;align-items:flex-start;font:400 13.5px/18px Figtree,system-ui,sans-serif;color:#191433;cursor:pointer">
+<input type="radio" name="madurez-{{ uid }}" checked="{{ m.checked }}" onChange="{{ m.pick }}" style="flex:none;width:16px;height:16px;margin:1px 0 0;accent-color:#D61D4F">
+<span>{{ m.label }}</span>
+</label>
+</sc-for>
+</fieldset>
+<div style="display:flex;flex-direction:column;gap:6px">
+<label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer">
+<input type="checkbox" checked="{{ v.consent }}" onChange="{{ on.consent }}" style="flex:none;width:18px;height:18px;margin:0;accent-color:#D61D4F">
+<span style="font:400 13px/18px Figtree,system-ui,sans-serif;color:#191433;text-wrap:pretty">He leído y acepto la <a href="#privacidad" style="color:#191433;text-decoration:underline;font-weight:600">Política de privacidad</a> y consiento el tratamiento de mis datos para gestionar esta solicitud.</span>
+</label>
+<sc-if value="{{ e.consent }}"><span style="display:flex;gap:6px;align-items:center;font:500 12.5px/16px Figtree,system-ui,sans-serif;color:#B42318"><span style="flex:none;width:14px;height:14px;border-radius:50%;background:#B42318;color:#fff;font:700 10px/14px Figtree,sans-serif;text-align:center">!</span>{{ e.consent }}</span></sc-if>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<button type="submit" style="height:48px;border:0;border-radius:999px;background:#D61D4F;color:#FFFFFF;font:600 15px Figtree,system-ui,sans-serif;cursor:pointer;padding:0 24px" style-hover="background:#B3163F" style-focus="outline:3px solid #191433;outline-offset:2px">{{ cta }}</button>
+<p style="margin:0;font:400 12.5px/16px Figtree,system-ui,sans-serif;color:#55516A;text-align:center">Solo usaremos tus datos para gestionar tu solicitud.</p>
+</div>
+<div style="border-top:1px solid #E4E2EA;padding-top:10px">
+<button type="button" onClick="{{ toggleRgpd }}" style="display:flex;justify-content:space-between;align-items:center;width:100%;background:none;border:0;padding:0;font:600 12.5px/16px Figtree,system-ui,sans-serif;color:#191433;cursor:pointer">Información básica sobre protección de datos <span>{{ rgpdIcon }}</span></button>
+<sc-if value="{{ rgpdOpen }}">
+<p style="margin:8px 0 0;font:400 12px/17px Figtree,system-ui,sans-serif;color:#55516A;text-wrap:pretty"><b style="color:#191433">Responsable:</b> <span style="background:#FFE45C;color:#191433;font:600 11px/1.6 ui-monospace,Menlo,monospace;padding:1px 5px;border-radius:4px;-webkit-box-decoration-break:clone;box-decoration-break:clone">[PENDIENTE: razón social y CIF de la entidad responsable]</span>. <b style="color:#191433">Finalidad:</b> gestionar tu solicitud y contactar contigo para organizar la sesión de diagnóstico. <b style="color:#191433">Legitimación:</b> tu consentimiento. <b style="color:#191433">Destinatarios:</b> no se cederán datos a terceros, salvo obligación legal. <span style="background:#FFE45C;color:#191433;font:600 11px/1.6 ui-monospace,Menlo,monospace;padding:1px 5px;border-radius:4px;-webkit-box-decoration-break:clone;box-decoration-break:clone">[PENDIENTE: confirmar encargados del tratamiento y compañías del grupo]</span> <b style="color:#191433">Derechos:</b> acceder, rectificar y suprimir los datos, así como otros derechos, tal como se explica en la información adicional. <b style="color:#191433">Información adicional:</b> consulta nuestra <a href="#privacidad" style="color:#191433;text-decoration:underline">Política de privacidad</a>.</p>
+<p style="margin:8px 0 0"><span style="background:#FFE45C;color:#191433;font:600 11px/1.6 ui-monospace,Menlo,monospace;padding:1px 5px;border-radius:4px;-webkit-box-decoration-break:clone;box-decoration-break:clone">[PENDIENTE: decidir si se añade una casilla opcional de comunicaciones comerciales (Legal/DPO)]</span></p>
+</sc-if>
+</div>
+</form>
+</sc-if>
+<sc-if value="{{ showSuccess }}">
+<div role="status" style="display:flex;flex-direction:column;gap:16px;padding:12px 4px">
+<div style="width:52px;height:52px;border-radius:50%;background:#FCEAF0;color:#D61D4F;display:flex;align-items:center;justify-content:center;font:700 24px Figtree,sans-serif">✓</div>
+<h3 style="margin:0;font:700 24px/30px Figtree,system-ui,sans-serif;color:#191433;text-wrap:pretty">Gracias, {{ nombre }}. Hemos recibido tu solicitud.</h3>
+<p style="margin:0;font:400 15px/23px Figtree,system-ui,sans-serif;color:#55516A;text-wrap:pretty">Un experto en IA de knowmad mood revisará la información que nos has enviado y se pondrá en contacto contigo <span style="background:#FFE45C;color:#191433;font:600 11.5px/1.6 ui-monospace,Menlo,monospace;padding:1px 5px;border-radius:4px">[PENDIENTE: plazo de respuesta]</span> para acordar {{ confirmEnd }}</p>
+<div style="height:1px;background:#E4E2EA"></div>
+<p style="margin:0;font:500 16px/22px Figtree,system-ui,sans-serif;color:#191433">Tecnología para lo que importa. <b style="font-weight:700">knowmad mood.</b></p>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:500,&quot;height&quot;:820},&quot;state&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;interactive&quot;,&quot;empty&quot;,&quot;error&quot;,&quot;success&quot;],&quot;default&quot;:&quot;interactive&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ctaVersion&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;diagnostico&quot;,&quot;experto&quot;],&quot;default&quot;:&quot;diagnostico&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;rgpdOpen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const FREE = ['gmail.com','googlemail.com','hotmail.com','hotmail.es','outlook.com','outlook.es','live.com','msn.com','yahoo.com','yahoo.es','icloud.com','me.com','aol.com','gmx.com','proton.me','protonmail.com'];
+const AREAS = ['Estrategia y roadmap de IA','Diagnóstico de madurez en IA y datos','Datos y gobierno del dato para la IA','Desarrollo e implantación de soluciones de IA','Adopción de IA generativa y formación de equipos','IA y automatización como servicio','Centro de Excelencia de IA','Otra área tecnológica (arquitectura, ciberseguridad, experiencia de cliente…)','Aún no lo tengo claro'];
+const MADUREZ = ['Estamos explorando por dónde empezar','Tenemos pilotos o pruebas de concepto en marcha','Tenemos soluciones en producción, pero aisladas o con poca adopción','La IA ya forma parte de varios procesos y queremos escalarla y gobernarla'];
+const REQ = 'Este campo es obligatorio.';
+const EMPTY = { nombre:'', email:'', empresa:'', cargo:'', area:'', madurez:'', consent:false };
+class Component extends DCLogic {
+  state = this.initFor(this.props.state);
+  initFor(s) {
+    if (s === 'error') return { v:{ nombre:'Laura Martín', email:'laura.martin@gmail.com', empresa:'', cargo:'Directora de Operaciones', area:'', madurez:MADUREZ[1], consent:false }, e:{ email:'Introduce tu email corporativo.', empresa:REQ, area:REQ, consent:'Para enviar tu solicitud, acepta la política de privacidad.' }, done:false, rgpd:false };
+    if (s === 'success') return { v:{ ...EMPTY, nombre:'Laura Martín' }, e:{}, done:true, rgpd:false };
+    return { v:{ ...EMPTY }, e:{}, done:false, rgpd: !!this.props.rgpdOpen };
+  }
+  componentDidUpdate(p) { if (p.state !== this.props.state || p.rgpdOpen !== this.props.rgpdOpen) this.setState(this.initFor(this.props.state)); }
+  check(k, v) {
+    const x = v[k];
+    if (k === 'email') {
+      if (!x.trim()) return REQ;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(x.trim())) return 'Introduce un email válido.';
+      if (FREE.includes(x.trim().split('@')[1].toLowerCase())) return 'Introduce tu email corporativo.';
+      return '';
+    }
+    if (k === 'consent') return x ? '' : 'Para enviar tu solicitud, acepta la política de privacidad.';
+    if (['nombre','empresa','cargo','area'].includes(k)) return String(x).trim() ? '' : REQ;
+    return '';
+  }
+  set(k, val) {
+    this.setState(s => {
+      const v = { ...s.v, [k]: val };
+      const e = { ...s.e };
+      if (e[k]) e[k] = this.check(k, v);
+      return { v, e };
+    });
+  }
+  submit = (ev) => {
+    if (ev && ev.preventDefault) ev.preventDefault();
+    const v = this.state.v; const e = {};
+    ['nombre','email','empresa','cargo','area','consent'].forEach(k => { const m = this.check(k, v); if (m) e[k] = m; });
+    if (Object.keys(e).length) this.setState({ e }); else this.setState({ e:{}, done:true });
+  };
+  renderVals() {
+    const alt = this.props.ctaVersion === 'experto';
+    const { v, e, done, rgpd } = this.state;
+    const keys = ['nombre','email','empresa','cargo','area'];
+    const bc = {}, bs = {};
+    keys.forEach(k => { bc[k] = e[k] ? '#B42318' : '#8C889C'; bs[k] = e[k] ? '0 0 0 1px #B42318' : 'none'; });
+    const on = {};
+    keys.forEach(k => { on[k] = (ev) => this.set(k, ev.target.value); });
+    on.consent = (ev) => this.set('consent', ev.target.checked);
+    if (!this._uid) this._uid = Math.random().toString(36).slice(2, 7);
+    return {
+      v, e, bc, bs, on, uid: this._uid,
+      areaColor: v.area ? '#191433' : '#55516A',
+      areas: AREAS,
+      madurez: MADUREZ.map(label => ({ label, checked: v.madurez === label, pick: () => this.set('madurez', label) })),
+      submit: this.submit,
+      showForm: !done, showSuccess: done,
+      isDiag: !alt,
+      cta: alt ? 'Hablar con un experto en IA' : 'Solicitar diagnóstico de IA',
+      title: alt ? 'Habla con un experto en IA' : 'Solicita una sesión de diagnóstico con un experto en IA',
+      text: alt ? 'Cuéntanos en qué punto está tu organización y te ayudaremos a identificar por dónde empezar para generar impacto.' : 'Evaluaremos el punto de partida de tu organización e identificaremos las oportunidades de IA de mayor impacto.',
+      confirmEnd: alt ? 'una conversación.' : 'la sesión de diagnóstico.',
+      nombre: (v.nombre || '').trim().split(/\s+/)[0] || '{{nombre}}',
+      rgpdOpen: rgpd, rgpdIcon: rgpd ? '−' : '+',
+      toggleRgpd: () => this.setState(s => ({ rgpd: !s.rgpd })),
+    };
+  }
+}
+</script>
+</body>
+</html>

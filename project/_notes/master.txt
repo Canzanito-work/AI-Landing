@@ -1,0 +1,910 @@
+Landing IA «Lo que importa.» — Documento
+maestro
+Sep 30, 2026 · @Tobias
+Documento maestro de la landing de captación para Google Ads y LinkedIn Ads bajo el
+concepto «Lo que importa.». Objetivo único: que el visitante solicite una sesión de
+diagnóstico con un experto en IA de knowmad mood.
+Fuentes utilizadas (únicas válidas para datos):
+«Percepción deseada y sus pilares» (PDF): percepción deseada y 6 pilares.
+«Campaña – conceptos e ideas» (DOCX): territorios, claims y concepto «Lo que
+importa.».
+«Presentación Corporativa knowmad mood Octubre» (PDF, datos a 1 de octubre de
+2026): cifras, trayectoria, offering, modelos, sectores y compañías del grupo.
+Caso FRS Systems y caso Alier (blog corporativo).
+Páginas IA y know4data (web corporativa).
+Convenciones: [PENDIENTE: …] marca todo dato o decisión que no está en las fuentes.
+Datos corregidos por indicación de Marketing: +3.500 profesionales y +100 partners
+tecnológicos. No se menciona Atlassian ni la diapositiva 6. El copy de la landing (apartado
+4) está en castellano peninsular formal, con tuteo, en línea con el documento de campaña.
+1. Análisis del material
+Las fuentes permiten contar un recorrido de IA completo, de la estrategia a la operación.
+El punto débil es la prueba cuantitativa: ningún caso de IA publicado incluye métricas de
+negocio.
+1.1 Oferta general de knowmad mood
+Quién es: multinacional tecnológica española, antes atSistemas (nueva marca en
+2023), cotizada en BME Growth. Tiene +30 años de trayectoria, presencia en 14 países
+y proyectos en 33.
+Offering en 8 áreas: Architecture & Development · Business Application Platforms ·
+Smart Operations & Industrial Innovation · IT Governance & Modernization · Customer
+Experience & Digital Growth · Data, Analytics & Intelligent Automation · Cybersecurity
+& Digital Trust · Learning, Digital Workplace & Change Enablement.
+Modelos de colaboración en 3 familias:
+Landing IA «Lo que importa.» — Documento maestro
+Page 1 of 20
+
+-- 1 of 20 --
+
+Execution: Staff Augmentation, Squad as a Service, MS3 Managed Services 3.0 y
+Fixed Price Projects.
+Value: Outcome-Based Services, AI & Automation as a Service y Platform & Product
+Engineering.
+Strategic: Transformation Programs (End-to-End), Center of Excellence (CoE) as a
+Service y Global Delivery.
+Organización tecnológica: Dirección Técnica, +20 comunidades tecnológicas, centros
+expertos que definen guías, aceleradores y buenas prácticas, y HUBs de innovación.
+Compañías del grupo relevantes para IA: INCIPY (transformación y estrategia digital
+con foco en las personas), DEXS (formación, tecnología y servicios para el aprendizaje
+en las organizaciones) y CDA (software, cloud, quality engineering, IA y
+automatización; Argentina). También Grupo Antea (ciberseguridad), Vanture (SAP y
+Odoo), Interwor (infraestructura y cloud) y BUZZ (agencia creativa). Newverve y la
+compañía alemana antes ASERVO quedan fuera porque no aportan a la oferta de IA.
+Sectores (peso sobre el negocio): Retail 15,9 %, Seguros 15,3 %, Administración pública
+11,7 %, Banca y servicios financieros 11,3 %, Servicios 9,8 %, Industria 7,8 %, Turismo,
+transporte y logística 7,1 %, Media y editoriales 5,5 %, Telco 5,3 %, Ciencias de la salud
+4,3 %, Energía y utilities 3,7 %, Educación 2,4 %.
+1.2 Qué dicen las fuentes sobre IA
+Capacidad 	Qué hay documentado 	Fuente
+Estrategia y roadmap 	Estrategia y Roadmap IA 2025–2027
+priorizado por valor y viabilidad;
+formación del Comité de Dirección
+Caso Alier (INCIPY)
+Diagnóstico y
+assessment
+Assessment IA & Data (Alier).
+«Discovery»: grado de madurez,
+pruebas de concepto en entorno real
+y viabilidad técnica. Data Assessment
+de know4data: AS IS/TO BE, quick
+wins y roadmap a 12 meses
+Caso Alier, página IA,
+know4data
+Datos como base de la
+IA
+Data Ingestion & Data Engineering.
+know4data: gobierno del dato,
+preparación para IA y cumplimiento
+del Reglamento de IA, RGPD y DORA
+Página IA, know4data
+Landing IA «Lo que importa.» — Documento maestro
+Page 2 of 20
+
+-- 2 of 20 --
+
+1.3 Pruebas de credibilidad disponibles
+Capacidad 	Qué hay documentado 	Fuente
+Construcción de
+soluciones
+Modelling & Tuning (modelos
+descriptivos, predictivos y
+prescriptivos), Data Viz,
+Infrastructure & Lifecycle (MLOps)
+Página IA
+Adopción y formación Programa práctico con DEXS y GitHub
+Copilot, casos de uso priorizados,
+hoja de ruta de adopción y medición
+de impacto. Área 08, Learning, Digital
+Workplace & Change Enablement
+Caso FRS, presentación
+Operación y escalado 	AI & Automation as a Service: diseño,
+implantación y operación continua.
+CoE as a Service para crear
+capacidades internas de IA. MS3 para
+la gestión integral del servicio
+Presentación (modelos)
+Aceleradores 	Know4data (framework propio de
+gobierno del dato); centros expertos
+que definen aceleradores. No hay
+aceleradores de IA con nombre
+propio
+Know4data,
+presentación
+Prueba 	Fuente 	Uso en la landing
++3.500 profesionales, +40
+nacionalidades
+Presentación (dato
+validado)
+Quiénes somos
++30 años, 14 países, proyectos en
+33 países
+Presentación 	Quiénes somos
+270,1 M€ de ingresos; cotizada en
+BME Growth
+Presentación 	Quiénes somos (solidez)
++100 partners tecnológicos 	Presentación (dato
+validado)
+Quiénes somos; sin logos de
+partners de IA específicos
++20 comunidades tecnológicas y
+centros expertos
+Presentación 	Cómo trabajamos
+Caso FRS Systems: 3,8 sobre 4 y
+testimonio del Managing Director
+Blog 	Casos de éxito
+Landing IA «Lo que importa.» — Documento maestro
+Page 3 of 20
+
+-- 3 of 20 --
+
+No se usan como prueba principal el certificado ESR 2021–2025 ni el ranking de
+Actualidad Económica 2022. Tampoco los casos antiguos de la página de IA (Mapfre,
+Sanitas, Áltima): son de BI, IoT y machine learning clásico, y dos pertenecen a seguros.
+1.4 Huecos para esta landing
+Métricas de impacto: ningún caso cuantifica ahorro, productividad ni ROI.
+[PENDIENTE: métrica de impacto]
+Pocos casos de IA: solo hay dos, de industria y de tecnología o transporte. No hay
+casos de IA en producción ni de IA generativa en procesos de negocio. [PENDIENTE:
+tercer caso de IA implantada en producción]
+Volumen de IA: no hay cifra de profesionales, proyectos ni clientes de IA. [PENDIENTE:
+nº de especialistas en IA y datos / nº de proyectos de IA]
+Partners de IA: la diapositiva 19 muestra Microsoft, AWS, UiPath o Salesforce, pero no
+el nivel de partnership en IA. [PENDIENTE: partnerships y certificaciones de IA
+vigentes]
+Gobierno y IA responsable: know4data cubre el Reglamento de IA desde el dato, pero
+no hay una oferta explícita de IA responsable. [PENDIENTE: confirmar si se ofrece
+gobierno de IA / IA responsable]
+Formato del diagnóstico: no está definido. La página de know4data anuncia un
+«diagnóstico gratuito» de datos que puede generar confusión. [PENDIENTE: validar
+formato de la sesión de diagnóstico]
+2. Brief de mensaje
+2.1 Propuesta de valor
+Llevamos la IA de tu organización de la exploración al impacto: la integramos en tu
+negocio, con tus datos y con tus equipos, para que genere un valor que se mide y que
+permanece.
+Prueba 	Fuente 	Uso en la landing
+Caso Alier: roadmap IA 2025–
+2027 y testimonio de la CHRO
+Blog 	Casos de éxito
+ISO 9001, ISO 27001, ISO 22301,
+ISO 14001, ENS, CMMI V3.0 nivel
+3 (logotipos en la diapositiva 8)
+Presentación 	Franja de confianza, con
+validación previa
+Logotipos de clientes por sector 	Presentación 	Franja de sectores, con
+validación previa
+Landing IA «Lo que importa.» — Documento maestro
+Page 4 of 20
+
+-- 4 of 20 --
+
+Conecta con la percepción deseada (innovación pragmática, valor tangible y sostenido) y
+con «Lo que importa.»: habla del resultado, no de la tecnología.
+2.2 Pilares de mensaje
+Se seleccionan cuatro de los seis pilares. El criterio es responder a las tres causas del
+bloqueo del público: pilotos sin impacto, iniciativas aisladas y equipos que no adoptan la
+IA.
+Pilar 	Por qué para esta
+landing
+Mensaje 	Prueba asociada
+Innovación pragmática
+impulsada por la
+excelencia tecnológica
+y la IA
+Es el eje de la
+campaña y
+responde a los
+pilotos que no
+escalan
+IA aplicada a
+problemas reales
+de negocio, no de
+escaparate
+Recorrido completo:
+Discovery, datos,
+MLOps, modelos, AI
+& Automation as a
+Service y CoE as a
+Service
+Valor tangible y
+sostenido
+Es la promesa de
+«Lo que importa.»:
+impacto que se
+percibe y
+permanece
+Priorizamos por
+valor y viabilidad, y
+medimos el
+impacto
+Roadmap de Alier
+priorizado por valor
+y viabilidad.
+Medición de
+impacto en FRS.
+Outcome-Based
+Services.
+[PENDIENTE:
+métrica de impacto]
+Compañía
+multiespecialista con
+un enfoque integral
+La IA no escala sin
+datos, integración,
+seguridad y
+operación;
+responde a las
+iniciativas aisladas
+Un solo partner
+para todo el
+recorrido, con
+especialistas en
+cada pieza
+8 áreas de offering,
++20 comunidades
+tecnológicas,
+INCIPY, DEXS y CDA
+en el grupo, +100
+partners
+Auténtico enfoque
+human centric
+Reformulado como
+adopción: la IA solo
+genera impacto si
+las personas la
+usan
+Ponemos a las
+personas en el
+centro de la
+adopción
+Formación del
+Comité de
+Dirección (Alier).
+Programa con DEXS
+valorado con 3,8
+sobre 4 (FRS). Área
+de Change
+Enablement
+Landing IA «Lo que importa.» — Documento maestro
+Page 5 of 20
+
+-- 5 of 20 --
+
+Los otros dos pilares aparecen como apoyo en «Quiénes somos», sin un bloque propio:
+Partner global: el público es español y el reto no es geográfico. Se apoya con 14 países y
+proyectos en 33.
+Calidad y fiabilidad en la entrega: es un requisito de base más que el diferencial
+buscado en IA. Se apoya con las certificaciones, pendientes de validar.
+2.3 Tono de voz
+Corporativo pero cercano. Tuteo, frases cortas y verbos de acción.
+Negocio primero: hablar de procesos, decisiones, equipos y resultados; la tecnología
+aparece solo cuando da credibilidad (MLOps, gobierno del dato).
+Desde la consecuencia para el cliente: «tus equipos la usan», no «somos líderes en IA».
+Sin hipérboles ni promesas no demostradas: nada de «revolucionar», «líder» o «el mejor»,
+ni porcentajes que no estén en las fuentes.
+Anglicismos solo cuando son el nombre oficial de un servicio o el término habitual del
+sector (roadmap, assessment, MLOps).
+Estructura «No importa X. Importa Y.»: tres usos en la página (hero, problema y quiénes
+somos).
+3. Arquitectura de la landing
+Se mantiene el orden propuesto con un solo cambio: los casos de éxito suben justo
+después de las soluciones. El tráfico de Ads decide rápido, y la prueba debe aparecer
+junto a la promesa, antes del bloque corporativo.
+# 	Sección 	Objetivo 	Mensaje clave 	CTA
+0 	Cabecera fija 	Marca y acceso
+permanente al CTA
+— 	Botón (ancla
+al formulario)
+1 	Hero +
+formulario
+Message match con el
+anuncio y conversión
+inmediata
+No importa utilizar IA.
+Importa lo que
+consigues con ella.
+Formulario
+visible
+2 	El problema 	Que el visitante se
+reconozca en su
+situación
+La IA se queda en
+piloto por falta de foco,
+datos, integración y
+adopción
+—
+Landing IA «Lo que importa.» — Documento maestro
+Page 6 of 20
+
+-- 6 of 20 --
+
+Reglas de página de Ads:
+Un único CTA con el mismo texto en todos los botones. Todos llevan al formulario, sin
+otro destino.
+Formulario en el primer pantallazo: en escritorio va en la columna derecha del hero; en
+móvil, justo debajo del titular y el CTA. Se repite la misma instancia (mismo ID de
+formulario) en el cierre, para que quien lee toda la página no tenga que volver arriba.
+Barra CTA fija en móvil a partir del segundo pantallazo.
+Sin navegación: sin menú, logo sin enlace y sin enlaces a la web corporativa ni al blog.
+Los enlaces legales del pie se abren en una pestaña nueva o en una ventana modal.
+# 	Sección 	Objetivo 	Mensaje clave 	CTA
+3 	Cómo
+abordamos la IA
+Mostrar un método
+completo, de la
+estrategia a la
+operación
+Cuatro fases:
+diagnosticar, preparar
+el dato, construir e
+integrar, adoptar y
+escalar
+Botón
+4 	Soluciones y
+servicios de IA
+Concretar qué se
+puede contratar
+Servicios de IA, con los
+modelos de IA como
+servicio y CoE
+—
+5 	Casos de éxito 	Prueba social 	FRS Systems y Alier:
+reto, solución,
+resultado y testimonio
+Botón
+6 	Quiénes somos
+y cifras
+Solidez y escala 	+3.500 profesionales,
++30 años, 14 países,
++100 partners
+—
+7 	Offering 	Mostrar la amplitud
+que sostiene la IA
+8 áreas de
+especialización
+conectadas
+—
+8 	Modelos de
+colaboración
+Reducir la fricción de
+compra
+Nos adaptamos a cómo
+quieres trabajar
+Botón
+9 	Sectores 	Relevancia para
+cualquier sector
+Experiencia en 12
+sectores
+—
+10 	Cierre +
+formulario
+Conversión final y
+cierre de marca
+Tecnología para lo que
+importa. knowmad
+mood.
+Formulario
+— 	Pie mínimo 	Cumplimiento legal 	Aviso legal, privacidad
+y cookies
+—
+Landing IA «Lo que importa.» — Documento maestro
+Page 7 of 20
+
+-- 7 of 20 --
+
+Casos sin enlace al artículo del blog, para no sacar al usuario de la página.
+Sin vídeo ni carrusel automático en el hero, para cuidar la velocidad de carga (objetivo:
+LCP < 2,5 s en móvil).
+Recomendación técnica: marcar la página como noindex si coexiste con una página
+orgánica de IA, para evitar canibalización. [PENDIENTE: decidir indexación de la
+landing]
+4. Copy de la landing
+CTA único: Solicitar diagnóstico de IA. [PENDIENTE: validar formato de la sesión de
+diagnóstico]. La versión alternativa, por si el diagnóstico no se valida, está en el punto 4.12.
+4.0 Cabecera fija
+Logotipo de knowmad mood, sin enlace.
+Botón: Solicitar diagnóstico de IA
+4.1 Hero
+Antetítulo: Inteligencia artificial aplicada · De la exploración al impacto
+Titular A (claim ancla): No importa utilizar IA. Importa lo que consigues con ella.
+Titular B (message match para búsqueda): Lleva la IA de tus pilotos al impacto real en tu
+negocio.
+Subtítulo: Si tu organización ya ha explorado la IA pero no consigue que escale, te
+ayudamos a convertirla en resultados que se miden y se sostienen: con una estrategia
+priorizada por valor, con tus datos y con equipos que la adoptan.
+Puntos clave:
+Diagnóstico de tu punto de partida y de las oportunidades de mayor impacto.
+Un solo partner de la estrategia a la operación.
+Adopción real por parte de tus equipos.
+Botón (móvil): Solicitar diagnóstico de IA
+Franja de confianza: +3.500 profesionales · +30 años de trayectoria · 14 países · +100
+partners tecnológicos
+Cabecera del formulario (columna derecha):
+Título: Solicita una sesión de diagnóstico con un experto en IA
+Landing IA «Lo que importa.» — Documento maestro
+Page 8 of 20
+
+-- 8 of 20 --
+
+Texto: Evaluaremos el punto de partida de tu organización e identificaremos las
+oportunidades de IA de mayor impacto. [PENDIENTE: validar formato de la sesión de
+diagnóstico]
+4.2 El problema
+Titular: No importa cuántos pilotos pongas en marcha. Importa cuántos llegan a generar
+resultados.
+Entradilla: Muchas organizaciones ya han dado el primer paso con la IA. El reto ahora es
+otro: que deje de ser un experimento y se convierta en una palanca de negocio.
+Tarjetas:
+1. Iniciativas aisladas. Casos de uso que nacen en áreas distintas, sin una visión común ni
+prioridades claras.
+2. Pilotos que no escalan. Pruebas de concepto que funcionan en un entorno controlado,
+pero no llegan a integrarse en los procesos ni en los sistemas.
+3. Datos que no están preparados. Información dispersa, sin el gobierno ni la calidad
+necesarios para que la IA sea fiable.
+4. Equipos que no la adoptan. Herramientas disponibles que nadie incorpora a su trabajo
+diario.
+Cierre: La tecnología ya no es el obstáculo. Lo que falta es un camino claro del piloto al
+impacto.
+4.3 Cómo abordamos la IA
+Titular: De la exploración al impacto, en cuatro pasos
+Entradilla: Acompañamos todo el recorrido, de la estrategia a la operación, para que cada
+iniciativa de IA responda a un objetivo de negocio y se sostenga en el tiempo.
+1. Diagnosticar y priorizar. Evaluamos la madurez de tu organización en IA y datos,
+identificamos los casos de uso de mayor valor y definimos una hoja de ruta priorizada
+por valor y viabilidad.
+2. Preparar el dato. Ordenamos, integramos y gobernamos los datos que necesita la IA,
+con criterios de calidad, seguridad y cumplimiento normativo, incluido el Reglamento
+Europeo de IA.
+3. Construir e integrar. Diseñamos, desarrollamos e integramos las soluciones de IA en
+tus procesos y sistemas, con la infraestructura y el ciclo de vida (MLOps) necesarios
+para llevarlas a producción.
+Landing IA «Lo que importa.» — Documento maestro
+Page 9 of 20
+
+-- 9 of 20 --
+
+4. Adoptar y escalar. Formamos a directivos y equipos, acompañamos el cambio y
+medimos el impacto. Después, operamos y evolucionamos las soluciones o te
+ayudamos a crear tus propias capacidades internas.
+Destacado: La IA solo genera impacto cuando las personas la usan. Por eso la adopción
+forma parte del proyecto desde el primer día.
+Botón: Solicitar diagnóstico de IA
+4.4 Soluciones y servicios de IA
+Titular: Soluciones de IA para cada momento de tu organización
+Entradilla: Empieces por donde empieces, cada solución se conecta con las demás para
+que la IA avance sin quedarse a medias.
+Tarjetas:
+1. Estrategia y diagnóstico de IA. Formación del comité de dirección, assessment de
+madurez en IA y datos, y hoja de ruta con iniciativas priorizadas por valor y viabilidad.
+2. Datos preparados para la IA. Ingesta, ingeniería y gobierno del dato con know4data,
+nuestro framework propio de gobernanza, alineado con el Reglamento de IA, el RGPD y
+DORA.
+3. Desarrollo e implantación de soluciones de IA. Modelos descriptivos, predictivos y
+prescriptivos, visualización de resultados y plataformas MLOps para llevar los modelos
+a producción.
+4. Adopción de IA generativa. Programas prácticos para incorporar la IA generativa al
+trabajo diario, como los copilotos en el desarrollo de software, con casos de uso
+priorizados y hoja de ruta de adopción.
+5. IA y automatización como servicio. Diseño, implantación y operación continua de
+soluciones de IA y automatización, con mejora constante de procesos, productividad y
+eficiencia operativa.
+6. Centro de Excelencia de IA. Creamos y operamos contigo un centro de excelencia que
+desarrolla tus capacidades internas de IA, con estandarización, escalabilidad y
+transferencia de conocimiento.
+[PENDIENTE: confirmar si se añade una tarjeta de IA generativa en procesos de negocio
+(asistentes, agentes) y otra de gobierno o IA responsable]
+4.5 Casos de éxito
+Titular: De la exploración al impacto: así lo están haciendo
+Tarjeta 1: FRS Systems · Filial tecnológica del operador de ferris FRS
+Landing IA «Lo que importa.» — Documento maestro
+Page 10 of 20
+
+-- 10 of 20 --
+
+Reto: llevar la IA generativa del conocimiento a la práctica en sus equipos de desarrollo.
+Solución: siete sesiones en directo con DEXS, aplicadas con GitHub Copilot sobre su
+stack, con acompañamiento experto, casos de uso priorizados, hoja de ruta de
+adopción y medición del impacto.
+Resultado: adopción práctica desde el primer día y valoración de excelencia de 3,8
+sobre 4. [PENDIENTE: métrica de impacto en productividad o calidad]
+Testimonio: «Esta iniciativa ha permitido a nuestros equipos adoptar la IA generativa de
+una forma práctica e impactante, cerrando la brecha entre conocimiento y aplicación».
+Jordi Puigsegur, Managing Director, FRS Systems Spain.
+Tarjeta 2: Alier · Industria papelera, fundada en 1833
+Reto: pasar de explorar la IA a un modelo AI & Data Driven.
+Solución: INCIPY, compañía del grupo, formó al Comité de Dirección, realizó un
+Assessment IA & Data y definió la Estrategia y Roadmap IA 2025–2027, priorizada por
+valor y viabilidad.
+Resultado: programa de transformación IA en marcha y proyectos tractores en
+personas, procesos comerciales y gestión por KPIs. [PENDIENTE: métrica de impacto]
+Testimonio: «Buscábamos avanzar hacia un modelo AI & Data Driven con foco e
+impacto real. Contar con un roadmap nos permitió priorizar iniciativas y avanzar con
+una visión común». Cristina Moliner, CHRO & Change Management de Alier.
+Ambas tarjetas tienen menos de 60 palabras sin contar el testimonio. El texto de FRS es el
+primer tramo de la cita publicada. [PENDIENTE: verificar la literalidad de ambos
+testimonios y la autorización para usarlos en campañas de pago]
+Botón: Solicitar diagnóstico de IA
+4.6 Quiénes somos y cifras
+Titular: No importa tener +3.500 profesionales. Importa tener la capacidad de responder
+cuando los necesitas.
+Texto: knowmad mood es una multinacional tecnológica española que acompaña a
+empresas de todo el mundo en su transformación digital. Combinamos la escala de un
+grupo internacional con la cercanía de un equipo que se implica en tus resultados.
+Cifras:
++3.500 profesionales
++30 años de trayectoria
+14 países con presencia y proyectos en 33
++100 partners tecnológicos
+Landing IA «Lo que importa.» — Documento maestro
+Page 11 of 20
+
+-- 11 of 20 --
+
++40 nacionalidades
+Cotizada en BME Growth
+Personas: Nuestro mayor diferencial son las personas: talento comprometido, en
+formación continua y organizado en más de 20 comunidades tecnológicas y centros
+expertos que definen guías, aceleradores y buenas prácticas.
+Grupo: Un grupo con compañías especializadas que suman capacidades en IA: INCIPY
+(estrategia y transformación), DEXS (formación y aprendizaje) y CDA (software, IA y
+automatización).
+Franja de certificaciones: ISO 9001 · ISO 27001 · ISO 22301 · ISO 14001 · ENS · CMMI V3.0
+nivel 3. [PENDIENTE: validar vigencia y alcance de las certificaciones]
+4.7 Offering
+Titular: La IA no funciona sola. Por eso cubrimos todo lo que la rodea.
+Entradilla: Ocho áreas de especialización conectadas para que la IA se integre con tus
+sistemas, tus datos, tu seguridad y tus equipos.
+Para diseño: las áreas 06 y 08 se destacan visualmente porque sostienen la IA (datos) y su
+adopción (personas).
+# 	Área 	Descripción
+01 	Architecture & Development 	Arquitectura y desarrollo de software
+02 	Business Application Platforms 	Plataformas de aplicaciones
+empresariales
+03 	Smart Operations & Industrial Innovation Operaciones inteligentes e innovación
+industrial
+04 	IT Governance & Modernization 	Gobierno TI y modernización de sistemas
+05 	Customer Experience & Digital Growth 	Experiencia de cliente y crecimiento
+digital
+06 	Data, Analytics & Intelligent
+Automation
+Datos, analítica y automatización
+inteligente (destacada)
+07 	Cybersecurity & Digital Trust 	Ciberseguridad y confianza digital
+08 	Learning, Digital Workplace & Change
+Enablement
+Formación, puesto de trabajo digital y
+gestión del cambio (destacada)
+Landing IA «Lo que importa.» — Documento maestro
+Page 12 of 20
+
+-- 12 of 20 --
+
+4.8 Modelos de colaboración
+Titular: Tú decides cómo trabajamos juntos
+Entradilla: Diseñamos y operamos modelos que se adaptan a tu negocio: desde reforzar tu
+equipo hasta vincular nuestro trabajo a resultados de negocio.
+Modelos de ejecución
+Staff Augmentation: refuerzo de tus equipos con talento especializado, manteniendo
+el control de la operación.
+Squad as a Service: equipos multidisciplinares autónomos con objetivos concretos y
+entrega continua de valor.
+MS3 | Managed Services 3.0: gestión integral del servicio, con eficiencia operativa,
+control y evolución continua.
+Fixed Price Projects: alcance, plazos y presupuesto definidos, con responsabilidad de
+extremo a extremo.
+Modelos de valor
+Outcome-Based Services: modelos vinculados a resultados de negocio medibles.
+AI & Automation as a Service (destacado): diseño, implantación y operación continua
+de soluciones de IA y automatización.
+Platform & Product Engineering: plataformas y productos digitales con evolución
+continua y roadmap compartido.
+Modelos estratégicos
+Transformation Programs (End-to-End): programas integrales que abarcan estrategia,
+gobierno, ejecución, adopción y escalado.
+Center of Excellence (CoE) as a Service (destacado): centros de excelencia para
+crear capacidades internas clave, como IA o datos.
+Global Delivery: equipos internacionales y nearshore para optimizar coste y calidad y
+acelerar la escalabilidad.
+Botón: Solicitar diagnóstico de IA
+4.9 Sectores
+Titular: Experiencia en 12 sectores
+Entradilla: Trabajamos con organizaciones de sectores muy distintos. Esa diversidad nos
+ayuda a entender tu negocio y a detectar oportunidades de IA aplicables a él.
+Landing IA «Lo que importa.» — Documento maestro
+Page 13 of 20
+
+-- 13 of 20 --
+
+Sectores (ordenados por peso en el negocio; los porcentajes no se publican): Retail ·
+Seguros · Administración pública · Banca y servicios financieros · Servicios · Industria ·
+Turismo, transporte y logística · Media y editoriales · Telecomunicaciones · Ciencias de la
+salud · Energía y utilities · Educación
+Muro de logotipos opcional, con clientes de la presentación y sin asociarlos a proyectos
+de IA. [PENDIENTE: autorización de uso de logotipos de clientes en campañas de pago]
+4.10 Cierre + formulario
+Titular: Empecemos por lo que importa: tu punto de partida.
+Texto: En una sesión de diagnóstico, un experto en IA de knowmad mood analizará contigo
+la situación de tu organización e identificará las oportunidades de mayor impacto.
+[PENDIENTE: validar formato de la sesión de diagnóstico]
+[Formulario: ver apartado 5]
+Cierre de marca: Tecnología para lo que importa. knowmad mood.
+4.11 Mensaje de confirmación
+Titular: Gracias, {{nombre}}. Hemos recibido tu solicitud.
+Texto: Un experto en IA de knowmad mood revisará la información que nos has enviado y
+se pondrá en contacto contigo [PENDIENTE: plazo de respuesta] para acordar la sesión
+de diagnóstico.
+Cierre: Tecnología para lo que importa. knowmad mood.
+No se incluyen enlaces ni CTAs secundarios en la confirmación.
+4.12 Versión alternativa del CTA
+Si el formato del diagnóstico no se valida, se sustituyen estos textos y el resto de la página
+se mantiene igual:
+Elemento 	Versión diagnóstico 	Versión alternativa
+Botones 	Solicitar diagnóstico de IA 	Hablar con un experto en IA
+Título del formulario Solicita una sesión de
+diagnóstico con un experto en IA
+Habla con un experto en IA
+Texto del formulario Evaluaremos el punto de partida
+de tu organización…
+Cuéntanos en qué punto está tu
+organización y te ayudaremos a
+identificar por dónde empezar
+para generar impacto.
+Landing IA «Lo que importa.» — Documento maestro
+Page 14 of 20
+
+-- 14 of 20 --
+
+4.13 Pie
+© 2026 knowmad mood · Aviso legal · Política de privacidad · Política de cookies
+5. Formulario
+El formulario tiene seis campos visibles (cinco obligatorios y uno opcional para cualificar)
+y el consentimiento. Es un único formulario, con el mismo ID en el hero y en el cierre.
+5.1 Campos
+Elemento 	Versión diagnóstico 	Versión alternativa
+Primer punto clave
+del hero
+Diagnóstico de tu punto de
+partida…
+Una conversación con un
+experto sobre tu punto de
+partida y tus oportunidades de
+mayor impacto.
+Texto del cierre 	En una sesión de diagnóstico… 	Un experto en IA de knowmad
+mood analizará contigo la
+situación de tu organización y las
+oportunidades de mayor
+impacto.
+Confirmación 	…para acordar la sesión de
+diagnóstico.
+…para acordar una
+conversación.
+# 	Etiqueta 	Tipo 	Obligatorio Validación / nota
+1 	Nombre y apellidos 	Texto 	Sí 	—
+2 	Email corporativo 	Email 	Sí 	Bloquear dominios
+gratuitos (Gmail,
+Hotmail, etc.)
+3 	Empresa 	Texto 	Sí 	—
+4 	Cargo 	Texto 	Sí 	—
+5 	Área de interés 	Desplegable Sí 	Opciones en 5.2
+6 	¿En qué punto está tu
+organización con la IA?
+Opción
+única
+No 	Opciones en 5.3
+7 	Consentimiento 	Casilla 	Sí 	Sin marcar por defecto
+Landing IA «Lo que importa.» — Documento maestro
+Page 15 of 20
+
+-- 15 of 20 --
+
+Campos ocultos: utm_source, utm_medium, utm_campaign, utm_content, utm_term,
+gclid, li_fat_id y la variante del titular del hero (A o B), para atribuir los leads y medir el test
+A/B.
+5.2 Opciones de «Área de interés»
+Estrategia y roadmap de IA
+Diagnóstico de madurez en IA y datos
+Datos y gobierno del dato para la IA
+Desarrollo e implantación de soluciones de IA
+Adopción de IA generativa y formación de equipos
+IA y automatización como servicio
+Centro de Excelencia de IA
+Otra área tecnológica (arquitectura, ciberseguridad, experiencia de cliente…)
+Aún no lo tengo claro
+5.3 Opciones de madurez
+5.4 Microcopy
+Botón de envío: Solicitar diagnóstico de IA (alternativa: Hablar con un experto en IA)
+Bajo el botón: Solo usaremos tus datos para gestionar tu solicitud.
+Error, campo obligatorio: Este campo es obligatorio.
+Error, email no válido: Introduce un email válido.
+Error, email no corporativo: Introduce tu email corporativo.
+Opción (texto visible) 	Nivel 	Uso para preventa
+Estamos explorando por dónde
+empezar
+Exploración 	Orientar el diagnóstico a
+estrategia y casos de uso
+Tenemos pilotos o pruebas de
+concepto en marcha
+Experimentación Público principal: foco en cómo
+escalar
+Tenemos soluciones en
+producción, pero aisladas o con
+poca adopción
+Implantación 	Público principal: foco en
+integración, datos y adopción
+La IA ya forma parte de varios
+procesos y queremos escalarla y
+gobernarla
+Escalado 	Foco en operación, CoE y gobierno
+Landing IA «Lo que importa.» — Documento maestro
+Page 16 of 20
+
+-- 16 of 20 --
+
+Error, consentimiento: Para enviar tu solicitud, acepta la política de privacidad.
+5.5 Texto RGPD (información básica, primera capa)
+Responsable: [PENDIENTE: razón social y CIF de la entidad responsable]. Finalidad:
+gestionar tu solicitud y contactar contigo para organizar la sesión de diagnóstico.
+Legitimación: tu consentimiento. Destinatarios: no se cederán datos a terceros, salvo
+obligación legal. [PENDIENTE: confirmar encargados del tratamiento y compañías del
+grupo] Derechos: acceder, rectificar y suprimir los datos, así como otros derechos, tal
+como se explica en la información adicional. Información adicional: consulta nuestra
+Política de privacidad.
+Casilla (obligatoria): He leído y acepto la Política de privacidad y consiento el tratamiento
+de mis datos para gestionar esta solicitud.
+No se incluye una casilla de comunicaciones comerciales, para no añadir un segundo
+objetivo. [PENDIENTE: decidir si se añade una casilla opcional de comunicaciones
+comerciales (Legal/DPO)]
+6. Bloque SEO/SEM
+No se han consultado volúmenes de búsqueda. La selección se basa en la intención de
+compra. [PENDIENTE: validar volúmenes y CPC en Google Keyword Planner]
+Keywords de soporte: consultoría de inteligencia artificial · implantar inteligencia
+artificial en empresas · estrategia de inteligencia artificial · diagnóstico de madurez en IA ·
+IA generativa para empresas · gobierno del dato para IA · MLOps · centro de excelencia de
+IA · adopción de IA · IA aplicada al negocio
+Elemento 	Propuesta
+Keyphrase principal 	consultoría de IA para empresas
+SEO title (54 caracteres) 	Consultoría de IA para empresas: del piloto al
+impacto
+Meta description (145 caracteres) Consultoría de IA para empresas: pasa del piloto al
+impacto con estrategia, datos, implantación y
+adopción. Habla con un experto de knowmad
+mood.
+Slug 	/es/consultoria-ia-empresas
+H1 	Titular del hero (A o B)
+Landing IA «Lo que importa.» — Documento maestro
+Page 17 of 20
+
+-- 17 of 20 --
+
+Long-tail: cómo escalar la IA en mi empresa · cómo pasar de piloto a producción en IA ·
+hoja de ruta de inteligencia artificial para empresas · por qué los proyectos de IA no
+escalan · evaluación de madurez en IA para empresas · implantar IA generativa en
+procesos de negocio · formación en IA para comités de dirección · consultora de IA
+generativa en España
+6.1 Grupos de anuncios (Google Ads, búsqueda)
+Concordancia de frase y exacta. Cada grupo aterriza con el titular del hero que mejor
+encaja con su búsqueda, mediante un parámetro de URL (por ejemplo, ?v=a / ?v=b ).
+Grupo 	Intención 	Keywords 	Hero 	Titulares RSA
+sugeridos (≤ 30
+caracteres)
+1. Consultoría
+de IA
+Busca un
+partner
+consultoría de IA ·
+consultoría
+inteligencia artificial ·
+consultora IA
+empresas · empresa
+consultora de
+inteligencia artificial
+A
+(test
+A/B)
+Consultoría de IA · No
+importa utilizar IA ·
+Importa lo que
+consigues
+2. Implantar IA Quiere
+implantar IA
+implantar IA en
+empresa ·
+implementar
+inteligencia artificial
+en empresa · cómo
+implantar IA en mi
+empresa · integrar IA
+en procesos
+B 	Implanta IA con
+impacto real · Solicita
+tu diagnóstico de IA
+3. Escalar IA 	Tiene pilotos
+que no
+escalan
+escalar IA empresa ·
+IA de piloto a
+producción ·
+industrializar IA ·
+consultoría MLOps
+B 	Del piloto al impacto
+con IA · Escala la IA en
+tu empresa
+4. Estrategia y
+diagnóstico
+Necesita
+priorizar
+estrategia de IA
+empresa · roadmap
+inteligencia artificial ·
+diagnóstico madurez
+IA · assessment IA
+A 	Diagnóstico de IA ·
+Roadmap de IA por
+valor
+Landing IA «Lo que importa.» — Documento maestro
+Page 18 of 20
+
+-- 18 of 20 --
+
+Titulares comunes a todos los grupos: Tecnología para lo que importa · Solicita tu
+diagnóstico de IA (alternativa: Habla con un experto en IA).
+Palabras clave negativas: gratis · curso gratis · máster · empleo · oferta de trabajo ·
+prácticas · TFG · definición · qué es · PDF
+Test A/B: se ejecuta en el grupo 1 y en el tráfico de LinkedIn Ads, donde no hay intención
+de búsqueda que condicione el titular. Los grupos 2 y 3 usan la variante B desde el inicio
+por message match. La variante se registra en el campo oculto del formulario.
+7. Pendientes consolidados
+Hay 17 pendientes. Los que bloquean la publicación son el formato del diagnóstico, el texto
+RGPD y la autorización de los testimonios; el resto mejora la landing, pero no la frena.
+Dirección
+Negocio / Preventa IA
+Grupo 	Intención 	Keywords 	Hero 	Titulares RSA
+sugeridos (≤ 30
+caracteres)
+5. IA
+generativa y
+adopción
+Sus equipos
+no la adoptan
+IA generativa para
+empresas · adopción
+IA generativa ·
+formación IA
+generativa empresas ·
+copilotos IA
+desarrollo software
+A 	IA generativa que se
+usa · +3.500
+profesionales
+Aprobar el formato de la sesión de diagnóstico (duración, modalidad y si es sin coste)
+o, si no se aprueba, activar la versión «Hablar con un experto en IA» (4.12). Bloqueante.
+Decidir si se ofrece de forma explícita gobierno de IA o IA responsable (4.4).
+Definir el contenido de la sesión de diagnóstico y quién la imparte (4.1, 4.10).
+Fijar el plazo de respuesta que se indica en la confirmación (4.11).
+Aportar una métrica de impacto para FRS Systems, de productividad o calidad (4.5).
+Aportar una métrica de impacto para Alier (4.5).
+Proponer un tercer caso de IA implantada en producción (1.4).
+Facilitar el número de especialistas en IA y datos y el de proyectos de IA (1.4).
+Confirmar los partnerships y certificaciones de IA vigentes (1.4).
+Landing IA «Lo que importa.» — Documento maestro
+Page 19 of 20
+
+-- 19 of 20 --
+
+Marketing
+Confirmar si se añade una tarjeta de IA generativa en procesos de negocio, como
+asistentes o agentes (4.4).
+Verificar la literalidad de los testimonios de FRS Systems y Alier y obtener autorización
+para usarlos en campañas de pago (4.5). Bloqueante.
+Completar el texto RGPD con Legal/DPO: razón social, CIF, encargados del tratamiento
+y compañías del grupo (5.5). Bloqueante.
+Decidir con Legal/DPO si se añade una casilla opcional de comunicaciones comerciales
+(5.5).
+Obtener autorización para usar logotipos de clientes en campañas de pago (4.9).
+Validar con Calidad la vigencia y el alcance de las certificaciones (4.6).
+Validar volúmenes de búsqueda y CPC en Google Keyword Planner (6).
+Decidir la indexación de la landing y alinear el «diagnóstico gratuito» de la página de
+know4data con el formato que se apruebe (3, 1.4).
+Landing IA «Lo que importa.» — Documento maestro
+Page 20 of 20
+
+-- 20 of 20 --
+

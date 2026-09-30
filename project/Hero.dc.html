@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Caveat:wght@600&display=swap"><style>body{margin:0}a{color:#191433}a:hover{color:#D61D4F}</style></helmet>
+<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+<div data-screen-label="Hero escritorio" style="position:relative;width:100%;background:#FFFFFF;font-family:Figtree,system-ui,sans-serif;color:#191433;padding-bottom:16px">
+<header style="position:relative;height:72px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:#FFFFFF;border-bottom:1px solid #E4E2EA">
+<img src="assets/km-logo.png" alt="knowmad mood" style="height:28px;display:block">
+<a href="#km-form-diagnostico" style="display:inline-flex;align-items:center;height:48px;padding:0 24px;border-radius:999px;background:#D61D4F;color:#FFFFFF;font:600 15px Figtree,system-ui,sans-serif;text-decoration:none" style-hover="background:#B3163F;color:#FFFFFF">{{ cta }}</a>
+<sc-if value="{{ notes }}"><span style="position:absolute;left:230px;top:22px;font:600 19px/1 Caveat,cursive;color:#2458D3">km_header · fija · logo sin enlace · sin menú</span></sc-if>
+</header>
+<section style="position:relative;margin:12px 16px 0;border-radius:28px;background:#F4F3F7;overflow:hidden;padding:24px 48px 24px 64px;display:grid;grid-template-columns:minmax(0,1fr) 500px;gap:72px;align-items:center">
+<div style="position:absolute;left:-340px;bottom:-640px;width:980px;height:980px;border-radius:50%;border:1.5px solid #DEDBE6"></div>
+<div style="position:absolute;left:-220px;bottom:-560px;width:780px;height:780px;border-radius:50%;border:1.5px solid #E6E3EC"></div>
+<div style="position:absolute;right:-260px;top:-380px;width:760px;height:760px;border-radius:50%;border:1.5px solid #E6E3EC"></div>
+<div style="position:relative;display:flex;flex-direction:column;gap:24px;padding:16px 0">
+<p style="margin:0;font:600 14px/20px Figtree,system-ui,sans-serif;color:#D61D4F;letter-spacing:.02em">Inteligencia artificial aplicada · De la exploración al impacto</p>
+<sc-if value="{{ isA }}" hint-placeholder-val="{{ true }}"><h1 style="margin:0;font:700 56px/62px Figtree,system-ui,sans-serif;letter-spacing:-.02em;color:#191433;text-wrap:balance">No importa utilizar IA. <span style="color:#D61D4F">Importa lo que consigues con ella.</span></h1></sc-if>
+<sc-if value="{{ isB }}"><h1 style="margin:0;font:700 56px/62px Figtree,system-ui,sans-serif;letter-spacing:-.02em;color:#191433;text-wrap:balance">Lleva la IA de tus pilotos <span style="color:#D61D4F">al impacto real en tu negocio.</span></h1></sc-if>
+<p style="margin:0;max-width:600px;font:400 18px/28px Figtree,system-ui,sans-serif;color:#55516A;text-wrap:pretty">Si tu organización ya ha explorado la IA pero no consigue que escale, te ayudamos a convertirla en resultados que se miden y se sostienen: con una estrategia priorizada por valor, con tus datos y con equipos que la adoptan.</p>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px">
+<li style="display:flex;gap:12px;align-items:flex-start;font:500 16px/24px Figtree,system-ui,sans-serif"><span style="flex:none;width:22px;height:22px;margin-top:1px;border-radius:50%;background:#FFFFFF;border:1.5px solid #D61D4F;display:flex;align-items:center;justify-content:center"><span style="width:8px;height:8px;border-radius:50%;background:#D61D4F"></span></span>{{ bullet1 }}</li>
+<li style="display:flex;gap:12px;align-items:flex-start;font:500 16px/24px Figtree,system-ui,sans-serif"><span style="flex:none;width:22px;height:22px;margin-top:1px;border-radius:50%;background:#FFFFFF;border:1.5px solid #D61D4F;display:flex;align-items:center;justify-content:center"><span style="width:8px;height:8px;border-radius:50%;background:#D61D4F"></span></span>Un solo partner de la estrategia a la operación.</li>
+<li style="display:flex;gap:12px;align-items:flex-start;font:500 16px/24px Figtree,system-ui,sans-serif"><span style="flex:none;width:22px;height:22px;margin-top:1px;border-radius:50%;background:#FFFFFF;border:1.5px solid #D61D4F;display:flex;align-items:center;justify-content:center"><span style="width:8px;height:8px;border-radius:50%;background:#D61D4F"></span></span>Adopción real por parte de tus equipos.</li>
+</ul>
+<div style="display:grid;grid-template-columns:repeat(4,auto);justify-content:start;gap:0;margin-top:12px;padding-top:24px;border-top:1px solid #DEDBE6">
+<div style="padding-right:28px"><div style="font:700 28px/32px Figtree,system-ui,sans-serif">+3.500</div><div style="font:400 13px/18px Figtree,system-ui,sans-serif;color:#55516A">profesionales</div></div>
+<div style="padding:0 28px;border-left:1px solid #DEDBE6"><div style="font:700 28px/32px Figtree,system-ui,sans-serif">+30 años</div><div style="font:400 13px/18px Figtree,system-ui,sans-serif;color:#55516A">de trayectoria</div></div>
+<div style="padding:0 28px;border-left:1px solid #DEDBE6"><div style="font:700 28px/32px Figtree,system-ui,sans-serif">14</div><div style="font:400 13px/18px Figtree,system-ui,sans-serif;color:#55516A">países</div></div>
+<div style="padding-left:28px;border-left:1px solid #DEDBE6"><div style="font:700 28px/32px Figtree,system-ui,sans-serif">+100</div><div style="font:400 13px/18px Figtree,system-ui,sans-serif;color:#55516A">partners tecnológicos</div></div>
+</div>
+</div>
+<div style="position:relative">
+<dc-import name="Formulario" state="{{ formState }}" cta-version="{{ ctaVersion }}" hint-size="500px,780px"></dc-import>
+</div>
+<sc-if value="{{ notes }}"><span style="position:absolute;left:24px;top:14px;font:600 19px/1 Caveat,cursive;color:#2458D3">km_hero · H1 variante {{ variant }} (?v=a / ?v=b) · sin vídeo ni carrusel</span></sc-if>
+</section>
+<sc-if value="{{ notes }}"><div style="position:absolute;left:0;right:0;top:900px;border-top:2px dashed #2458D3;pointer-events:none"><span style="position:absolute;right:24px;top:-26px;font:600 19px/1 Caveat,cursive;color:#2458D3;background:rgba(255,255,255,.85);padding:2px 6px;border-radius:4px">pliegue 1440 × 900 · formulario completo visible</span></div></sc-if>
+</div>
+</sc-if>
+<sc-if value="{{ isMobile }}">
+<div data-screen-label="Hero móvil" style="position:relative;width:100%;background:#FFFFFF;font-family:Figtree,system-ui,sans-serif;color:#191433;padding-bottom:8px">
+<header style="position:relative;height:60px;box-sizing:border-box;display:flex;align-items:center;padding:0 20px;background:#FFFFFF;border-bottom:1px solid #E4E2EA">
+<img src="assets/km-logo.png" alt="knowmad mood" style="height:22px;display:block">
+<sc-if value="{{ notes }}"><span style="position:absolute;right:14px;top:14px;width:150px;font:600 15px/1 Caveat,cursive;color:#2458D3;text-align:right">fija · solo logo; el CTA vive en la barra inferior</span></sc-if>
+</header>
+<section style="position:relative;margin:8px 8px 0;border-radius:24px;background:#F4F3F7;overflow:hidden;padding:28px 16px 20px;display:flex;flex-direction:column;gap:18px">
+<div style="position:absolute;right:-300px;top:-260px;width:520px;height:520px;border-radius:50%;border:1.5px solid #E1DEE8"></div>
+<p style="position:relative;margin:0;font:600 13px/18px Figtree,system-ui,sans-serif;color:#D61D4F">Inteligencia artificial aplicada · De la exploración al impacto</p>
+<sc-if value="{{ isA }}" hint-placeholder-val="{{ true }}"><h1 style="position:relative;margin:0;font:700 34px/40px Figtree,system-ui,sans-serif;letter-spacing:-.02em;color:#191433;text-wrap:balance">No importa utilizar IA. <span style="color:#D61D4F">Importa lo que consigues con ella.</span></h1></sc-if>
+<sc-if value="{{ isB }}"><h1 style="position:relative;margin:0;font:700 34px/40px Figtree,system-ui,sans-serif;letter-spacing:-.02em;color:#191433;text-wrap:balance">Lleva la IA de tus pilotos <span style="color:#D61D4F">al impacto real en tu negocio.</span></h1></sc-if>
+<p style="position:relative;margin:0;font:400 16px/24px Figtree,system-ui,sans-serif;color:#55516A;text-wrap:pretty">Si tu organización ya ha explorado la IA pero no consigue que escale, te ayudamos a convertirla en resultados que se miden y se sostienen: con una estrategia priorizada por valor, con tus datos y con equipos que la adoptan.</p>
+<ul style="position:relative;margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
+<li style="display:flex;gap:10px;align-items:flex-start;font:500 15px/22px Figtree,system-ui,sans-serif"><span style="flex:none;width:20px;height:20px;margin-top:1px;border-radius:50%;background:#FFFFFF;border:1.5px solid #D61D4F;display:flex;align-items:center;justify-content:center"><span style="width:7px;height:7px;border-radius:50%;background:#D61D4F"></span></span>{{ bullet1 }}</li>
+<li style="display:flex;gap:10px;align-items:flex-start;font:500 15px/22px Figtree,system-ui,sans-serif"><span style="flex:none;width:20px;height:20px;margin-top:1px;border-radius:50%;background:#FFFFFF;border:1.5px solid #D61D4F;display:flex;align-items:center;justify-content:center"><span style="width:7px;height:7px;border-radius:50%;background:#D61D4F"></span></span>Un solo partner de la estrategia a la operación.</li>
+<li style="display:flex;gap:10px;align-items:flex-start;font:500 15px/22px Figtree,system-ui,sans-serif"><span style="flex:none;width:20px;height:20px;margin-top:1px;border-radius:50%;background:#FFFFFF;border:1.5px solid #D61D4F;display:flex;align-items:center;justify-content:center"><span style="width:7px;height:7px;border-radius:50%;background:#D61D4F"></span></span>Adopción real por parte de tus equipos.</li>
+</ul>
+<a href="#km-form-diagnostico" style="position:relative;display:flex;align-items:center;justify-content:center;height:48px;padding:0 24px;border-radius:999px;background:#D61D4F;color:#FFFFFF;font:600 15px Figtree,system-ui,sans-serif;text-decoration:none" style-hover="background:#B3163F;color:#FFFFFF">{{ cta }}</a>
+<div style="position:relative;margin-top:6px">
+<dc-import name="Formulario" state="{{ formState }}" cta-version="{{ ctaVersion }}" hint-size="100%,900px"></dc-import>
+</div>
+<div style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:16px 12px;padding:8px 4px 4px">
+<div><div style="font:700 24px/28px Figtree,system-ui,sans-serif">+3.500</div><div style="font:400 13px/18px Figtree,system-ui,sans-serif;color:#55516A">profesionales</div></div>
+<div><div style="font:700 24px/28px Figtree,system-ui,sans-serif">+30 años</div><div style="font:400 13px/18px Figtree,system-ui,sans-serif;color:#55516A">de trayectoria</div></div>
+<div><div style="font:700 24px/28px Figtree,system-ui,sans-serif">14</div><div style="font:400 13px/18px Figtree,system-ui,sans-serif;color:#55516A">países</div></div>
+<div><div style="font:700 24px/28px Figtree,system-ui,sans-serif">+100</div><div style="font:400 13px/18px Figtree,system-ui,sans-serif;color:#55516A">partners tecnológicos</div></div>
+</div>
+</section>
+<sc-if value="{{ notes }}"><div style="position:absolute;left:0;right:0;top:844px;border-top:2px dashed #2458D3;pointer-events:none"><span style="position:absolute;left:12px;top:-24px;font:600 16px/1 Caveat,cursive;color:#2458D3;background:rgba(255,255,255,.9);padding:2px 6px;border-radius:4px">pliegue 390 × 844 · el formulario arranca en el 1.er pantallazo</span></div></sc-if>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:940},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;A&quot;,&quot;B&quot;],&quot;default&quot;:&quot;A&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;device&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;desktop&quot;,&quot;mobile&quot;],&quot;default&quot;:&quot;desktop&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ctaVersion&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;diagnostico&quot;,&quot;experto&quot;],&quot;default&quot;:&quot;diagnostico&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;formState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;interactive&quot;,&quot;empty&quot;,&quot;error&quot;,&quot;success&quot;],&quot;default&quot;:&quot;interactive&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const variant = this.props.variant === 'B' ? 'B' : 'A';
+    const device = this.props.device === 'mobile' ? 'mobile' : 'desktop';
+    const alt = this.props.ctaVersion === 'experto';
+    return {
+      variant,
+      isA: variant === 'A', isB: variant === 'B',
+      isDesktop: device === 'desktop', isMobile: device === 'mobile',
+      ctaVersion: alt ? 'experto' : 'diagnostico',
+      formState: this.props.formState || 'interactive',
+      notes: this.props.showNotes !== false,
+      cta: alt ? 'Hablar con un experto en IA' : 'Solicitar diagnóstico de IA',
+      bullet1: alt ? 'Una conversación con un experto sobre tu punto de partida y tus oportunidades de mayor impacto.' : 'Diagnóstico de tu punto de partida y de las oportunidades de mayor impacto.',
+    };
+  }
+}
+</script>
+</body>
+</html>
