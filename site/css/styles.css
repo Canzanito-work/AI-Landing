@@ -326,16 +326,17 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
    05 · IA aplicada (bloque crimson a sangre)
    ========================================================================== */
 .ai {
-  position: relative; overflow: hidden;
-  background: var(--c-burgundy) url(../assets/bg/ia.webp) center / cover;
+  position: relative; overflow: hidden; isolation: isolate;
+  --ai-bg: url(../assets/bg/ia.webp) center / cover;
+  --ai-feather: 240px;
   padding: 136px var(--pad-x) 128px;
 }
 .ai__grid-overlay {
   position: absolute; inset: 0; pointer-events: none;
   background-image: linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
   background-size: 80px 80px;
-  -webkit-mask-image: linear-gradient(180deg, #000, transparent 60%);
-  mask-image: linear-gradient(180deg, #000, transparent 60%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 60px, #000 calc(60px + var(--ai-feather)), transparent 65%);
+  mask-image: linear-gradient(180deg, transparent 60px, #000 calc(60px + var(--ai-feather)), transparent 65%);
 }
 .ai .sec-head { grid-template-columns: minmax(0, 1fr) 460px; }
 .ai__pill {
@@ -440,6 +441,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
    07 · Modelos de colaboración (panel claro)
    ========================================================================== */
 .models {
+  position: relative; overflow: hidden;
   margin: 0 16px; border-radius: 32px; background: var(--c-light); color: var(--c-navy-800);
   padding: 112px 80px 96px; display: flex; flex-direction: column; gap: 56px;
 }
@@ -813,7 +815,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   .area__d, .area--hl .area__d { font-size: 14px; line-height: 20px; color: var(--c-text-2); }
 
   /* IA aplicada */
-  .ai { background: var(--c-burgundy) url(../assets/bg/ia-m.webp) 30% 0 / auto 700px; padding: 56px 20px; }
+  .ai { --ai-bg: url(../assets/bg/ia-m.webp) 30% 0 / auto 700px; --ai-feather: 120px; padding: 88px 20px; }
   .ai .sec-head__main { gap: 20px; }
   .ai__pill { gap: 8px; height: 30px; padding: 0 12px; font-size: 10.5px; letter-spacing: .12em; }
   .ai__pill-dot { width: 7px; height: 7px; box-shadow: none; }
@@ -944,4 +946,76 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 
 @media (min-width: 901px) {
   .m-only, .sticky-cta { display: none !important; }
+}
+
+/* ==========================================================================
+   Movimiento: transiciones de scroll
+   - [data-fx]: JS escribe --enter, --leave, --v (visibilidad suavizada, 0–1)
+     y --pv (posición en viewport, -1 abajo … 1 arriba). Sin JS valen 1 / 0.
+   - [data-reveal] y [data-reveal-group] > *: entrada escalonada (html.fx).
+   Todo queda desactivado con prefers-reduced-motion (no se añade .fx).
+   ========================================================================== */
+:root {
+  --ease-premium: cubic-bezier(.16, 1, .3, 1);
+}
+
+/* --- Sección IA: el carmesí nace y muere en el fondo oscuro ---
+   La capa sobresale 80px y el fundido empieza a 140px: así el desplazamiento
+   de parallax (±60px) nunca deja un borde duro en los límites de la sección. */
+.ai::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -80px; bottom: -80px; z-index: -1;
+  background: var(--c-burgundy) var(--ai-bg);
+  -webkit-mask-image: linear-gradient(180deg, transparent 140px, #000 calc(140px + var(--ai-feather)), #000 calc(100% - 140px - var(--ai-feather)), transparent calc(100% - 140px));
+  mask-image: linear-gradient(180deg, transparent 140px, #000 calc(140px + var(--ai-feather)), #000 calc(100% - 140px - var(--ai-feather)), transparent calc(100% - 140px));
+  transform: translate3d(0, calc(var(--pv, 0) * 60px), 0);
+  will-change: transform;
+}
+
+/* --- Paneles de otro color (claros y cierre): emergen desde la oscuridad --- */
+html.fx .about,
+html.fx .models,
+html.fx .closing__panel {
+  transform: scale(calc(.94 + .06 * var(--v, 1)));
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+.about::after,
+.models::after,
+.closing__panel::after,
+.hero__panel::after {
+  content: ""; position: absolute; inset: 0; z-index: 10; pointer-events: none;
+  border-radius: inherit; background: var(--c-ink);
+  opacity: 0; will-change: opacity;
+}
+html.fx .about::after,
+html.fx .models::after { opacity: calc((1 - var(--v, 1)) * .96); }
+html.fx .closing__panel::after { opacity: calc((1 - var(--v, 1)) * .7); }
+
+/* --- Hero: se hunde y se apaga al salir; el isologo flota más rápido --- */
+html.fx .hero__panel {
+  transform: scale(calc(.955 + .045 * var(--leave, 1)));
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+html.fx .hero__panel::after { opacity: calc((1 - var(--leave, 1)) * .75); }
+html.fx .hero__iso { transform: translate3d(0, calc((1 - var(--leave, 1)) * -90px), 0); }
+
+/* --- Entrada escalonada del contenido --- */
+html.fx :is([data-reveal], [data-reveal-group] > *):not(.is-revealed) {
+  transition:
+    opacity 1s var(--ease-premium),
+    transform 1.2s var(--ease-premium),
+    filter 1s var(--ease-premium);
+  transition-delay: var(--rd, 0ms);
+}
+html.fx :is([data-reveal], [data-reveal-group] > *):not(.is-in):not(.is-revealed) {
+  opacity: 0;
+  transform: translate3d(0, 36px, 0);
+  filter: blur(8px);
+}
+@media (max-width: 900px) {
+  html.fx :is([data-reveal], [data-reveal-group] > *):not(.is-in):not(.is-revealed) {
+    transform: translate3d(0, 24px, 0);
+    filter: blur(4px);
+  }
 }

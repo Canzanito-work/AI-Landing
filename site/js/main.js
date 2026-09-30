@@ -169,6 +169,72 @@
     }
   }
 
+  /* ---------- Movimiento al hacer scroll ----------
+   * La clase html.fx la añade el script en línea del <head> (salvo movimiento
+   * reducido). Aquí se marcan los elementos al entrar y se alimentan las
+   * variables CSS de los bloques [data-fx]. */
+  window.__kmFx = true;
+  var docEl = document.documentElement;
+  if (docEl.classList.contains('fx')) {
+    initReveal();
+    initScrollFx();
+  }
+
+  function initReveal() {
+    var items = document.querySelectorAll('[data-reveal], [data-reveal-group] > *');
+    if (!('IntersectionObserver' in window)) { docEl.classList.remove('fx'); return; }
+    var STEP = 90, MAX_DELAY = 540;
+    var io = new IntersectionObserver(function (entries) {
+      // Los elementos que entran a la vez se escalonan en orden de documento.
+      var batch = entries.filter(function (e) { return e.isIntersecting; }).map(function (e) { return e.target; });
+      batch.sort(function (a, b) { return a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1; });
+      batch.forEach(function (el, i) {
+        io.unobserve(el);
+        var delay = Math.min(i * STEP, MAX_DELAY);
+        el.style.setProperty('--rd', delay + 'ms');
+        el.classList.add('is-in');
+        // Al terminar, se retira el estado de animación para que el elemento
+        // recupere sus propias transiciones (p. ej. los hover de las tarjetas).
+        setTimeout(function () {
+          el.classList.add('is-revealed');
+          el.style.removeProperty('--rd');
+        }, delay + 1300);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
+    items.forEach(function (el) { io.observe(el); });
+  }
+
+  function initScrollFx() {
+    var els = Array.prototype.slice.call(document.querySelectorAll('[data-fx]'));
+    if (!els.length) return;
+    var clamp = function (x) { return x < 0 ? 0 : x > 1 ? 1 : x; };
+    var smooth = function (t) { return t * t * (3 - 2 * t); };
+    var ticking = false;
+
+    function update() {
+      ticking = false;
+      var vh = window.innerHeight;
+      var span = vh * 0.65; // distancia de scroll que dura cada transición
+      els.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.bottom < -vh || r.top > vh * 2) return;
+        var enter = smooth(clamp((vh - r.top) / span));
+        var leave = smooth(clamp(r.bottom / span));
+        var pv = Math.max(-1, Math.min(1, -((r.top + r.height / 2) - vh / 2) / (vh / 2 + r.height / 2)));
+        el.style.setProperty('--enter', enter.toFixed(4));
+        el.style.setProperty('--leave', leave.toFixed(4));
+        el.style.setProperty('--v', Math.min(enter, leave).toFixed(4));
+        el.style.setProperty('--pv', pv.toFixed(4));
+      });
+    }
+    function request() {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+    }
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', request);
+    update();
+  }
+
   /* ---------- Barra CTA fija en móvil ----------
    * Aparece a partir del segundo pantallazo (cuando el hero sale de la vista)
    * y se oculta mientras el formulario está visible para no taparlo. */
