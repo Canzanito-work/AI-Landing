@@ -1,7 +1,7 @@
 /* knowmad mood · globo giratorio de puntos
  *
  * Dibuja en <canvas> el mundo en puntos (datos en globe-data.js) con los países
- * de presencia resaltados en el degradado de marca y un marcador en cada uno.
+ * de presencia resaltados en el degradado de marca.
  * Se monta en cada .globe-card[data-globe]; si no hay JS, la tarjeta conserva
  * la imagen estática de fondo.
  * - Gira de forma continua; se pausa fuera de pantalla o con la pestaña oculta.
@@ -50,9 +50,6 @@
   });
   var TONE_COLORS = [];
   for (var tn = 0; tn < TONES; tn++) TONE_COLORS.push(brand(tn));
-  var markers = DATA.markers.map(function (m) {
-    return { sp: Math.sin(m[1] * DEG), cp: Math.cos(m[1] * DEG), lon: m[0] * DEG };
-  });
 
   var sT = Math.sin(TILT), cT = Math.cos(TILT);
   // Proyección ortográfica: devuelve [x, y, profundidad] (profundidad > 0 = cara visible)
@@ -157,28 +154,6 @@
         ctx.fillStyle = g; ctx.beginPath(); ctx.arc(sx, sy, R * 0.05, 0, Math.PI * 2); ctx.fill();
       }
       ctx.restore();
-
-      // Marcadores con pulso
-      var mr = Math.max(3, R * 0.017);
-      for (i = 0; i < markers.length; i++) {
-        var m = markers[i];
-        project(m.sp, m.cp, m.lon, lon0, p);
-        if (p[2] <= 0.04) continue;
-        var mx = cx + p[0] * R, my = cy - p[1] * R, al = Math.min(1, p[2] * 1.6);
-        if (!reduced) {
-          var ph = ((t / 2400) + i * 0.137) % 1;
-          ctx.strokeStyle = 'rgba(255,255,255,' + (al * (1 - ph) * 0.55).toFixed(3) + ')';
-          ctx.lineWidth = 1;
-          ctx.beginPath(); ctx.arc(mx, my, mr * (1 + ph * 2.2), 0, Math.PI * 2); ctx.stroke();
-        }
-        ctx.fillStyle = 'rgba(8,6,26,' + (al * 0.6).toFixed(3) + ')';
-        ctx.beginPath(); ctx.arc(mx, my, mr, 0, Math.PI * 2); ctx.fill();
-        ctx.strokeStyle = 'rgba(255,255,255,' + (al * 0.95).toFixed(3) + ')';
-        ctx.lineWidth = 1.4;
-        ctx.beginPath(); ctx.arc(mx, my, mr, 0, Math.PI * 2); ctx.stroke();
-        ctx.fillStyle = 'rgba(255,255,255,' + al.toFixed(3) + ')';
-        ctx.beginPath(); ctx.arc(mx, my, mr * 0.38, 0, Math.PI * 2); ctx.fill();
-      }
     }
 
     /* ---- Bucle: solo mientras la tarjeta está en pantalla ---- */

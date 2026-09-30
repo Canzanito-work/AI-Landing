@@ -232,6 +232,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   position: absolute; right: -40px; top: 24px;
   font: 800 220px/1 var(--f-sans); letter-spacing: -.04em; white-space: nowrap; pointer-events: none;
   color: transparent; -webkit-text-stroke: 1.5px var(--c-line-light);
+  display: flex; flex-direction: column; align-items: flex-start;
 }
 .about__grid { position: relative; display: grid; grid-template-columns: 520px minmax(0, 1fr); gap: 80px; align-items: start; }
 
@@ -324,6 +325,11 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   font: 800 150px/1 var(--f-sans); letter-spacing: -.04em;
 }
 .marquee__outline { color: transparent; -webkit-text-stroke: 1.5px rgba(255, 255, 255, .22); }
+/* Bucle continuo hacia la izquierda: dos copias idénticas, se desplaza media pista */
+.marquee__track { display: inline-flex; animation: marquee-left 42s linear infinite; will-change: transform; }
+.marquee__item { flex: none; padding-right: .35em; }
+@keyframes marquee-left { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
+@media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; } }
 
 /* ==========================================================================
    05 · IA aplicada (bloque crimson a sangre)
