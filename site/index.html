@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap">
-<link rel="preload" as="image" href="assets/bg/hero.webp" media="(min-width: 901px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/bg/hero.jpg" media="(min-width: 901px)" fetchpriority="high">
 <link rel="preload" as="image" href="assets/bg/hero-m.webp" media="(max-width: 900px)" fetchpriority="high">
 <link rel="stylesheet" href="css/styles.css">
 <script>
@@ -332,16 +332,28 @@
 
   <div class="companies-block">
     <h3 class="eyebrow eyebrow--white d-only">COMPAÑÍAS DEL GRUPO</h3>
-    <ul class="companies" data-reveal-group>
-      <li class="company"><span class="company__t">INCIPY</span><span class="company__d">Transformación y estrategia digital con foco en las personas.</span></li>
-      <li class="company"><span class="company__t">DEXS</span><span class="company__d">Ecosistema de formación, tecnología y servicios para el aprendizaje en las organizaciones.</span></li>
-      <li class="company"><span class="company__t">CDA</span><span class="company__d">Software, cloud, quality engineering, IA y automatización.</span></li>
-      <li class="company"><span class="company__t">Grupo Antea</span><span class="company__d">Ciberseguridad y optimización de sistemas.</span></li>
-      <li class="company"><span class="company__t">Vanture</span><span class="company__d">Soluciones de gestión empresarial, especializada en SAP y Odoo.</span></li>
-      <li class="company"><span class="company__t">Interwor</span><span class="company__d">Infraestructura TI, seguridad, comunicaciones, sistemas, cloud y puesto de trabajo digital.</span></li>
-      <li class="company"><span class="company__t">BUZZ</span><span class="company__d">Agencia creativa digital de campañas, medios, performance y experiencias digitales.</span></li>
-      <li class="company company--acq d-only"><span class="company__acq-n">9</span><span class="company__acq-l">empresas adquiridas</span></li>
-    </ul>
+    <!-- Dos filas en bucle: la de arriba hacia la izquierda y la de abajo hacia la derecha.
+         js/main.js duplica cada fila (copia con aria-hidden) para que el bucle sea continuo. -->
+    <div class="companies-marquee">
+      <div class="cm-row" data-reveal>
+        <ul class="companies cm-track">
+        <li class="company"><span class="company__t">INCIPY</span><span class="company__d">Transformación y estrategia digital con foco en las personas.</span></li>
+        <li class="company"><span class="company__t">DEXS</span><span class="company__d">Ecosistema de formación, tecnología y servicios para el aprendizaje en las organizaciones.</span></li>
+        <li class="company"><span class="company__t">CDA</span><span class="company__d">Software, cloud, quality engineering, IA y automatización.</span></li>
+        <li class="company"><span class="company__t">Grupo Antea</span><span class="company__d">Ciberseguridad y optimización de sistemas.</span></li>
+        <li class="company"><span class="company__t">Vanture</span><span class="company__d">Soluciones de gestión empresarial, especializada en SAP y Odoo.</span></li>
+        </ul>
+      </div>
+      <div class="cm-row cm-row--reverse" data-reveal>
+        <ul class="companies cm-track">
+        <li class="company"><span class="company__t">Interwor</span><span class="company__d">Infraestructura TI, seguridad, comunicaciones, sistemas, cloud y puesto de trabajo digital.</span></li>
+        <li class="company"><span class="company__t">BUZZ</span><span class="company__d">Agencia creativa digital de campañas, medios, performance y experiencias digitales.</span></li>
+        <li class="company"><span class="company__t">Newverve Consulting</span><span class="company__d">Soluciones y productos Atlassian para clientes en Reino Unido e Irlanda.</span></li>
+        <li class="company"><span class="company__t">Antes ASERVO Software</span><span class="company__d">Servicios profesionales DevOps y ALM con Atlassian, GitLab y digital.ai, para clientes en Alemania, Austria y Suiza. <span class="pend">[PENDIENTE: nombre actual de la compañía]</span></span></li>
+        <li class="company company--acq"><span class="company__acq-n">9</span><span class="company__acq-l">empresas adquiridas</span></li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <div class="timeline-card" data-reveal>

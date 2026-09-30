@@ -84,6 +84,20 @@
       draw(lastT);
     }
 
+    function drawOrbit(rx, ry, color) {
+      var STEPS = 240, R2 = R * R, drawing = false;
+      ctx.strokeStyle = color; ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (var k = 0; k <= STEPS; k++) {
+        var ang = k / STEPS * Math.PI * 2;
+        var x = Math.cos(ang) * rx, y = Math.sin(ang) * ry;
+        var hidden = y < 0 && x * x + y * y < R2; // detrás y dentro del disco del globo
+        if (hidden) { drawing = false; continue; }
+        if (drawing) ctx.lineTo(x, y); else { ctx.moveTo(x, y); drawing = true; }
+      }
+      ctx.stroke();
+    }
+
     var lastT = 0;
     function draw(t) {
       var lon0 = (START_LON - (reduced ? 0 : t * SPEED / 1000)) * DEG;
@@ -140,18 +154,23 @@
       ctx.strokeStyle = 'rgba(255,255,255,.1)'; ctx.lineWidth = 1;
       ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke();
 
-      // Órbitas y chispa que las recorre
+      // Órbitas en 3D: la mitad superior del anillo (en pantalla) queda detrás
+      // de la esfera y no se dibuja donde la esfera la tapa.
       ctx.save(); ctx.translate(cx, cy); ctx.rotate(-17 * DEG);
-      ctx.strokeStyle = 'rgba(245,188,57,.2)';
-      ctx.beginPath(); ctx.ellipse(0, 0, R * 1.2, R * 0.27, 0, 0, Math.PI * 2); ctx.stroke();
-      ctx.strokeStyle = 'rgba(255,255,255,.09)';
-      ctx.beginPath(); ctx.ellipse(0, 0, R * 1.1, R * 0.21, 0, 0, Math.PI * 2); ctx.stroke();
+      drawOrbit(R * 1.2, R * 0.27, 'rgba(245,188,57,.2)');
+      drawOrbit(R * 1.1, R * 0.21, 'rgba(255,255,255,.09)');
       if (!reduced) {
+        // Chispa: se apaga al pasar por detrás del globo
         var a = t / 1000 * 0.35;
         var sx = Math.cos(a) * R * 1.2, sy = Math.sin(a) * R * 0.27;
-        g = ctx.createRadialGradient(sx, sy, 0, sx, sy, R * 0.05);
-        g.addColorStop(0, 'rgba(255,230,170,.95)'); g.addColorStop(1, 'rgba(245,188,57,0)');
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(sx, sy, R * 0.05, 0, Math.PI * 2); ctx.fill();
+        var vis = sy >= 0 ? 1 : Math.max(0, Math.min(1, (Math.sqrt(sx * sx + sy * sy) - R * 0.97) / (R * 0.08)));
+        if (vis > 0) {
+          ctx.globalAlpha = vis;
+          g = ctx.createRadialGradient(sx, sy, 0, sx, sy, R * 0.05);
+          g.addColorStop(0, 'rgba(255,230,170,.95)'); g.addColorStop(1, 'rgba(245,188,57,0)');
+          ctx.fillStyle = g; ctx.beginPath(); ctx.arc(sx, sy, R * 0.05, 0, Math.PI * 2); ctx.fill();
+          ctx.globalAlpha = 1;
+        }
       }
       ctx.restore();
     }

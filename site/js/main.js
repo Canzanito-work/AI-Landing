@@ -169,6 +169,32 @@
     }
   }
 
+  /* ---------- Compañías del grupo: filas en bucle ----------
+   * Se duplica el contenido de cada fila (copia oculta a lectores de pantalla)
+   * para que la animación CSS de -50% sea un bucle continuo. Con movimiento
+   * reducido no se anima y la fila se puede desplazar a mano. */
+  var reducedMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reducedMotion) {
+    document.querySelectorAll('.cm-row').forEach(function (row) {
+      var track = row.querySelector('.cm-track');
+      Array.prototype.slice.call(track.children).forEach(function (li) {
+        var copy = li.cloneNode(true);
+        copy.setAttribute('aria-hidden', 'true');
+        track.appendChild(copy);
+      });
+      row.classList.add('is-looping');
+    });
+  }
+
+  /* ---------- Modelos de colaboración: tarjeta activa en táctil ----------
+   * Sin hover, se destaca la tarjeta que cruza la franja central de la pantalla. */
+  if (!reducedMotion && window.matchMedia && matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
+    var modelIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { e.target.classList.toggle('is-active', e.isIntersecting); });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    document.querySelectorAll('.model').forEach(function (el) { modelIo.observe(el); });
+  }
+
   /* ---------- Movimiento al hacer scroll ----------
    * La clase html.fx la añade el script en línea del <head> (salvo movimiento
    * reducido). Aquí se marcan los elementos al entrar y se alimentan las

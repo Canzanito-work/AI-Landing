@@ -5,7 +5,7 @@ CURL_CA=['--cacert',CA] if CA else []
 ROOT=os.path.join(os.path.dirname(os.path.abspath(__file__)),'..')
 S=os.path.join(ROOT,'site')+'/'
 def uri(p):
-    mt={'webp':'image/webp','png':'image/png'}[p.rsplit('.',1)[1]]
+    mt={'webp':'image/webp','png':'image/png','jpg':'image/jpeg'}[p.rsplit('.',1)[1]]
     return f"data:{mt};base64,"+base64.b64encode(open(S+p,'rb').read()).decode()
 html=open(S+'index.html').read(); css=open(S+'css/styles.css').read()
 css=re.sub(r'url\(\.\./(assets/[^)]+)\)',lambda m:f'url("{uri(m.group(1))}")',css)
