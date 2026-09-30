@@ -1,0 +1,193 @@
+/* knowmad mood · web corporativa — comportamiento
+ *
+ * Variantes (equivalen a los «Tweaks» del prototipo), por parámetro de URL:
+ *   ?hero=A|B                 titular del hero (A por defecto)
+ *   ?cta=diagnostico|experto  texto del CTA en toda la página (apartado 4.12)
+ *   ?pendientes=0             oculta los marcadores [PENDIENTE]
+ *   ?form=error|success       fuerza un estado del formulario (QA / revisión)
+ */
+(function () {
+  'use strict';
+
+  var params = new URLSearchParams(window.location.search);
+
+  /* ---------- Copy dependiente de la versión del CTA ---------- */
+  var COPY = {
+    diagnostico: {
+      cta: 'Solicitar diagnóstico de IA',
+      closeText: 'En una sesión de diagnóstico, un experto en IA de knowmad mood analizará contigo la situación de tu organización e identificará las oportunidades de mayor impacto.',
+      formTitle: 'Solicita una sesión de diagnóstico con un experto en IA',
+      formText: 'Evaluaremos el punto de partida de tu organización e identificaremos las oportunidades de mayor impacto.',
+      confirmEnd: 'la sesión de diagnóstico.'
+    },
+    experto: {
+      cta: 'Hablar con un experto en IA',
+      closeText: 'Un experto en IA de knowmad mood analizará contigo la situación de tu organización y las oportunidades de mayor impacto.',
+      formTitle: 'Habla con un experto en IA',
+      formText: 'Cuéntanos en qué punto está tu organización y te ayudaremos a identificar por dónde empezar para generar impacto.',
+      confirmEnd: 'una conversación.'
+    }
+  };
+
+  function setText(selector, text) {
+    document.querySelectorAll(selector).forEach(function (el) { el.textContent = text; });
+  }
+
+  var ctaVersion = params.get('cta') === 'experto' ? 'experto' : 'diagnostico';
+  if (ctaVersion === 'experto') {
+    var c = COPY.experto;
+    setText('[data-cta]', c.cta);
+    setText('[data-close-text]', c.closeText);
+    setText('[data-form-title]', c.formTitle);
+    setText('[data-form-text]', c.formText);
+    setText('[data-confirm-end]', c.confirmEnd);
+    document.querySelectorAll('[data-diag-only]').forEach(function (el) { el.hidden = true; });
+  }
+
+  /* ---------- Titular A/B ---------- */
+  var heroVariant = (params.get('hero') || 'A').toUpperCase() === 'B' ? 'B' : 'A';
+  document.querySelectorAll('[data-hero]').forEach(function (el) {
+    el.hidden = el.getAttribute('data-hero') !== heroVariant;
+  });
+
+  /* ---------- Marcadores [PENDIENTE] ---------- */
+  if (params.get('pendientes') === '0') document.documentElement.classList.add('no-pendientes');
+
+  /* ---------- Formulario ---------- */
+  var FREE_DOMAINS = ['gmail.com', 'googlemail.com', 'hotmail.com', 'hotmail.es', 'outlook.com', 'outlook.es', 'live.com', 'msn.com', 'yahoo.com', 'yahoo.es', 'icloud.com', 'me.com', 'aol.com', 'gmx.com', 'proton.me', 'protonmail.com'];
+  var REQ = 'Este campo es obligatorio.';
+  var MSG_CONSENT = 'Para enviar tu solicitud, acepta la política de privacidad.';
+  var REQUIRED = ['nombre', 'email', 'empresa', 'cargo', 'area', 'consent'];
+
+  var root = document.getElementById('km-form-diagnostico');
+  if (root) initForm(root);
+
+  function initForm(root) {
+    var form = root.querySelector('form');
+    var success = root.querySelector('.kmf__success');
+    var area = form.elements.area;
+    var touched = {};
+
+    function value(name) {
+      var el = form.elements[name];
+      return el.type === 'checkbox' ? el.checked : String(el.value || '').trim();
+    }
+
+    function check(name) {
+      var v = value(name);
+      if (name === 'email') {
+        if (!v) return REQ;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return 'Introduce un email válido.';
+        if (FREE_DOMAINS.indexOf(v.split('@')[1].toLowerCase()) !== -1) return 'Introduce tu email corporativo.';
+        return '';
+      }
+      if (name === 'consent') return v ? '' : MSG_CONSENT;
+      return v ? '' : REQ;
+    }
+
+    function showError(name, msg) {
+      var el = form.elements[name];
+      var err = document.getElementById('kmf-' + name + '-err');
+      if (msg) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid');
+      if (err) err.textContent = msg;
+    }
+
+    // Igual que el prototipo: un campo con error se revalida mientras se edita.
+    REQUIRED.forEach(function (name) {
+      var el = form.elements[name];
+      var evt = (el.type === 'checkbox' || el.tagName === 'SELECT') ? 'change' : 'input';
+      el.addEventListener(evt, function () {
+        if (touched[name]) showError(name, check(name));
+      });
+    });
+
+    function syncArea() { area.classList.toggle('is-filled', !!area.value); }
+    area.addEventListener('change', syncArea);
+
+    var radios = form.querySelectorAll('input[name="madurez"]');
+    function syncRadios() {
+      radios.forEach(function (r) { r.closest('.kmf__option').classList.toggle('is-checked', r.checked); });
+    }
+    radios.forEach(function (r) { r.addEventListener('change', syncRadios); });
+
+    var toggle = form.querySelector('.kmf__rgpd-toggle');
+    var rgpdBody = document.getElementById('kmf-rgpd-body');
+    var rgpdIcon = toggle.querySelector('[data-rgpd-icon]');
+    toggle.addEventListener('click', function () {
+      var open = rgpdBody.hidden;
+      rgpdBody.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      rgpdIcon.textContent = open ? '−' : '+';
+    });
+
+    function validateAll() {
+      var firstInvalid = null;
+      REQUIRED.forEach(function (name) {
+        var msg = check(name);
+        touched[name] = true;
+        showError(name, msg);
+        if (msg && !firstInvalid) firstInvalid = form.elements[name];
+      });
+      return firstInvalid;
+    }
+
+    function showSuccess() {
+      var first = value('nombre').split(/\s+/)[0] || '{{nombre}}';
+      root.querySelector('[data-success-name]').textContent = first;
+      form.hidden = true;
+      success.hidden = false;
+    }
+
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var firstInvalid = validateAll();
+      if (firstInvalid) { firstInvalid.focus(); return; }
+
+      var data = Object.fromEntries(new FormData(form).entries());
+      data.consent = true;
+      data.ctaVersion = ctaVersion;
+      data.heroVariant = heroVariant;
+      // Punto de integración (HubSpot Forms API / CRM): escucha este evento o
+      // sustituye este bloque por el envío real antes de mostrar la confirmación.
+      root.dispatchEvent(new CustomEvent('kmf:submit', { detail: data, bubbles: true }));
+      showSuccess();
+      success.focus();
+    });
+
+    /* Estados forzados para revisión (equivalen al tweak «formState») */
+    var state = params.get('form');
+    if (state === 'error') {
+      form.elements.nombre.value = 'Laura Martín';
+      form.elements.email.value = 'laura.martin@gmail.com';
+      form.elements.cargo.value = 'Directora de Operaciones';
+      radios[1].checked = true;
+      syncRadios();
+      validateAll();
+    } else if (state === 'success') {
+      form.elements.nombre.value = 'Laura Martín';
+      showSuccess();
+    }
+  }
+
+  /* ---------- Barra CTA fija en móvil ----------
+   * Aparece a partir del segundo pantallazo (cuando el hero sale de la vista)
+   * y se oculta mientras el formulario está visible para no taparlo. */
+  var bar = document.querySelector('[data-sticky-cta]');
+  var hero = document.querySelector('.hero__panel');
+  if (bar && hero && 'IntersectionObserver' in window) {
+    var heroVisible = true;
+    var formVisible = false;
+    var update = function () {
+      var show = !heroVisible && !formVisible;
+      bar.classList.toggle('is-visible', show);
+    };
+    new IntersectionObserver(function (entries) {
+      heroVisible = entries[0].isIntersecting; update();
+    }).observe(hero);
+    if (root) {
+      new IntersectionObserver(function (entries) {
+        formVisible = entries[0].isIntersecting; update();
+      }).observe(root);
+    }
+  }
+})();
