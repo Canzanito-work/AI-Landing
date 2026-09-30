@@ -8,7 +8,11 @@ def uri(p):
     mt={'webp':'image/webp','png':'image/png','jpg':'image/jpeg'}[p.rsplit('.',1)[1]]
     return f"data:{mt};base64,"+base64.b64encode(open(S+p,'rb').read()).decode()
 html=open(S+'index.html').read(); css=open(S+'css/styles.css').read()
-css=re.sub(r'url\(\.\./(assets/[^)]+)\)',lambda m:f'url("{uri(m.group(1))}")',css)
+# Cada imagen se incrusta una sola vez como variable CSS, aunque se use en varios sitios
+assets=sorted(set(re.findall(r'url\(\.\./(assets/[^)]+)\)',css)))
+var={a:f'--km-asset-{i}' for i,a in enumerate(assets)}
+css=re.sub(r'url\(\.\./(assets/[^)]+)\)',lambda m:f'var({var[m.group(1)]})',css)
+css=':root{'+''.join(f'{v}:url("{uri(a)}");' for a,v in var.items())+'}\n'+css
 UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36'
 FONT_URL=re.search(r'rel="stylesheet" href="(https://fonts.googleapis.com/css2[^"]*)"',html).group(1)
 font=subprocess.run(['curl','-sS','-A',UA,FONT_URL]+CURL_CA,capture_output=True,check=True).stdout.decode()
