@@ -1072,6 +1072,10 @@ html.js .hero__panel { background-image: none; }
   mask-image: linear-gradient(90deg, transparent 36%, #000 64%);
 }
 html.js .hero__flutes { display: block; }
+/* Sin WebGL (o si se pierde el contexto) se vuelve a la imagen fija */
+html.js.hero-static .hero__panel { background-image: url(../assets/bg/hero.jpg); }
+html.hero-static .hero__flutes { display: none !important; }
+@media (max-width: 900px) { html.js.hero-static .hero__panel { background-image: url(../assets/bg/hero-m.webp); } }
 .hero__header, .hero__grid, .hero__cta, .hero__copy > *, .hero__visual { position: relative; z-index: 1; }
 @media (max-width: 900px) {
   .hero__flutes {
@@ -1087,7 +1091,7 @@ html.js .hero__flutes { display: block; }
 }
 .iso {
   position: relative;
-  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transform: perspective(1000px);   /* la inclinación la escribe js/hero-fx.js */
   will-change: transform;
 }
 .iso__float { position: relative; animation: iso-float 8s ease-in-out infinite; }
@@ -1095,23 +1099,25 @@ html.js .hero__flutes { display: block; }
   0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
   50% { transform: translate3d(0, -14px, 0) rotate(-1.2deg); }
 }
-/* Destello especular recortado con la silueta del isologo */
+/* Destello especular recortado con la silueta del isologo.
+   La máscara es fija y la banda de luz se mueve con transform (sin repintar). */
 .iso__sheen {
-  position: absolute; inset: 0; pointer-events: none;
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
   -webkit-mask: url(../assets/isologo-3d.webp) center / 100% 100% no-repeat;
   mask: url(../assets/isologo-3d.webp) center / 100% 100% no-repeat;
-  background: linear-gradient(105deg, rgba(255, 255, 255, 0) 44%, rgba(255, 250, 235, .55) 50%, rgba(255, 255, 255, 0) 56%) no-repeat;
-  background-size: 300% 100%;
-  background-position: 95% 0;
-  mix-blend-mode: screen;
+}
+.iso__sheen::before {
+  content: ""; position: absolute; top: -10%; bottom: -10%; left: 0; width: 45%;
+  background: linear-gradient(105deg, rgba(255, 250, 235, 0) 20%, rgba(255, 250, 235, .42) 50%, rgba(255, 250, 235, 0) 80%);
+  transform: translate3d(-110%, 0, 0);
   animation: iso-sheen 7s cubic-bezier(.45, 0, .2, 1) 1.4s infinite;
+  will-change: transform;
 }
 @keyframes iso-sheen {
-  0% { background-position: 95% 0; }
-  26%, 100% { background-position: 5% 0; }
+  0% { transform: translate3d(-110%, 0, 0); }
+  26%, 100% { transform: translate3d(240%, 0, 0); }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero__glow, .iso__float { animation: none; }
   .iso__sheen { display: none; }
 }
-.hero__ribbon--glow { opacity: .55; mix-blend-mode: screen; }
