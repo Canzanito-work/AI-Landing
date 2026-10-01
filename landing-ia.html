@@ -616,25 +616,84 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
    ========================================================================== */
 .sectors { padding: 136px var(--pad-x) 120px; display: flex; flex-direction: column; gap: 56px; }
 .sectors .sec-head { grid-template-columns: minmax(0, 1fr) 480px; }
-.sectors__grid {
-  padding: 0; list-style: none;
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid var(--line-dark); border-left: 1px solid var(--line-dark);
+/* Explorador de sectores: índice con barras (énfasis: el activo en color, el resto atenuado)
+   + panel de foco. Comportamiento en js/main.js (initSectors). */
+.sx { display: grid; grid-template-columns: minmax(0, 1fr) 460px; gap: 72px; align-items: start; }
+.sx-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-dark); }
+.sx-row {
+  position: relative; width: 100%; display: grid; grid-template-columns: 48px minmax(0, 1fr) auto;
+  column-gap: 16px; row-gap: 10px; align-items: baseline;
+  padding: 16px 0 18px; background: none; border: 0; border-bottom: 1px solid var(--line-dark);
+  color: inherit; text-align: left; cursor: pointer; font: inherit;
 }
-.sector {
-  padding: 28px; min-height: 170px;
-  border-right: 1px solid var(--line-dark); border-bottom: 1px solid var(--line-dark);
-  display: flex; flex-direction: column; justify-content: space-between; gap: 20px;
-  transition: background-color .2s ease;
+.sx-row:focus-visible { outline: 2px solid var(--c-yellow); outline-offset: 4px; border-radius: 4px; }
+.sx-row__n { font: 600 12px/1 var(--f-mono); color: var(--c-text-3); transition: color .4s ease; }
+.sx-row__t {
+  font: 700 26px/32px var(--f-sans); letter-spacing: -.015em; color: #6F6A88;
+  transition: color .4s ease, transform .5s var(--ease-premium);
 }
-.sector:hover { background: rgba(222, 35, 48, .1); }
-.sector__top { display: flex; justify-content: space-between; }
-.sector__n { font: 600 12px/1 var(--f-mono); color: var(--c-yellow); }
-.sector__dot { width: 10px; height: 10px; border-radius: 50%; }
-.sector__body { display: flex; flex-direction: column; gap: 8px; }
-.sector__t { font: 700 20px/26px var(--f-sans); }
-.sector__c { font: 500 13px/19px var(--f-sans); color: var(--c-text-3); }
-.sectors__pend { margin-top: -32px; }
+.sx-row__v { font: 600 14px/1 var(--f-mono); color: var(--c-text-3); font-variant-numeric: tabular-nums; transition: color .4s ease; }
+.sx-row__bar { grid-column: 2 / -1; height: 4px; border-radius: 4px; background: rgba(255, 255, 255, .05); overflow: hidden; }
+.sx-row__bar > span {
+  display: block; height: 100%; border-radius: 4px; background: rgba(176, 166, 214, .35);
+  transform-origin: left center; transition: background-color .4s ease;
+}
+.sx-row__timer {
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+  background: var(--g-brand); transform: scaleX(0); transform-origin: left center;
+}
+.sx-row:hover .sx-row__t { color: #B9B4CC; }
+.sx-row.is-active .sx-row__n { color: var(--c-yellow); }
+.sx-row.is-active .sx-row__t { color: #fff; transform: translateX(6px); }
+.sx-row.is-active .sx-row__v { color: #fff; }
+.sx-row.is-active .sx-row__bar > span { background: var(--g-brand); }
+.sx.is-cycling .sx-row.is-active .sx-row__timer { animation: sx-timer var(--sx-dur, 4.5s) linear forwards; }
+@keyframes sx-timer { to { transform: scaleX(1); } }
+.sx.is-paused .sx-row__timer { animation-play-state: paused !important; }
+
+.sx-spot {
+  position: sticky; top: 32px; overflow: hidden;
+  border-radius: 28px; padding: 36px 36px 32px;
+  background:
+    radial-gradient(120% 80% at 100% 0%, rgba(222, 35, 48, .28), rgba(222, 35, 48, 0) 60%),
+    radial-gradient(90% 70% at 0% 100%, rgba(245, 188, 57, .12), rgba(245, 188, 57, 0) 60%),
+    var(--c-navy-900);
+  border: 1px solid rgba(255, 255, 255, .1);
+  display: flex; flex-direction: column; gap: 14px;
+  min-height: 560px;
+}
+.sx-spot__ghost {
+  position: absolute; right: -8px; top: -28px; pointer-events: none;
+  font: 800 220px/1 var(--f-sans); letter-spacing: -.05em;
+  color: transparent; -webkit-text-stroke: 1.5px rgba(255, 255, 255, .08);
+}
+.sx-spot__eyebrow { position: relative; font: 600 12px/1 var(--f-mono); letter-spacing: .14em; color: var(--c-yellow); }
+.sx-spot__title { position: relative; font: 700 36px/42px var(--f-sans); letter-spacing: -.02em; text-wrap: balance; min-height: 84px; }
+.sx-spot__metric { position: relative; display: flex; flex-direction: column; gap: 2px; margin-top: 8px; }
+.sx-spot__value { font: 700 112px/1 var(--f-sans); letter-spacing: -.04em; }
+.sx-spot__value small { font-size: .42em; letter-spacing: 0; margin-left: 6px; color: var(--c-text-2); }
+.sx-spot__value > span { background: var(--g-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sx-spot__label { font: 500 15px/22px var(--f-sans); color: var(--c-text-2); }
+.sx-spot__meter { position: relative; height: 4px; border-radius: 4px; background: rgba(255, 255, 255, .08); overflow: hidden; margin: 6px 0 14px; }
+.sx-spot__meter > span { display: block; height: 100%; border-radius: 4px; background: var(--g-brand); transition: width .8s var(--ease-premium); }
+.sx-spot__clients-label { position: relative; font: 600 11px/1 var(--f-mono); letter-spacing: .14em; color: var(--c-text-3); }
+.sx-spot__clients { position: relative; margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.sx-spot__clients li {
+  height: 36px; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 999px;
+  background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14);
+  font: 600 14px var(--f-sans); color: var(--c-text-1);
+  animation: sx-chip .6s var(--ease-premium) both; animation-delay: calc(var(--i, 0) * 70ms + 120ms);
+}
+@keyframes sx-chip { from { opacity: 0; transform: translate3d(0, 10px, 0); } }
+.sx-spot__pend { position: relative; margin: auto 0 0; padding-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+/* Cambio de sector: el contenido sale y entra */
+.sx-spot.is-swapping .sx-spot__title,
+.sx-spot.is-swapping .sx-spot__ghost { opacity: 0; transform: translate3d(0, 8px, 0); }
+.sx-spot__title, .sx-spot__ghost { transition: opacity .35s ease, transform .5s var(--ease-premium); }
+@media (prefers-reduced-motion: reduce) {
+  .sx-spot__clients li { animation: none; }
+  .sx-row__t, .sx-spot__title, .sx-spot__ghost { transition: none; }
+}
 
 /* ==========================================================================
    09 · Grupo y presencia
@@ -872,7 +931,9 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   .models { padding: 96px 48px 72px; }
   .models__title { font-size: 44px; line-height: 50px; }
   .models__grid { grid-template-columns: 1fr; }
-  .sectors__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .sx { grid-template-columns: minmax(0, 1fr) 380px; gap: 40px; }
+  .sx-row__t { font-size: 22px; line-height: 28px; }
+  .sx-spot__value { font-size: 88px; }
   .group__top { grid-template-columns: 460px minmax(0, 1fr); gap: 48px; }
   .group .globe-card { height: 500px; }
   .timeline { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 32px; }
@@ -1042,12 +1103,20 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 
   /* Sectores */
   .sectors { padding: 64px 20px 40px; gap: 20px; }
-  .sectors__grid { grid-template-columns: 1fr 1fr; }
-  .sector { padding: 14px; min-height: 0; justify-content: flex-start; gap: 6px; }
-  .sector__n { font-size: 11px; }
-  .sector__body { gap: 6px; }
-  .sector__t { font-size: 14.5px; line-height: 19px; }
-  .sector__c { font-size: 12px; line-height: 17px; font-weight: 400; }
+  .sx { display: flex; flex-direction: column-reverse; gap: 20px; }
+  .sx-spot { position: relative; top: auto; min-height: 0; border-radius: 22px; padding: 22px 20px 20px; gap: 10px; }
+  .sx-spot__ghost { font-size: 140px; top: -16px; }
+  .sx-spot__title { font-size: 24px; line-height: 30px; min-height: 60px; }
+  .sx-spot__value { font-size: 64px; }
+  .sx-spot__label { font-size: 13px; line-height: 18px; }
+  .sx-spot__meter { margin: 4px 0 8px; }
+  .sx-spot__clients li { height: 30px; padding: 0 11px; font-size: 12.5px; }
+  .sx-row { grid-template-columns: 30px minmax(0, 1fr) auto; column-gap: 10px; row-gap: 8px; padding: 12px 0 13px; }
+  .sx-row__n { font-size: 11px; }
+  .sx-row__t { font-size: 16px; line-height: 21px; color: #8C87A6; } /* contraste AA a tamaño de texto normal */
+  .sx-row.is-active .sx-row__t { transform: translateX(3px); }
+  .sx-row__v { font-size: 12px; }
+  .sx-row__bar { height: 3px; }
 
   /* Grupo y presencia */
   .group { padding: 24px 20px 56px; gap: 20px; }
@@ -1528,21 +1597,35 @@ html.hero-static .hero__flutes { display: none !important; }
     </div>
     <p class="sec-head__lead" data-reveal>Trabajamos con organizaciones de sectores muy distintos. Esa diversidad nos ayuda a entender tu negocio y a trasladar a él lo que ya funciona en otros.</p>
   </div>
-  <ul class="sectors__grid" data-reveal-group>
-    <li class="sector"><div class="sector__top"><span class="sector__n">01</span><span class="sector__dot d-only" style="background:#F5BC39" aria-hidden="true"></span></div><div class="sector__body"><h3 class="sector__t">Retail</h3><span class="sector__c">Inditex · El Corte Inglés · Carrefour · Decathlon</span></div></li>
-    <li class="sector"><div class="sector__top"><span class="sector__n">02</span><span class="sector__dot d-only" style="background:#F5BC39" aria-hidden="true"></span></div><div class="sector__body"><h3 class="sector__t">Seguros</h3><span class="sector__c">Mapfre · AXA · Zurich · Generali</span></div></li>
-    <li class="sector"><div class="sector__top"><span class="sector__n">03</span><span class="sector__dot d-only" style="background:#F08A2C" aria-hidden="true"></span></div><div class="sector__body"><h3 class="sector__t">Administración pública</h3><span class="sector__c">Guardia Civil · Generalitat Valenciana · INTA · AESA</span></div></li>
-    <li class="sector"><div class="sector__top"><span class="sector__n">04</span><span class="sector__dot d-only" style="background:#F08A2C" aria-hidden="true"></span></div><div class="sector__body"><h3 class="sector__t">Banca y servicios financieros</h3><span class="sector__c">Santander · CaixaBank · Bankinter · ING</span></div></li>
-    <li class="sector"><div class="sector__top"><span class="sector__n">05</span><span class="sector__dot d-only" style="background:#EA5A2E" aria-hidden="true"></span></div><div class="sector__body"><h3 class="sector__t">Servicios</h3><span class="sector__c">Skyscanner · SGS · Prosegur · Applus</span></div></li>
-    <li class="sector"><div class="sector__top"><span class="sector__n">06</span><span class="sector__dot d-only" style="background:#EA5A2E" aria-hidden="true"></span></div><div class="sector__body"><h3 class="sector__t">Industria</h3><span class="sector__c">Mercedes-Benz · Volkswagen Group Services · LG · Saint-Gobain</span></div></li>
-    <li class="sector"><div class="sector__top"><span class="sector__n">07</span><span class="sector__dot d-only" style="background:#DE2330" aria-hidden="true"></span></div><div class="sector__body"><h3 class="sector__t">Turismo, transporte y logística</h3><span class="sector__c">Iberia · Vueling · Meliá · Barceló</span></div></li>
-    <li class="sector"><div class="sector__top"><span class="sector__n">08</span><span class="sector__dot d-only" style="background:#DE2330" aria-hidden="true"></span></div><div class="sector__body"><h3 class="sector__t">Media y editoriales</h3><span class="sector__c">DAZN · Mediaset · Atresmedia · RTVE</span></div></li>
-    <li class="sector"><div class="sector__top"><span class="sector__n">09</span><span class="sector__dot d-only" style="background:#D61D4F" aria-hidden="true"></span></div><div class="sector__body"><h3 class="sector__t">Telecomunicaciones</h3><span class="sector__c">Telefónica · Vodafone · BT · Cellnex</span></div></li>
-    <li class="sector"><div class="sector__top"><span class="sector__n">10</span><span class="sector__dot d-only" style="background:#D61D4F" aria-hidden="true"></span></div><div class="sector__body"><h3 class="sector__t">Ciencias de la salud</h3><span class="sector__c">Boehringer Ingelheim · Sanitas · Esteve · Werfen</span></div></li>
-    <li class="sector"><div class="sector__top"><span class="sector__n">11</span><span class="sector__dot d-only" style="background:#B3163F" aria-hidden="true"></span></div><div class="sector__body"><h3 class="sector__t">Energía y utilities</h3><span class="sector__c">Iberdrola · Endesa · Naturgy · Acciona</span></div></li>
-    <li class="sector"><div class="sector__top"><span class="sector__n">12</span><span class="sector__dot d-only" style="background:#B3163F" aria-hidden="true"></span></div><div class="sector__body"><h3 class="sector__t">Educación</h3><span class="sector__c">Universidad Europea · UNED · ESADE · UNIR</span></div></li>
-  </ul>
-  <p class="sectors__pend pend-block d-only" data-reveal><span class="pend">[PENDIENTE: autorización de uso de logotipos de clientes en campañas de pago]</span></p>
+  <!-- Explorador de sectores: índice con el peso de cada sector en el negocio (barras) + foco
+       en el sector activo. Recorre los sectores solo (js/main.js) hasta que el usuario interactúa.
+       Los datos viven en cada botón (data-share, data-clients) para editarlos sin tocar el JS. -->
+  <div class="sx" data-sx>
+    <ol class="sx-list" data-reveal-group>
+      <li><button type="button" class="sx-row is-active" aria-pressed="true" aria-controls="sx-spot" data-share="15,9" data-clients="Inditex|El Corte Inglés|Carrefour|Decathlon"><span class="sx-row__n">01</span><span class="sx-row__t">Retail</span><span class="sx-row__v">15,9 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:100.0%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="15,3" data-clients="Mapfre|AXA|Zurich|Generali"><span class="sx-row__n">02</span><span class="sx-row__t">Seguros</span><span class="sx-row__v">15,3 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:96.2%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="11,7" data-clients="Guardia Civil|Generalitat Valenciana|INTA|AESA"><span class="sx-row__n">03</span><span class="sx-row__t">Administración pública</span><span class="sx-row__v">11,7 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:73.6%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="11,3" data-clients="Santander|CaixaBank|Bankinter|ING"><span class="sx-row__n">04</span><span class="sx-row__t">Banca y servicios financieros</span><span class="sx-row__v">11,3 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:71.1%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="9,8" data-clients="Skyscanner|SGS|Prosegur|Applus"><span class="sx-row__n">05</span><span class="sx-row__t">Servicios</span><span class="sx-row__v">9,8 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:61.6%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="7,8" data-clients="Mercedes-Benz|Volkswagen Group Services|LG|Saint-Gobain"><span class="sx-row__n">06</span><span class="sx-row__t">Industria</span><span class="sx-row__v">7,8 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:49.1%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="7,1" data-clients="Iberia|Vueling|Meliá|Barceló"><span class="sx-row__n">07</span><span class="sx-row__t">Turismo, transporte y logística</span><span class="sx-row__v">7,1 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:44.7%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="5,5" data-clients="DAZN|Mediaset|Atresmedia|RTVE"><span class="sx-row__n">08</span><span class="sx-row__t">Media y editoriales</span><span class="sx-row__v">5,5 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:34.6%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="5,3" data-clients="Telefónica|Vodafone|BT|Cellnex"><span class="sx-row__n">09</span><span class="sx-row__t">Telecomunicaciones</span><span class="sx-row__v">5,3 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:33.3%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="4,3" data-clients="Boehringer Ingelheim|Sanitas|Esteve|Werfen"><span class="sx-row__n">10</span><span class="sx-row__t">Ciencias de la salud</span><span class="sx-row__v">4,3 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:27.0%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="3,7" data-clients="Iberdrola|Endesa|Naturgy|Acciona"><span class="sx-row__n">11</span><span class="sx-row__t">Energía y utilities</span><span class="sx-row__v">3,7 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:23.3%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="2,4" data-clients="Universidad Europea|UNED|ESADE|UNIR"><span class="sx-row__n">12</span><span class="sx-row__t">Educación</span><span class="sx-row__v">2,4 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:15.1%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+    </ol>
+    <aside class="sx-spot" id="sx-spot" aria-live="polite" data-reveal>
+      <span class="sx-spot__ghost" aria-hidden="true" data-sx-num>01</span>
+      <span class="sx-spot__eyebrow">SECTOR <span data-sx-pos>01</span> / 12</span>
+      <h3 class="sx-spot__title" data-sx-title>Retail</h3>
+      <div class="sx-spot__metric"><span class="sx-spot__value"><span data-sx-value>15,9</span><small>%</small></span><span class="sx-spot__label">del negocio de knowmad mood</span></div>
+      <div class="sx-spot__meter" aria-hidden="true"><span data-sx-meter style="width:100%"></span></div>
+      <span class="sx-spot__clients-label">ALGUNOS CLIENTES</span>
+      <ul class="sx-spot__clients" data-sx-clients><li>Inditex</li><li>El Corte Inglés</li><li>Carrefour</li><li>Decathlon</li></ul>
+      <p class="sx-spot__pend pend-block"><span class="pend">[PENDIENTE: validar si se publica el peso de cada sector]</span> <span class="pend">[PENDIENTE: autorización de uso de logotipos de clientes en campañas de pago]</span></p>
+    </aside>
+  </div>
 </section>
 
 <!-- ============ 09 · Grupo y presencia ============ -->
@@ -1941,6 +2024,99 @@ html.hero-static .hero__flutes { display: none !important; }
       entries.forEach(function (e) { e.target.classList.toggle('is-active', e.isIntersecting); });
     }, { rootMargin: '-45% 0px -45% 0px' });
     document.querySelectorAll('.model').forEach(function (el) { modelIo.observe(el); });
+  }
+
+  /* ---------- Explorador de sectores ----------
+   * Al elegir un sector, el panel de foco muestra su peso (con cifra animada),
+   * su posición y sus clientes. Mientras nadie interactúa, recorre los sectores
+   * solo: la línea de progreso de la fila activa marca el tiempo y, al terminar
+   * su animación, pasa al siguiente. Se pausa con el ratón encima, con el foco
+   * dentro o fuera de pantalla, y se detiene del todo cuando el usuario elige uno.
+   * Con movimiento reducido no avanza solo. */
+  var sx = document.querySelector('[data-sx]');
+  if (sx) initSectors(sx);
+
+  function initSectors(root) {
+    var rows = Array.prototype.slice.call(root.querySelectorAll('.sx-row'));
+    var spot = root.querySelector('.sx-spot');
+    var el = function (sel) { return spot.querySelector(sel); };
+    var title = el('[data-sx-title]'), num = el('[data-sx-num]'), pos = el('[data-sx-pos]');
+    var value = el('[data-sx-value]'), meter = el('[data-sx-meter]'), clients = el('[data-sx-clients]');
+    var share = function (row) { return parseFloat(row.getAttribute('data-share').replace(',', '.')); };
+    var max = Math.max.apply(null, rows.map(share));
+    var fmt = function (v) { return v.toFixed(1).replace('.', ','); };
+    var current = 0, shown = share(rows[0]), countRaf = 0, swapTimer = 0;
+
+    function countTo(target) {
+      cancelAnimationFrame(countRaf);
+      if (reducedMotion) { shown = target; value.textContent = fmt(target); return; }
+      var from = shown, t0 = performance.now(), D = 750;
+      (function step(now) {
+        var k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3);
+        shown = from + (target - from) * e;
+        value.textContent = fmt(shown);
+        if (k < 1) countRaf = requestAnimationFrame(step);
+      })(t0);
+    }
+
+    function select(i) {
+      if (i === current) return;
+      rows[current].classList.remove('is-active');
+      rows[current].setAttribute('aria-pressed', 'false');
+      current = i;
+      var row = rows[i];
+      row.classList.add('is-active');
+      row.setAttribute('aria-pressed', 'true');
+      var n = String(i + 1).padStart(2, '0');
+      meter.style.width = (share(row) / max * 100) + '%';
+      countTo(share(row));
+      spot.classList.add('is-swapping');
+      clearTimeout(swapTimer);
+      swapTimer = setTimeout(function () {
+        title.textContent = row.querySelector('.sx-row__t').textContent;
+        num.textContent = n; pos.textContent = n;
+        clients.innerHTML = '';
+        row.getAttribute('data-clients').split('|').forEach(function (c, k) {
+          var li = document.createElement('li');
+          li.textContent = c; li.style.setProperty('--i', k);
+          clients.appendChild(li);
+        });
+        spot.classList.remove('is-swapping');
+      }, reducedMotion ? 0 : 180);
+    }
+
+    // Elección del usuario: detiene el recorrido automático
+    var stopped = reducedMotion;
+    rows.forEach(function (row, i) {
+      row.addEventListener('click', function () { stopped = true; root.classList.remove('is-cycling'); select(i); });
+      row.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowDown' ? 1 : e.key === 'ArrowUp' ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        rows[(i + d + rows.length) % rows.length].focus();
+      });
+    });
+
+    if (stopped) return;
+    // Recorrido automático sincronizado con la línea de progreso (animationend)
+    root.addEventListener('animationend', function (e) {
+      if (e.animationName !== 'sx-timer' || stopped) return;
+      select((current + 1) % rows.length);
+    });
+    var hovering = false, focused = false, onScreen = false;
+    function sync() {
+      var run = !stopped && onScreen && !hovering && !focused;
+      root.classList.toggle('is-cycling', !stopped);
+      root.classList.toggle('is-paused', !run);
+    }
+    root.addEventListener('mouseenter', function () { hovering = true; sync(); });
+    root.addEventListener('mouseleave', function () { hovering = false; sync(); });
+    root.addEventListener('focusin', function () { focused = true; sync(); });
+    root.addEventListener('focusout', function (e) { focused = root.contains(e.relatedTarget); sync(); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { onScreen = en[0].isIntersecting; sync(); }, { threshold: 0.35 }).observe(root);
+    } else { onScreen = true; }
+    sync();
   }
 
   /* ---------- Movimiento al hacer scroll ----------

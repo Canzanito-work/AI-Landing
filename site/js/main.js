@@ -195,6 +195,99 @@
     document.querySelectorAll('.model').forEach(function (el) { modelIo.observe(el); });
   }
 
+  /* ---------- Explorador de sectores ----------
+   * Al elegir un sector, el panel de foco muestra su peso (con cifra animada),
+   * su posición y sus clientes. Mientras nadie interactúa, recorre los sectores
+   * solo: la línea de progreso de la fila activa marca el tiempo y, al terminar
+   * su animación, pasa al siguiente. Se pausa con el ratón encima, con el foco
+   * dentro o fuera de pantalla, y se detiene del todo cuando el usuario elige uno.
+   * Con movimiento reducido no avanza solo. */
+  var sx = document.querySelector('[data-sx]');
+  if (sx) initSectors(sx);
+
+  function initSectors(root) {
+    var rows = Array.prototype.slice.call(root.querySelectorAll('.sx-row'));
+    var spot = root.querySelector('.sx-spot');
+    var el = function (sel) { return spot.querySelector(sel); };
+    var title = el('[data-sx-title]'), num = el('[data-sx-num]'), pos = el('[data-sx-pos]');
+    var value = el('[data-sx-value]'), meter = el('[data-sx-meter]'), clients = el('[data-sx-clients]');
+    var share = function (row) { return parseFloat(row.getAttribute('data-share').replace(',', '.')); };
+    var max = Math.max.apply(null, rows.map(share));
+    var fmt = function (v) { return v.toFixed(1).replace('.', ','); };
+    var current = 0, shown = share(rows[0]), countRaf = 0, swapTimer = 0;
+
+    function countTo(target) {
+      cancelAnimationFrame(countRaf);
+      if (reducedMotion) { shown = target; value.textContent = fmt(target); return; }
+      var from = shown, t0 = performance.now(), D = 750;
+      (function step(now) {
+        var k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3);
+        shown = from + (target - from) * e;
+        value.textContent = fmt(shown);
+        if (k < 1) countRaf = requestAnimationFrame(step);
+      })(t0);
+    }
+
+    function select(i) {
+      if (i === current) return;
+      rows[current].classList.remove('is-active');
+      rows[current].setAttribute('aria-pressed', 'false');
+      current = i;
+      var row = rows[i];
+      row.classList.add('is-active');
+      row.setAttribute('aria-pressed', 'true');
+      var n = String(i + 1).padStart(2, '0');
+      meter.style.width = (share(row) / max * 100) + '%';
+      countTo(share(row));
+      spot.classList.add('is-swapping');
+      clearTimeout(swapTimer);
+      swapTimer = setTimeout(function () {
+        title.textContent = row.querySelector('.sx-row__t').textContent;
+        num.textContent = n; pos.textContent = n;
+        clients.innerHTML = '';
+        row.getAttribute('data-clients').split('|').forEach(function (c, k) {
+          var li = document.createElement('li');
+          li.textContent = c; li.style.setProperty('--i', k);
+          clients.appendChild(li);
+        });
+        spot.classList.remove('is-swapping');
+      }, reducedMotion ? 0 : 180);
+    }
+
+    // Elección del usuario: detiene el recorrido automático
+    var stopped = reducedMotion;
+    rows.forEach(function (row, i) {
+      row.addEventListener('click', function () { stopped = true; root.classList.remove('is-cycling'); select(i); });
+      row.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowDown' ? 1 : e.key === 'ArrowUp' ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        rows[(i + d + rows.length) % rows.length].focus();
+      });
+    });
+
+    if (stopped) return;
+    // Recorrido automático sincronizado con la línea de progreso (animationend)
+    root.addEventListener('animationend', function (e) {
+      if (e.animationName !== 'sx-timer' || stopped) return;
+      select((current + 1) % rows.length);
+    });
+    var hovering = false, focused = false, onScreen = false;
+    function sync() {
+      var run = !stopped && onScreen && !hovering && !focused;
+      root.classList.toggle('is-cycling', !stopped);
+      root.classList.toggle('is-paused', !run);
+    }
+    root.addEventListener('mouseenter', function () { hovering = true; sync(); });
+    root.addEventListener('mouseleave', function () { hovering = false; sync(); });
+    root.addEventListener('focusin', function () { focused = true; sync(); });
+    root.addEventListener('focusout', function (e) { focused = root.contains(e.relatedTarget); sync(); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { onScreen = en[0].isIntersecting; sync(); }, { threshold: 0.35 }).observe(root);
+    } else { onScreen = true; }
+    sync();
+  }
+
   /* ---------- Movimiento al hacer scroll ----------
    * La clase html.fx la añade el script en línea del <head> (salvo movimiento
    * reducido). Aquí se marcan los elementos al entrar y se alimentan las
