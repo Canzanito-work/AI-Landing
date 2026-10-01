@@ -16,6 +16,7 @@ npx serve site
 | `css/styles.css` | Tokens (`:root`), componentes compartidos (`.btn`, `.eyebrow`, `.pend`, `.chip`, `.sec-head`) y un bloque por sección. |
 | `js/main.js` | Variantes, validación y estados del formulario, desplegable RGPD y barra CTA fija en móvil. |
 | `js/globe.js` + `js/globe-data.js` | Globo giratorio de «Quiénes somos» (canvas, sin dependencias). Los datos se generan con `tools/gen-globe.cjs` a partir de Natural Earth 1:50m; para cambiar los países de presencia, edita la lista `PRESENCE` y vuelve a generarlos. |
+| `js/hero-fx.js` | Hero vivo: cinta de luz animada en canvas (sustituye a la imagen fija cuando hay JS) e isologo con inclinación 3D hacia el cursor. El flotado y el destello del isologo están en CSS. |
 | `assets/` | Imágenes WebP generadas a partir de `project/assets` (≈0,6 MB en total frente a 2,9 MB), más versiones `-m` para móvil. |
 
 Módulos, en orden: `hero` → `clientes` → `quienes-somos` → `que-hacemos` → (línea de texto gigante) → `ia-aplicada` → `casos-de-exito` → `modelos-colaboracion` → `sectores` → `grupo-presencia` → `cierre` (con `formulario`) → `pie`.

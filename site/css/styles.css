@@ -1033,7 +1033,7 @@ html.fx .hero__panel {
   will-change: transform;
 }
 html.fx .hero__panel::after { opacity: calc((1 - var(--leave, 1)) * .75); }
-html.fx .hero__iso { transform: translate3d(0, calc((1 - var(--leave, 1)) * -90px), 0); }
+html.fx .iso__float { translate: 0 calc((1 - var(--leave, 1)) * -90px); }
 
 /* --- Entrada escalonada del contenido --- */
 html.fx :is([data-reveal], [data-reveal-group] > *):not(.is-revealed) {
@@ -1054,3 +1054,64 @@ html.fx :is([data-reveal], [data-reveal-group] > *):not(.is-in):not(.is-revealed
     filter: blur(4px);
   }
 }
+
+/* ==========================================================================
+   Hero vivo (js/hero-fx.js)
+   - Cinta de luz en canvas + estrías de vidrio: sustituyen a la imagen fija
+     cuando hay JS (html.js); sin JS se mantiene la imagen.
+   - Isologo: flota, se inclina en 3D hacia el cursor y recibe un destello.
+   ========================================================================== */
+html.js .hero__panel { background-image: none; }
+.hero__ribbon { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+.hero__flutes {
+  display: none; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(90deg,
+    rgba(255, 255, 255, .045) 0 1px, rgba(255, 255, 255, 0) 1px 6px,
+    rgba(8, 6, 26, .32) 6px 13px, rgba(8, 6, 26, 0) 13px 14px);
+  -webkit-mask-image: linear-gradient(90deg, transparent 36%, #000 64%);
+  mask-image: linear-gradient(90deg, transparent 36%, #000 64%);
+}
+html.js .hero__flutes { display: block; }
+.hero__header, .hero__grid, .hero__cta, .hero__copy > *, .hero__visual { position: relative; z-index: 1; }
+@media (max-width: 900px) {
+  .hero__flutes {
+    -webkit-mask-image: linear-gradient(180deg, #000 0, #000 380px, transparent 560px);
+    mask-image: linear-gradient(180deg, #000 0, #000 380px, transparent 560px);
+  }
+}
+
+.hero__glow { animation: glow-breathe 6.5s ease-in-out infinite; }
+@keyframes glow-breathe {
+  0%, 100% { transform: scale(1); opacity: .85; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+.iso {
+  position: relative;
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  will-change: transform;
+}
+.iso__float { position: relative; animation: iso-float 8s ease-in-out infinite; }
+@keyframes iso-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(0, -14px, 0) rotate(-1.2deg); }
+}
+/* Destello especular recortado con la silueta del isologo */
+.iso__sheen {
+  position: absolute; inset: 0; pointer-events: none;
+  -webkit-mask: url(../assets/isologo-3d.webp) center / 100% 100% no-repeat;
+  mask: url(../assets/isologo-3d.webp) center / 100% 100% no-repeat;
+  background: linear-gradient(105deg, rgba(255, 255, 255, 0) 44%, rgba(255, 250, 235, .55) 50%, rgba(255, 255, 255, 0) 56%) no-repeat;
+  background-size: 300% 100%;
+  background-position: 95% 0;
+  mix-blend-mode: screen;
+  animation: iso-sheen 7s cubic-bezier(.45, 0, .2, 1) 1.4s infinite;
+}
+@keyframes iso-sheen {
+  0% { background-position: 95% 0; }
+  26%, 100% { background-position: 5% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__glow, .iso__float { animation: none; }
+  .iso__sheen { display: none; }
+}
+.hero__ribbon--glow { opacity: .55; mix-blend-mode: screen; }

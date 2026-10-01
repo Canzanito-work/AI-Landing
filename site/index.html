@@ -9,13 +9,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap">
-<link rel="preload" as="image" href="assets/bg/hero.jpg" media="(min-width: 901px)" fetchpriority="high">
-<link rel="preload" as="image" href="assets/bg/hero-m.webp" media="(max-width: 900px)" fetchpriority="high">
 <link rel="stylesheet" href="css/styles.css">
 <script>
   /* Activa las animaciones de scroll antes del primer pintado (salvo movimiento reducido).
      Si main.js no llega a cargar, se desactivan para no dejar contenido oculto. */
   (function (d) {
+    d.classList.add('js'); /* con JS el fondo del hero es la cinta animada (js/hero-fx.js) */
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     d.classList.add('fx');
     setTimeout(function () { if (!window.__kmFx) d.classList.remove('fx'); }, 3000);
@@ -24,6 +23,7 @@
 <script defer src="js/main.js"></script>
 <script defer src="js/globe-data.js"></script>
 <script defer src="js/globe.js"></script>
+<script defer src="js/hero-fx.js"></script>
 </head>
 <body>
 <a class="visually-hidden" href="#main">Saltar al contenido</a>
@@ -32,6 +32,7 @@
 <!-- ============ 01 · Hero ============ -->
 <div class="hero" data-module="hero">
   <div class="hero__panel" data-fx>
+    <div class="hero__flutes" aria-hidden="true"></div>
     <header class="hero__header">
       <img class="hero__logo" src="assets/km-logo-white.png" alt="knowmad mood" width="207" height="30">
       <div class="hero__header-right">
@@ -54,10 +55,15 @@
       <div class="hero__visual" data-reveal>
         <div class="hero__glow" aria-hidden="true"></div>
         <div class="hero__shadow" aria-hidden="true"></div>
-        <picture>
-          <source srcset="assets/isologo-3d.webp" type="image/webp">
-          <img class="hero__iso" src="assets/isologo-3d.png" alt="Isologo knowmad mood" width="720" height="694" fetchpriority="high">
-        </picture>
+        <div class="iso">
+          <div class="iso__float">
+            <picture>
+              <source srcset="assets/isologo-3d.webp" type="image/webp">
+              <img class="hero__iso" src="assets/isologo-3d.png" alt="Isologo knowmad mood" width="720" height="694" fetchpriority="high">
+            </picture>
+            <span class="iso__sheen" aria-hidden="true"></span>
+          </div>
+        </div>
       </div>
     </div>
     <div class="hero__cta" data-reveal>
