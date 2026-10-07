@@ -15,6 +15,7 @@
      Si main.js no llega a cargar, se desactivan para no dejar contenido oculto. */
   (function (d) {
     d.classList.add('js'); /* con JS el fondo del hero es la cinta animada (js/hero-fx.js) */
+    if (/[?&]fondo=estatico\b/.test(location.search)) d.classList.add('hero-static'); /* fondo del hero fijo */
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     d.classList.add('fx');
     setTimeout(function () { if (!window.__kmFx) d.classList.remove('fx'); }, 3000);

@@ -35,10 +35,11 @@ Se eligen con parámetros de URL:
 - `?cta=experto`: cambia todos los CTA a «Hablar con un experto en IA» y adapta los textos del cierre y del formulario.
 - `?pendientes=0`: oculta los marcadores `[PENDIENTE]`, que por defecto se ven.
 - `?form=error` o `?form=success`: fuerza un estado del formulario para revisarlo.
+- `?fondo=estatico`: el hero usa la imagen fija en lugar de la cinta animada. El isologo sigue animado.
 
 ## Versión en un solo archivo
 
-`python3 tools/build-single.py` regenera `landing-ia.html` en la raíz del repo, con CSS, JS, imágenes y la tipografía Figtree incluidos. Se abre con doble clic y funciona sin conexión. Vuelve a ejecutarlo después de cada cambio en `site/`.
+`python3 tools/build-single.py` regenera `landing-ia.html` (con `--fondo-estatico` genera `landing-ia-fondo-estatico.html`, con la imagen fija en el hero) en la raíz del repo, con CSS, JS, imágenes y la tipografía Figtree incluidos. Se abre con doble clic y funciona sin conexión. Vuelve a ejecutarlo después de cada cambio en `site/`.
 
 ## Formulario
 

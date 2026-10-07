@@ -11,6 +11,8 @@
  * Se pausa fuera de pantalla o con la pestaña oculta. Con prefers-reduced-motion
  * se dibuja un único fotograma y el logo no se mueve. Sin JS o sin WebGL se
  * mantiene la imagen estática del hero (html.js / html.hero-static en styles.css).
+ * Fondo estático a propósito: clase hero-static en <html> (o ?fondo=estatico);
+ * la cinta no se dibuja, pero el isologo sigue animado.
  */
 (function () {
   'use strict';
@@ -21,13 +23,14 @@
   var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches;
   var iso = panel.querySelector('.iso');
+  var ribbon = !docEl.classList.contains('hero-static');   // false = fondo estático
 
   /* ---- WebGL ---- */
   var canvas = document.createElement('canvas');
   canvas.className = 'hero__ribbon';
   canvas.setAttribute('aria-hidden', 'true');
-  var gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: true, antialias: false, powerPreference: 'high-performance' });
-  if (!gl) { docEl.classList.add('hero-static'); return; }
+  var gl = ribbon ? canvas.getContext('webgl', { alpha: true, premultipliedAlpha: true, antialias: false, powerPreference: 'high-performance' }) : null;
+  if (!gl) { ribbon = false; docEl.classList.add('hero-static'); }
 
   var VERT = 'attribute vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }';
   var FRAG = [
@@ -104,33 +107,37 @@
     '}'
   ].join('\n');
 
-  function compile(type, src) {
-    var sh = gl.createShader(type); gl.shaderSource(sh, src); gl.compileShader(sh);
-    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(sh));
-    return sh;
-  }
-  var prog;
-  try {
-    prog = gl.createProgram();
-    gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT));
-    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FRAG));
-    gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
-  } catch (err) {
-    docEl.classList.add('hero-static');
-    if (window.console) console.warn('hero-fx: WebGL no disponible, se usa la imagen fija.', err);
-    return;
-  }
-  gl.useProgram(prog);
-  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW); // un triángulo que cubre todo
-  var loc = gl.getAttribLocation(prog, 'p');
-  gl.enableVertexAttribArray(loc);
-  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
   var U = {};
-  ['uRes', 'uDpr', 'uT', 'uMobile', 'uHot', 'uPtr'].forEach(function (n) { U[n] = gl.getUniformLocation(prog, n); });
+  function initRibbon() {
+    function compile(type, src) {
+      var sh = gl.createShader(type); gl.shaderSource(sh, src); gl.compileShader(sh);
+      if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(sh));
+      return sh;
+    }
+    var prog;
+    try {
+      prog = gl.createProgram();
+      gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT));
+      gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FRAG));
+      gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+    } catch (err) {
+      docEl.classList.add('hero-static');
+      if (window.console) console.warn('hero-fx: WebGL no disponible, se usa la imagen fija.', err);
+      return false;
+    }
+    gl.useProgram(prog);
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW); // un triángulo que cubre todo
+    var loc = gl.getAttribLocation(prog, 'p');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    ['uRes', 'uDpr', 'uT', 'uMobile', 'uHot', 'uPtr'].forEach(function (n) { U[n] = gl.getUniformLocation(prog, n); });
 
-  panel.insertBefore(canvas, panel.firstChild);
+    panel.insertBefore(canvas, panel.firstChild);
+    return true;
+  }
+  if (ribbon) ribbon = initRibbon();
 
   var W = 0, H = 0, dpr = 1, mobile = false;
   var raf = 0, time = 0, last = 0, visible = true;
@@ -142,8 +149,10 @@
     var r = panel.getBoundingClientRect();
     W = r.width; H = r.height; mobile = W < 700;
     dpr = Math.min(window.devicePixelRatio || 1, 2) * quality;
-    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
-    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (ribbon) {
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
     if (!raf) draw(time);
   }
 
@@ -156,6 +165,7 @@
   }
 
   function draw(t) {
+    if (!ribbon) return;
     var s = t / 1000;
     var hot = mobile ? (s * 0.06) % 1.4 - 0.2 : 0.3 + (s * 0.05) % 1.0; // en escritorio, solo a la derecha del texto
     gl.uniform2f(U.uRes, W, H);
@@ -174,7 +184,7 @@
     var dt = last ? Math.min(64, now - last) : 16; last = now;
     time += dt;
     if (warm < 30) warm++;               // ignora los primeros fotogramas (carga)
-    else if (quality > MIN_QUALITY) {
+    else if (ribbon && quality > MIN_QUALITY) {
       sampleT += dt; sampleN++;
       if (sampleN >= 45) {
         if (sampleT / sampleN > 20) { quality = Math.max(MIN_QUALITY, quality * 0.75); resize(); warm = 15; }
@@ -199,10 +209,15 @@
     }
     raf = requestAnimationFrame(frame);
   }
-  function play() { if (!raf && !reduced && visible && !document.hidden) { last = 0; raf = requestAnimationFrame(frame); } }
+  // Sin cinta, el bucle solo hace falta para inclinar el isologo con el ratón
+  function needsLoop() { return ribbon || (!!iso && finePointer); }
+  function play() { if (!raf && !reduced && visible && !document.hidden && needsLoop()) { last = 0; raf = requestAnimationFrame(frame); } }
   function pause() { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
 
-  canvas.addEventListener('webglcontextlost', function (e) { e.preventDefault(); pause(); docEl.classList.add('hero-static'); });
+  canvas.addEventListener('webglcontextlost', function (e) {
+    e.preventDefault(); ribbon = false; canvas.remove(); docEl.classList.add('hero-static');
+    if (!needsLoop()) pause();
+  });
 
   if ('ResizeObserver' in window) new ResizeObserver(resize).observe(panel);
   else window.addEventListener('resize', resize);

@@ -1,5 +1,9 @@
 import re,base64,subprocess,os
 # Uso: python3 tools/build-single.py  →  landing-ia.html (todo en un archivo, funciona sin conexión)
+#      python3 tools/build-single.py --fondo-estatico  →  landing-ia-fondo-estatico.html (hero con la imagen fija)
+import sys
+STATIC_HERO='--fondo-estatico' in sys.argv
+OUT='landing-ia-fondo-estatico.html' if STATIC_HERO else 'landing-ia.html'
 CA=os.environ.get('CURL_CA_BUNDLE') or ('/root/.ccr/ca-bundle.crt' if os.path.exists('/root/.ccr/ca-bundle.crt') else '')
 CURL_CA=['--cacert',CA] if CA else []
 ROOT=os.path.join(os.path.dirname(os.path.abspath(__file__)),'..')
@@ -26,7 +30,10 @@ scripts=re.findall(r'<script defer src="(js/[^"]+)"></script>\n?',html)
 html=re.sub(r'<script defer src="js/[^"]+"></script>\n?','',html)
 html=html.replace('</body>',''.join('<script>\n'+open(S+p).read()+'\n</script>\n' for p in scripts)+'</body>')
 html=re.sub(r'(src|srcset)="(assets/[^"]+)"',lambda m:f'{m.group(1)}="{uri(m.group(2))}"',html)
+if STATIC_HERO:
+    assert html.count('<html lang="es">')==1
+    html=html.replace('<html lang="es">','<html lang="es" class="hero-static">')
 assert 'font/woff2;base64' in html, 'Figtree no embebida'
 assert not re.findall(r'(?:href|src)="(?:https?://|assets/|css/|js/)[^"]*"',html)
-open(os.path.join(ROOT,'landing-ia.html'),'w').write(html)
-print(os.path.getsize(os.path.join(ROOT,'landing-ia.html'))//1024,'KB')
+open(os.path.join(ROOT,OUT),'w').write(html)
+print(OUT, os.path.getsize(os.path.join(ROOT,OUT))//1024,'KB')
