@@ -197,6 +197,11 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
+/* Regla de marca: en los titulares con cambio de color, la parte de color
+   empieza siempre en una línea nueva (y el degradado se ajusta a su texto). */
+:is(h1, h2) > span,
+.ai__adoption p > .accent-crimson { display: block; width: fit-content; max-width: 100%; }
+
 /* Eyebrow / etiqueta monoespaciada */
 .eyebrow {
   font: 600 12px/1 var(--f-mono);
