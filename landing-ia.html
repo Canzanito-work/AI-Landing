@@ -406,7 +406,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .crew { position: relative; padding: 136px var(--pad-x) 120px; }
 .crew__head { display: flex; flex-direction: column; gap: 24px; max-width: 880px; }
 .crew__title { font: 600 48px/56px var(--f-sans); letter-spacing: -.02em; text-wrap: balance; }
-.crew__title span { color: var(--c-text-3); }
+.crew__title span:not(.grad-text) { color: var(--c-text-3); }
 .crew__lead { max-width: 680px; font: 400 19px/30px var(--f-sans); color: var(--c-text-2); text-wrap: pretty; }
 .crew__pend { margin: 0; }
 
@@ -1465,7 +1465,7 @@ html.hero-static .hero__flutes { display: none !important; }
 <section class="crew" data-module="personas" aria-labelledby="crew-title">
   <div class="crew__head" data-reveal-group>
     <span class="eyebrow">/ PERSONAS</span>
-    <h2 id="crew-title" class="crew__title">La misma tecnología con otras personas <span>no es lo mismo.</span></h2>
+    <h2 id="crew-title" class="crew__title">La misma tecnología con otras personas <span class="grad-text">no es lo mismo.</span></h2>
     <p class="crew__lead">Somos un equipo, por encima de todo. Apostamos por la formación y el desarrollo de carrera de cada persona, con una cultura centrada en ellas y un talento que se queda: tenemos una alta fidelización.</p>
   </div>
 
