@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>knowmad mood · Tecnología para lo que importa</title>
+<title>knowmad mood · No es lo mismo</title>
 <meta name="description" content="knowmad mood, multinacional tecnológica española: ocho áreas de especialización y una IA aplicada con sentido, de la estrategia a la operación.">
 <meta name="theme-color" content="#08061A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,6 +25,7 @@
 <script defer src="js/globe-data.js"></script>
 <script defer src="js/globe.js"></script>
 <script defer src="js/hero-fx.js"></script>
+<script defer src="js/crowd.js"></script>
 </head>
 <body>
 <a class="visually-hidden" href="#main">Saltar al contenido</a>
@@ -37,7 +38,7 @@
     <header class="hero__header">
       <img class="hero__logo" src="assets/km-logo-white.png" alt="knowmad mood" width="207" height="30">
       <div class="hero__header-right">
-        <span class="hero__tagline">LO QUE IMPORTA.</span>
+        <span class="hero__tagline">NO ES LO MISMO.</span>
         <a class="btn btn--sm d-only" href="#km-form-diagnostico"><span data-cta>Solicitar diagnóstico de IA</span> <span aria-hidden="true">→</span></a>
       </div>
     </header>
@@ -120,9 +121,65 @@
       </div>
     </div>
   </div>
-  <div class="people" data-reveal>
-    <span class="eyebrow">/ PERSONAS</span>
-    <p>Nuestro mayor diferencial son las personas: talento comprometido y en formación continua, organizado en más de 20 comunidades tecnológicas y centros expertos que definen guías, aceleradores y buenas prácticas.</p>
+</section>
+
+<!-- ============ 04 · Personas (diferencial de marca) ============ -->
+<!-- Fuente: presentación corporativa (modelo human centric p. 9, reconocimientos p. 8,
+     modelo operativo p. 13, cifras p. 2). El titular y la entradilla son copy nuevo. -->
+<section class="crew" data-module="personas" aria-labelledby="crew-title">
+  <div class="crew__head">
+    <div class="crew__intro" data-reveal-group>
+      <span class="eyebrow">/ PERSONAS · CÓMO LO HACEMOS</span>
+      <h2 id="crew-title" class="crew__title">Todos usamos la misma tecnología. <span class="grad-text">Hacerlo con nuestras personas no es lo mismo.</span></h2>
+      <p class="crew__lead">Nuestro diferencial no está en la tecnología, sino en cómo trabajamos y en quién lo hace: personas a las que cuidamos, a las que damos carrera y que crecen con cada proyecto. Somos un equipo, por encima de todo.</p>
+      <p class="crew__pend pend-block"><span class="pend">[PENDIENTE: validar titular y entradilla de esta sección (copy nuevo, no está en el documento maestro)]</span></p>
+    </div>
+    <figure class="crowd" data-reveal>
+      <div class="crowd__field" data-crowd aria-hidden="true"></div>
+      <figcaption class="crowd__caption">
+        <span class="crowd__n">+3.500</span>
+        <span class="crowd__l">personas. Cada punto es una de ellas.</span>
+        <span class="crowd__meta">+40 nacionalidades · 14 países</span>
+      </figcaption>
+    </figure>
+  </div>
+
+  <ol class="pillars" data-reveal-group>
+    <li class="pillar">
+      <span class="pillar__n">01</span>
+      <h3 class="pillar__t">Cuidamos.</h3>
+      <p class="pillar__d">Una cultura <i>human centric</i>: escucha activa, engagement y una preocupación real por la felicidad y el bienestar de las personas.</p>
+    </li>
+    <li class="pillar">
+      <span class="pillar__n">02</span>
+      <h3 class="pillar__t">Damos carrera.</h3>
+      <p class="pillar__d">Apostamos por la formación y el desarrollo de carrera de cada persona. Por eso nuestro talento tiene una alta fidelización.</p>
+    </li>
+    <li class="pillar">
+      <span class="pillar__n">03</span>
+      <h3 class="pillar__t">Desarrollamos.</h3>
+      <p class="pillar__d">Perfiles actualizados en las últimas tecnologías y más de 20 comunidades tecnológicas donde el conocimiento se comparte y crece.</p>
+    </li>
+  </ol>
+
+  <div class="how">
+    <h3 class="eyebrow eyebrow--white how__label" data-reveal>CÓMO LO HACEMOS</h3>
+    <ul class="how__list" data-reveal-group>
+      <li><span class="how__t">Dirección Técnica</span><span class="how__d">Lidera la estrategia tecnológica, articula las comunidades y aporta los expertos y las arquitecturas de cada proyecto.</span></li>
+      <li><span class="how__t">+20 comunidades tecnológicas</span><span class="how__d">Aseguran la excelencia técnica en cada capacidad tecnológica.</span></li>
+      <li><span class="how__t">Centros expertos</span><span class="how__d">Definen guías, aceleradores y buenas prácticas para elevar la calidad de los desarrollos.</span></li>
+      <li><span class="how__t">Equipos de alto desempeño</span><span class="how__d">Metodologías ágiles, entregas de máxima calidad y control riguroso de KPIs.</span></li>
+    </ul>
+  </div>
+
+  <div class="awards" data-reveal>
+    <span class="eyebrow eyebrow--white">RECONOCIMIENTOS</span>
+    <ul class="awards__list">
+      <li>Las 100 Mejores Empresas para Trabajar en España 2022 · Actualidad Económica</li>
+      <li>Empresa socialmente responsable con su plantilla (ESR) 2021–2025</li>
+      <li>Premio Alares 2024</li>
+    </ul>
+    <span class="pend">[PENDIENTE: validar vigencia de los reconocimientos]</span>
   </div>
 </section>
 
@@ -142,7 +199,7 @@
     <li class="area"><div class="area__top"><span class="area__n">03</span><span class="area__arrow d-only" aria-hidden="true">↗</span></div><div class="area__body"><h3 class="area__t">Smart Operations &amp; Industrial Innovation</h3><p class="area__d">Operaciones inteligentes e innovación industrial</p></div></li>
     <li class="area"><div class="area__top"><span class="area__n">04</span><span class="area__arrow d-only" aria-hidden="true">↗</span></div><div class="area__body"><h3 class="area__t">IT Governance &amp; Modernization</h3><p class="area__d">Gobierno TI y modernización de sistemas</p></div></li>
     <li class="area"><div class="area__top"><span class="area__n">05</span><span class="area__arrow d-only" aria-hidden="true">↗</span></div><div class="area__body"><h3 class="area__t">Customer Experience &amp; Digital Growth</h3><p class="area__d">Experiencia de cliente y crecimiento digital</p></div></li>
-    <li class="area area--hl"><div class="area__top"><span class="area__n">06</span><span class="area__arrow d-only" aria-hidden="true">↗</span></div><div class="area__body"><a class="area__badge d-only" href="#ia-aplicada">IA APLICADA ↓</a><h3 class="area__t">Data, Analytics &amp; Intelligent Automation</h3><p class="area__d">Datos, analítica y automatización inteligente</p></div></li>
+    <li class="area area--hl"><div class="area__top"><span class="area__n">06</span><span class="area__arrow d-only" aria-hidden="true">↗</span></div><div class="area__body"><a class="area__badge d-only" href="#ia-aplicada">SERVICIOS DE IA ↓</a><h3 class="area__t">IA Aplicada: Data, Analytics, ADSLC &amp; Intelligent Automation</h3><p class="area__d">Llevamos la IA a todo el ciclo de valor: datos preparados y analítica avanzada, desarrollo de software aumentado con IA e hiperautomatización de procesos.</p></div></li>
     <li class="area"><div class="area__top"><span class="area__n">07</span><span class="area__arrow d-only" aria-hidden="true">↗</span></div><div class="area__body"><h3 class="area__t">Cybersecurity &amp; Digital Trust</h3><p class="area__d">Ciberseguridad y confianza digital</p></div></li>
     <li class="area"><div class="area__top"><span class="area__n">08</span><span class="area__arrow d-only" aria-hidden="true">↗</span></div><div class="area__body"><h3 class="area__t">Learning, Digital Workplace &amp; Change Enablement</h3><p class="area__d">Formación, puesto de trabajo digital y gestión del cambio</p></div></li>
   </ul>
@@ -151,8 +208,10 @@
 
 <div class="marquee d-only" data-reveal aria-hidden="true">
   <div class="marquee__track">
-    <span class="marquee__item"><span class="marquee__outline">Tecnología para </span><span class="grad-text">lo que importa.</span></span>
-    <span class="marquee__item"><span class="marquee__outline">Tecnología para </span><span class="grad-text">lo que importa.</span></span>
+    <span class="marquee__item"><span class="marquee__outline">No es </span><span class="grad-text">lo mismo.</span></span>
+    <span class="marquee__item"><span class="marquee__outline">No es </span><span class="grad-text">lo mismo.</span></span>
+    <span class="marquee__item"><span class="marquee__outline">No es </span><span class="grad-text">lo mismo.</span></span>
+    <span class="marquee__item"><span class="marquee__outline">No es </span><span class="grad-text">lo mismo.</span></span>
   </div>
 </div>
 
@@ -180,15 +239,16 @@
   <div class="ai__services">
     <div class="ai__services-head" data-reveal-group>
       <span class="eyebrow eyebrow--gold">/ SERVICIOS DE IA</span>
-      <h3 class="ai__services-title d-only">Seis servicios para todo el recorrido de la IA</h3>
+      <h3 class="ai__services-title d-only">Siete servicios para todo el recorrido de la IA</h3>
     </div>
     <ul class="services" data-reveal-group>
       <li class="svc"><span class="svc__n">01</span><h4 class="svc__t">Estrategia y diagnóstico de IA</h4><p class="svc__d">Formación del comité de dirección, assessment de madurez y roadmap priorizado.</p></li>
-      <li class="svc"><span class="svc__n">02</span><h4 class="svc__t">Datos preparados para la IA</h4><p class="svc__d">Gobierno del dato con know4data, nuestro framework propio, alineado con el Reglamento de IA, el RGPD y DORA.</p></li>
+      <li class="svc"><span class="svc__n">02</span><h4 class="svc__t">Datos, gobierno y seguridad de la IA</h4><p class="svc__d">Gobierno del dato con know4data, nuestro framework propio, y uso seguro y responsable de la IA, alineado con el Reglamento de IA, el RGPD y DORA.</p></li>
       <li class="svc"><span class="svc__n">03</span><h4 class="svc__t">Desarrollo e implantación de soluciones de IA</h4><p class="svc__d">Modelos descriptivos, predictivos y prescriptivos, con plataformas MLOps.</p></li>
-      <li class="svc"><span class="svc__n">04</span><h4 class="svc__t">Adopción de IA generativa</h4><p class="svc__d">Programas prácticos, como copilotos para el desarrollo de software, con casos de uso priorizados.</p></li>
-      <li class="svc"><span class="svc__n">05</span><h4 class="svc__t">IA y automatización como servicio</h4><p class="svc__d">Diseño, implantación y operación continua, con mejora constante de procesos.</p></li>
-      <li class="svc"><span class="svc__n">06</span><h4 class="svc__t">Centro de Excelencia de IA</h4><p class="svc__d">Creamos contigo tus capacidades internas de IA, con transferencia de conocimiento.</p></li>
+      <li class="svc"><span class="svc__n">04</span><h4 class="svc__t">ADSLC: ciclo de desarrollo impulsado por IA</h4><p class="svc__d">Sistemas agénticos integrados en todo el ciclo de vida del software (planificación, diseño, código, pruebas, despliegue y mantenimiento), con supervisión humana en cada fase.</p></li>
+      <li class="svc"><span class="svc__n">05</span><h4 class="svc__t">Hiperautomatización de procesos</h4><p class="svc__d">Diseño, implantación y operación continua de procesos automatizados de extremo a extremo con IA, con mejora constante.</p></li>
+      <li class="svc"><span class="svc__n">06</span><h4 class="svc__t">Centro de Excelencia de IA</h4><p class="svc__d">Creamos los activos para escalar la IA, internos y para clientes: metodologías, aceleradores, componentes reutilizables y marco de gobierno.</p></li>
+      <li class="svc"><span class="svc__n">07</span><h4 class="svc__t">Formación, adopción y gestión del cambio</h4><p class="svc__d">Formación, acompañamiento al cambio y reconversión de perfiles, con Forward Deployed Engineers (FDE) integrados en tus equipos para que la IA llegue a producción y genere valor real.</p></li>
     </ul>
   </div>
 
@@ -448,10 +508,12 @@
               <option value="">Selecciona una opción</option>
               <optgroup label="Inteligencia artificial">
                 <option>Estrategia y diagnóstico de IA</option>
-                <option>Datos y gobierno del dato para la IA</option>
+                <option>Datos, gobierno y seguridad de la IA</option>
                 <option>Desarrollo e implantación de soluciones de IA</option>
-                <option>Adopción de IA generativa y formación de equipos</option>
-                <option>IA y automatización como servicio / Centro de Excelencia de IA</option>
+                <option>ADSLC: ciclo de desarrollo impulsado por IA</option>
+                <option>Hiperautomatización de procesos</option>
+                <option>Centro de Excelencia de IA</option>
+                <option>Formación, adopción y gestión del cambio</option>
               </optgroup>
               <optgroup label="Otras áreas">
                 <option>Arquitectura y desarrollo de software</option>
@@ -459,7 +521,6 @@
                 <option>Operaciones inteligentes e innovación industrial</option>
                 <option>Gobierno TI y modernización</option>
                 <option>Experiencia de cliente y crecimiento digital</option>
-                <option>Datos, analítica y automatización</option>
                 <option>Ciberseguridad y confianza digital</option>
                 <option>Formación, puesto de trabajo digital y gestión del cambio</option>
                 <option>Aún no lo tengo claro</option>
@@ -504,12 +565,12 @@
         <h3 class="kmf__success-title">Gracias, <span data-success-name>{{nombre}}</span>. Hemos recibido tu solicitud.</h3>
         <p class="kmf__success-text">Un experto de knowmad mood revisará la información que nos has enviado y se pondrá en contacto contigo <span class="pend">[PENDIENTE: plazo de respuesta]</span> para acordar <span data-confirm-end>la sesión de diagnóstico.</span></p>
         <div class="kmf__success-rule"></div>
-        <p class="kmf__success-sign">Tecnología para lo que importa. <b>knowmad mood.</b></p>
+        <p class="kmf__success-sign">No es lo mismo. <b>knowmad mood.</b></p>
       </div>
     </div>
 
     <div class="closing__sign" data-reveal>
-      <span>Tecnología para lo que importa.</span>
+      <span>No es lo mismo.</span>
       <img src="assets/km-logo-white.png" alt="knowmad mood" width="180" height="26" loading="lazy">
     </div>
   </div>

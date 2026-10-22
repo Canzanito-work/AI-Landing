@@ -1,5 +1,5 @@
 /* ==========================================================================
-   knowmad mood · Web corporativa con énfasis en IA («Lo que importa.»)
+   knowmad mood · Web corporativa con énfasis en IA («No es lo mismo.»)
    Implementación de «Landing Corporativa.dc.html» (Claude Design).
    Escritorio de referencia: 1440 px · Móvil de referencia: 390 px.
    Cada <section data-module> es un bloque independiente (→ módulo HubSpot).
@@ -278,12 +278,69 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .dif__t { font: 700 20px/26px var(--f-sans); }
 .dif__d { font: 400 15px/23px var(--f-sans); color: var(--c-muted-light); }
 
-.people {
-  position: relative; margin-top: 48px; border-radius: 24px; overflow: hidden;
-  background: var(--c-navy-800) url(../assets/bg/mesh.jpg) right center / cover;
-  padding: 40px 48px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 40px; align-items: center;
+
+/* ==========================================================================
+   04 · Personas (diferencial de marca) — campo de puntos en js/crowd.js
+   ========================================================================== */
+.crew {
+  position: relative; overflow: hidden;
+  padding: 136px var(--pad-x) 120px;
+  background:
+    radial-gradient(60% 50% at 85% 10%, rgba(222, 35, 48, .16), rgba(222, 35, 48, 0) 70%),
+    radial-gradient(50% 40% at 0% 100%, rgba(245, 188, 57, .08), rgba(245, 188, 57, 0) 70%);
 }
-.people p { max-width: 860px; font: 500 22px/32px var(--f-sans); color: #fff; text-wrap: pretty; }
+.crew__head { display: grid; grid-template-columns: minmax(0, 1fr) 520px; gap: 72px; align-items: center; }
+.crew__intro { display: flex; flex-direction: column; gap: 24px; }
+.crew__title { font: 700 56px/62px var(--f-sans); letter-spacing: -.025em; text-wrap: balance; }
+.crew__lead { max-width: 640px; font: 400 19px/30px var(--f-sans); color: var(--c-text-2); text-wrap: pretty; }
+.crew__pend { margin: 0; }
+
+.crowd {
+  position: relative; margin: 0; height: 460px; border-radius: 28px; overflow: hidden;
+  background: radial-gradient(120% 90% at 50% 0%, #1A1338, #0D0A22 70%);
+  border: 1px solid rgba(255, 255, 255, .1);
+}
+.crowd__field { position: absolute; inset: 0; }
+.crowd__field canvas { display: block; width: 100%; height: 100%; }
+.crowd__caption {
+  position: absolute; left: 16px; right: 16px; bottom: 16px;
+  display: flex; flex-direction: column; gap: 2px; padding: 22px 24px;
+  border-radius: 20px; background: rgba(8, 6, 26, .78);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.crowd__n { font: 700 56px/1 var(--f-sans); letter-spacing: -.03em; background: var(--g-brand); -webkit-background-clip: text; background-clip: text; color: transparent; width: fit-content; }
+.crowd__l { margin-top: 6px; font: 600 17px/24px var(--f-sans); }
+.crowd__meta { font: 500 14px/20px var(--f-sans); color: var(--c-text-2); }
+
+.pillars { margin: 88px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.pillar {
+  position: relative; border-radius: 24px; padding: 32px; min-height: 280px;
+  display: flex; flex-direction: column; gap: 14px;
+  background: var(--c-navy-900); border: 1px solid rgba(255, 255, 255, .08);
+  transition: border-color .4s ease, transform .5s var(--ease-premium);
+}
+.pillar:hover { border-color: rgba(222, 35, 48, .6); transform: translateY(-4px); }
+.pillar__n { font: 600 12px/1 var(--f-mono); color: var(--c-yellow); }
+.pillar__t {
+  margin-top: auto; font: 800 38px/1.08 var(--f-sans); letter-spacing: -.03em; max-width: 100%;
+  background: var(--g-brand); -webkit-background-clip: text; background-clip: text; color: transparent; width: fit-content;
+}
+.pillar__d { font: 400 16px/25px var(--f-sans); color: var(--c-text-1); }
+
+.how { margin-top: 72px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; align-items: start; }
+.how__label { padding-top: 22px; }
+.how__list { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.how__list li { padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, .14); display: flex; flex-direction: column; gap: 8px; }
+.how__t { font: 700 17px/23px var(--f-sans); }
+.how__d { font: 400 14px/21px var(--f-sans); color: var(--c-text-2); }
+
+.awards { margin-top: 64px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.awards__list { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 10px; }
+.awards__list li {
+  min-height: 40px; display: inline-flex; align-items: center; padding: 8px 16px; border-radius: 999px;
+  border: 1px solid rgba(245, 188, 57, .35); background: rgba(245, 188, 57, .06);
+  font: 600 13.5px/18px var(--f-sans); color: var(--c-text-1);
+}
 
 /* ==========================================================================
    04 · Qué hacemos (offering)
@@ -382,10 +439,10 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .step__t { font: 700 24px/30px var(--f-sans); }
 .step__d { font: 400 15px/23px var(--f-sans); color: var(--c-pink-soft); }
 
-.ai__services { position: relative; margin-top: 88px; display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 64px; }
+.ai__services { position: relative; margin-top: 88px; display: flex; flex-direction: column; gap: 36px; }
 .ai__services-head { display: flex; flex-direction: column; gap: 20px; }
 .ai__services-title { font: 700 36px/42px var(--f-sans); letter-spacing: -.02em; }
-.services { padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.services { padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
 .svc {
   border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 10px;
   background: rgba(8, 6, 26, .55); border: 1px solid rgba(255, 255, 255, .12);
@@ -807,9 +864,17 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   .sec-head, .ai .sec-head, .sectors .sec-head { grid-template-columns: minmax(0, 1fr) 360px; gap: 48px; }
   .h2, .ai__title { font-size: 46px; line-height: 52px; }
   .areas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .crew { padding: 104px var(--pad-x) 96px; }
+  .crew__head { grid-template-columns: minmax(0, 1fr) 400px; gap: 40px; }
+  .crew__title { font-size: 46px; line-height: 52px; }
+  .crowd { height: 400px; }
+  .pillar__t { font-size: 32px; }
+  .how { grid-template-columns: 1fr; gap: 0; }
+  .how__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .marquee { font-size: 110px; }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .ai__services { grid-template-columns: 1fr; gap: 32px; }
+  .ai__services { gap: 28px; }
+  .services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ai__adoption { flex-direction: column; align-items: flex-start; }
   .cases__grid { gap: 16px; }
   .models { padding: 96px 48px 72px; }
@@ -891,11 +956,28 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   .dif__n { font-size: 28px; -webkit-text-stroke-width: 1.2px; grid-row: span 2; }
   .dif__t { font-size: 17px; line-height: 22px; }
   .dif__d { grid-column: 2; margin-top: -6px; font-size: 14px; line-height: 21px; }
-  .people {
-    margin-top: 0; border-radius: 18px; padding: 22px; background-position: center;
-    display: flex; flex-direction: column; gap: 10px; align-items: stretch;
-  }
-  .people p { font-size: 16px; line-height: 24px; }
+
+  /* Personas */
+  .crew { padding: 64px 20px 48px; }
+  .crew__head { display: flex; flex-direction: column; gap: 24px; align-items: stretch; }
+  .crew__intro { gap: 18px; }
+  .crew__title { font-size: 32px; line-height: 38px; letter-spacing: -.02em; text-wrap: wrap; }
+  .crew__lead { font-size: 16px; line-height: 24px; }
+  .crowd { height: 320px; border-radius: 22px; }
+  .crowd__caption { left: 10px; right: 10px; bottom: 10px; padding: 16px 18px; border-radius: 16px; }
+  .crowd__n { font-size: 40px; }
+  .crowd__l { font-size: 15px; line-height: 21px; }
+  .crowd__meta { font-size: 12.5px; }
+  .pillars { margin-top: 32px; grid-template-columns: 1fr; gap: 10px; }
+  .pillar { min-height: 0; padding: 22px; gap: 10px; border-radius: 20px; }
+  .pillar__t { margin-top: 6px; font-size: 32px; }
+  .pillar__d { font-size: 14.5px; line-height: 22px; }
+  .how { margin-top: 36px; }
+  .how__label { padding-top: 0; margin-bottom: 4px; }
+  .how__list { grid-template-columns: 1fr; gap: 0; }
+  .how__list li { padding: 14px 0; }
+  .awards { margin-top: 32px; }
+  .awards__list li { font-size: 12.5px; }
 
   /* Qué hacemos */
   .offering { padding: 64px 20px 40px; }
