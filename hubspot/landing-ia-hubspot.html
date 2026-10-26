@@ -10,14 +10,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ page_meta.html_title|default("knowmad mood · No es lo mismo") }}</title>
 <meta name="description" content="{{ page_meta.meta_description|default("knowmad mood, multinacional tecnológica española: ocho áreas de especialización y una IA aplicada con sentido, de la estrategia a la operación.") }}">
-<meta name="km-build" content="d916b91">
+<meta name="km-build" content="5c29430">
 {{ standard_header_includes }}
 {% raw %}
 <meta name="theme-color" content="#08061A">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600;1,700;1,800&family=Instrument+Serif:ital@1&display=swap">
 <style>
 /* ==========================================================================
    knowmad mood · Web corporativa con énfasis en IA («No es lo mismo.»)
@@ -103,6 +103,15 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
    empieza siempre en una línea nueva (y el degradado se ajusta a su texto). */
 :is(h1, h2) > span,
 .ai__adoption p > .accent-crimson { display: block; width: fit-content; max-width: 100%; }
+
+/* Variante: parte resaltada de los titulares en cursiva (html.tit-cursiva / html.tit-serif).
+   El padding evita que el degradado recorte el saliente de la cursiva. */
+:is(html.tit-cursiva, html.tit-serif) :is(h1, h2) > span,
+:is(html.tit-cursiva, html.tit-serif) .ai__adoption p > .accent-crimson { font-style: italic; padding-right: .12em; }
+html.tit-serif :is(h1, h2) > span,
+html.tit-serif .ai__adoption p > .accent-crimson {
+  font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -.005em; font-size: 1.14em; line-height: 1;
+}
 
 /* Eyebrow / etiqueta monoespaciada */
 .eyebrow {
@@ -1283,6 +1292,7 @@ html.hero-static .hero__flutes { display: none !important; }
   (function (d) {
     d.classList.add('js'); /* con JS el fondo del hero es la cinta animada (js/hero-fx.js) */
     if (/[?&]fondo=estatico\b/.test(location.search)) d.classList.add('hero-static'); /* fondo del hero fijo */
+    var t = /[?&]titulares=(cursiva|serif)\b/.exec(location.search); if (t) d.classList.add('tit-' + t[1]); /* parte resaltada de los titulares en cursiva */
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     d.classList.add('fx');
     setTimeout(function () { if (!window.__kmFx) d.classList.remove('fx'); }, 3000);

@@ -25,6 +25,7 @@ def asset_url(a):
         return 'data:image/webp;base64,' + base64.b64encode(open(S + a, 'rb').read()).decode()
     return ASSET_BASE + (os.path.basename(a) if FLAT else a)
 STATIC_HERO = '--fondo-estatico' in sys.argv
+TIT = next((a.split('=',1)[1] for a in sys.argv if a.startswith('--titulares=')), '')   # cursiva | serif
 
 html = open(S + 'index.html').read()
 css = open(S + 'css/styles.css').read()
@@ -52,7 +53,7 @@ out = f'''<!--
   label: Landing IA · No es lo mismo
 -->
 <!DOCTYPE html>
-<html lang="es"{' class="hero-static"' if STATIC_HERO else ''}>
+<html lang="es"{(' class="' + ' '.join(c for c in [('hero-static' if STATIC_HERO else ''), ('tit-' + TIT if TIT else '')] if c) + '"') if (STATIC_HERO or TIT) else ''}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -73,7 +74,7 @@ out = f'''<!--
 </html>
 '''
 os.makedirs(os.path.join(ROOT, 'hubspot'), exist_ok=True)
-name = 'landing-ia-hubspot-fondo-estatico.html' if STATIC_HERO else 'landing-ia-hubspot.html'
+name = ('landing-ia-hubspot-fondo-estatico' if STATIC_HERO else 'landing-ia-hubspot') + (f'-{TIT}' if TIT else '') + '.html'
 open(os.path.join(ROOT, 'hubspot', name), 'w').write(out)
 assets = sorted(set(re.findall(re.escape(ASSET_BASE) + r'([^"\)\s]+)', out)))
 print(name, len(out.encode()) // 1024, 'KB ·', len(assets), 'imágenes desde', ASSET_BASE)

@@ -37,6 +37,7 @@ Se eligen con parámetros de URL:
 - `?pendientes=0`: oculta los marcadores `[PENDIENTE]`, que por defecto se ven.
 - `?form=error` o `?form=success`: fuerza un estado del formulario para revisarlo.
 - `?fondo=estatico`: el hero usa la imagen fija en lugar de la cinta animada. El isologo sigue animado.
+- `?titulares=cursiva` o `?titulares=serif`: la parte resaltada de los titulares en cursiva (Figtree o Instrument Serif). Para HubSpot: `python3 tools/build-hubspot.py --fondo-estatico --titulares=serif`.
 
 ## Versión en un solo archivo
 

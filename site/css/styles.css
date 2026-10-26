@@ -83,6 +83,15 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 :is(h1, h2) > span,
 .ai__adoption p > .accent-crimson { display: block; width: fit-content; max-width: 100%; }
 
+/* Variante: parte resaltada de los titulares en cursiva (html.tit-cursiva / html.tit-serif).
+   El padding evita que el degradado recorte el saliente de la cursiva. */
+:is(html.tit-cursiva, html.tit-serif) :is(h1, h2) > span,
+:is(html.tit-cursiva, html.tit-serif) .ai__adoption p > .accent-crimson { font-style: italic; padding-right: .12em; }
+html.tit-serif :is(h1, h2) > span,
+html.tit-serif .ai__adoption p > .accent-crimson {
+  font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -.005em; font-size: 1.14em; line-height: 1;
+}
+
 /* Eyebrow / etiqueta monoespaciada */
 .eyebrow {
   font: 600 12px/1 var(--f-mono);
