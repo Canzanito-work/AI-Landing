@@ -562,6 +562,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .case__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18, 14, 42, 0) 30%, #120E2A); }
 .case__media--frs { background-image: var(--km-asset-3); background-position: 75% 45%; }
 .case__media--alier { background-image: var(--km-asset-5); background-position: center; }
+.case__media--sgs { background-image: var(--km-asset-4); background-position: 30% 40%; }
 .case__tag {
   position: absolute; z-index: 1; left: 28px; top: 24px;
   font: 600 11px/1 var(--f-mono); letter-spacing: .12em; padding: 8px 12px; border-radius: 999px;
@@ -590,9 +591,8 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .case__quote p { font: 500 17px/26px var(--f-sans); text-wrap: pretty; }
 .case__quote footer { font: 400 14px/20px var(--f-sans); color: var(--c-text-2); }
 .case__quote cite { font-style: normal; font-weight: 600; color: #fff; }
-.cases__placeholders { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .cases__placeholder {
-  height: 120px; border-radius: 24px; border: 1.5px dashed rgba(255, 229, 92, .5);
+  min-height: 120px; border-radius: 24px; border: 1.5px dashed rgba(255, 229, 92, .5);
   display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 16px;
 }
 
@@ -1634,10 +1634,22 @@ html.hero-static .hero__flutes { display: none !important; }
         </blockquote>
       </div>
     </article>
-  </div>
-  <div class="cases__placeholders pend-block d-only" data-reveal-group>
-    <div class="cases__placeholder"><span class="pend">[PENDIENTE: tarjeta 3 · caso de otra área del offering]</span></div>
-    <div class="cases__placeholder"><span class="pend">[PENDIENTE: tarjeta 4 · caso de otra área del offering]</span></div>
+    <article class="case">
+      <div class="case__media case__media--sgs">
+        <span class="case__tag d-only">AI SDLC · REVISIÓN DE CÓDIGO</span>
+        <div class="case__id"><h3 class="case__name">SGS</h3><span class="case__sub">Líder mundial en ensayos, inspección y certificación</span></div>
+      </div>
+      <div class="case__body">
+        <dl class="case__rows">
+          <div class="case__row"><dt>RETO</dt><dd>Incorporar en el desarrollo front-end una validación técnica más temprana y consistente, alineada con sus estándares, para anticipar incidencias antes de que el código avance a fases posteriores.</dd></div>
+          <div class="case__row"><dt>SOLUCIÓN</dt><dd>Un Agente de Revisión de Código con IA integrado en el flujo Git mediante hooks de pre-push. Con GitHub Copilot CLI analiza los archivos .vue, .ts y .js modificados con reglas de negocio y estándares propios, y bloquea la subida si detecta errores críticos de lógica o tipado.</dd></div>
+          <div class="case__row"><dt>RESULTADO</dt><dd>Incidencias detectadas antes del merge, menos tiempo en revisiones manuales y un desarrollo más estandarizado, con más control desde las primeras fases.</dd></div>
+        </dl>
+        <p class="case__pend pend-block d-only"><span class="pend">[PENDIENTE: métrica de impacto]</span></p>
+        <p class="case__pend pend-block"><span class="pend">[PENDIENTE: testimonio de SGS]</span></p>
+      </div>
+    </article>
+    <div class="cases__placeholder pend-block d-only"><span class="pend">[PENDIENTE: tarjeta 4 · caso de otra área del offering]</span></div>
   </div>
 </section>
 
@@ -1801,9 +1813,9 @@ html.hero-static .hero__flutes { display: none !important; }
     </div>
 
     <!-- Formulario (módulo «Formulario Tech»). Sustituible por un formulario de HubSpot con el mismo estilo. -->
-    <!-- HubSpot: rellenar data-hs-portal (ID del portal) y data-hs-form (GUID del formulario).
-         Vacíos = modo demostración: se muestra la confirmación sin enviar nada. -->
-    <div id="km-form-diagnostico" class="kmf" data-module="formulario" data-reveal data-hs-portal="" data-hs-form="">
+    <!-- HubSpot: portal, formulario y región («Formulario Diagnóstico IA»). Si se vacían
+         data-hs-portal o data-hs-form, modo demostración: confirmación sin enviar nada. -->
+    <div id="km-form-diagnostico" class="kmf" data-module="formulario" data-reveal data-hs-portal="145598533" data-hs-form="8f22b61e-186e-48e2-ad0a-b7457eb15294" data-hs-region="eu1">
       <form class="kmf__form" novalidate>
         <div class="kmf__intro">
           <span class="kmf__eyebrow">/ DIAGNÓSTICO IA</span>
@@ -2080,6 +2092,7 @@ html.hero-static .hero__flutes { display: none !important; }
      * Sin ellos, modo demostración: se muestra la confirmación sin enviar. */
     var portalId = (root.getAttribute('data-hs-portal') || '').trim();
     var formGuid = (root.getAttribute('data-hs-form') || '').trim();
+    var region = (root.getAttribute('data-hs-region') || '').trim();   // p. ej. eu1 (portales alojados en la UE)
     var submitBtn = form.querySelector('.kmf__submit');
     var submitErr = form.querySelector('[data-submit-error]');
     var consentText = (form.querySelector('.kmf__consent span') || {}).textContent || '';
@@ -2169,11 +2182,20 @@ html.hero-static .hero__flutes { display: none !important; }
         return;
       }
       setSending(true);
-      fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + encodeURIComponent(portalId) + '/' + encodeURIComponent(formGuid), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      }).then(function (res) {
+      var path = '/submissions/v3/integration/submit/' + encodeURIComponent(portalId) + '/' + encodeURIComponent(formGuid);
+      var hosts = region ? ['https://api-' + region + '.hsforms.com', 'https://api.hsforms.com'] : ['https://api.hsforms.com'];
+      function post(i) {
+        return fetch(hosts[i] + path, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        }).catch(function (err) {
+          // Solo si no hubo respuesta (fallo de red/DNS) se prueba el host global; nunca tras una respuesta, para no duplicar envíos
+          if (i + 1 < hosts.length) return post(i + 1);
+          throw err;
+        });
+      }
+      post(0).then(function (res) {
         if (res.ok) { done(data); return; }
         return res.json().catch(function () { return {}; }).then(function (body) {
           // HubSpot rechaza el email (gratuito o no válido): se muestra en su campo

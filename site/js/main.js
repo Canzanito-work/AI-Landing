@@ -147,6 +147,7 @@
      * Sin ellos, modo demostración: se muestra la confirmación sin enviar. */
     var portalId = (root.getAttribute('data-hs-portal') || '').trim();
     var formGuid = (root.getAttribute('data-hs-form') || '').trim();
+    var region = (root.getAttribute('data-hs-region') || '').trim();   // p. ej. eu1 (portales alojados en la UE)
     var submitBtn = form.querySelector('.kmf__submit');
     var submitErr = form.querySelector('[data-submit-error]');
     var consentText = (form.querySelector('.kmf__consent span') || {}).textContent || '';
@@ -236,11 +237,20 @@
         return;
       }
       setSending(true);
-      fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + encodeURIComponent(portalId) + '/' + encodeURIComponent(formGuid), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      }).then(function (res) {
+      var path = '/submissions/v3/integration/submit/' + encodeURIComponent(portalId) + '/' + encodeURIComponent(formGuid);
+      var hosts = region ? ['https://api-' + region + '.hsforms.com', 'https://api.hsforms.com'] : ['https://api.hsforms.com'];
+      function post(i) {
+        return fetch(hosts[i] + path, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        }).catch(function (err) {
+          // Solo si no hubo respuesta (fallo de red/DNS) se prueba el host global; nunca tras una respuesta, para no duplicar envíos
+          if (i + 1 < hosts.length) return post(i + 1);
+          throw err;
+        });
+      }
+      post(0).then(function (res) {
         if (res.ok) { done(data); return; }
         return res.json().catch(function () { return {}; }).then(function (body) {
           // HubSpot rechaza el email (gratuito o no válido): se muestra en su campo

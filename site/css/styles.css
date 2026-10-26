@@ -441,6 +441,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .case__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18, 14, 42, 0) 30%, #120E2A); }
 .case__media--frs { background-image: url(../assets/bg/hero.jpg); background-position: 75% 45%; }
 .case__media--alier { background-image: url(../assets/bg/mesh.jpg); background-position: center; }
+.case__media--sgs { background-image: url(../assets/bg/ia.jpg); background-position: 30% 40%; }
 .case__tag {
   position: absolute; z-index: 1; left: 28px; top: 24px;
   font: 600 11px/1 var(--f-mono); letter-spacing: .12em; padding: 8px 12px; border-radius: 999px;
@@ -469,9 +470,8 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .case__quote p { font: 500 17px/26px var(--f-sans); text-wrap: pretty; }
 .case__quote footer { font: 400 14px/20px var(--f-sans); color: var(--c-text-2); }
 .case__quote cite { font-style: normal; font-weight: 600; color: #fff; }
-.cases__placeholders { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .cases__placeholder {
-  height: 120px; border-radius: 24px; border: 1.5px dashed rgba(255, 229, 92, .5);
+  min-height: 120px; border-radius: 24px; border: 1.5px dashed rgba(255, 229, 92, .5);
   display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 16px;
 }
 
