@@ -57,7 +57,10 @@
   var FREE_DOMAINS = ['gmail.com', 'googlemail.com', 'hotmail.com', 'hotmail.es', 'outlook.com', 'outlook.es', 'live.com', 'msn.com', 'yahoo.com', 'yahoo.es', 'icloud.com', 'me.com', 'aol.com', 'gmx.com', 'proton.me', 'protonmail.com'];
   var REQ = 'Este campo es obligatorio.';
   var MSG_CONSENT = 'Para enviar tu solicitud, acepta la política de privacidad.';
-  var REQUIRED = ['nombre', 'email', 'empresa', 'cargo', 'area', 'consent'];
+  // Nombres = nombres internos de las propiedades de HubSpot (ver la especificación del formulario)
+  var REQUIRED = ['firstname', 'lastname', 'email', 'company', 'jobtitle', 'km_area_interes', 'consent'];
+  var HS_FIELDS = ['firstname', 'lastname', 'email', 'company', 'jobtitle', 'km_area_interes', 'km_madurez_ia'];
+  var TRACKING = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid'];
 
   var root = document.getElementById('km-form-diagnostico');
   if (root) initForm(root);
@@ -65,7 +68,7 @@
   function initForm(root) {
     var form = root.querySelector('form');
     var success = root.querySelector('.kmf__success');
-    var area = form.elements.area;
+    var area = form.elements.km_area_interes;
     var touched = {};
 
     function value(name) {
@@ -104,7 +107,7 @@
     function syncArea() { area.classList.toggle('is-filled', !!area.value); }
     area.addEventListener('change', syncArea);
 
-    var radios = form.querySelectorAll('input[name="madurez"]');
+    var radios = form.querySelectorAll('input[name="km_madurez_ia"]');
     function syncRadios() {
       radios.forEach(function (r) { r.closest('.kmf__option').classList.toggle('is-checked', r.checked); });
     }
@@ -132,39 +135,111 @@
     }
 
     function showSuccess() {
-      var first = value('nombre').split(/\s+/)[0] || '{{nombre}}';
+      var first = value('firstname').split(/\s+/)[0] || '{{nombre}}';
       root.querySelector('[data-success-name]').textContent = first;
       form.hidden = true;
       success.hidden = false;
     }
 
-    form.addEventListener('submit', function (ev) {
-      ev.preventDefault();
-      var firstInvalid = validateAll();
-      if (firstInvalid) { firstInvalid.focus(); return; }
+    /* ---- Envío a HubSpot (Forms API v3) ----
+     * Portal y formulario se configuran en el HTML (data-hs-portal / data-hs-form).
+     * Sin ellos, modo demostración: se muestra la confirmación sin enviar. */
+    var portalId = (root.getAttribute('data-hs-portal') || '').trim();
+    var formGuid = (root.getAttribute('data-hs-form') || '').trim();
+    var submitBtn = form.querySelector('.kmf__submit');
+    var submitErr = form.querySelector('[data-submit-error]');
+    var consentText = (form.querySelector('.kmf__consent span') || {}).textContent || '';
 
-      var data = Object.fromEntries(new FormData(form).entries());
-      data.consent = true;
-      data.ctaVersion = ctaVersion;
-      data.heroVariant = heroVariant;
-      // Punto de integración (HubSpot Forms API / CRM): escucha este evento o
-      // sustituye este bloque por el envío real antes de mostrar la confirmación.
+    // UTMs y gclid de la URL de llegada; se guardan para la sesión por si el usuario recarga
+    var tracking = {};
+    TRACKING.forEach(function (k) {
+      var v = params.get(k);
+      try {
+        if (v) sessionStorage.setItem('km_' + k, v); else v = sessionStorage.getItem('km_' + k);
+      } catch (e) { /* almacenamiento no disponible: se usa solo la URL */ }
+      if (v) tracking[k] = v;
+    });
+
+    function cookie(name) {
+      var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+      return m ? decodeURIComponent(m[1]) : '';
+    }
+
+    function payload() {
+      var fields = [];
+      function add(name, v) { if (v) fields.push({ objectTypeId: '0-1', name: name, value: v }); }
+      HS_FIELDS.forEach(function (name) {
+        if (name === 'km_madurez_ia') { var c = form.querySelector('input[name="km_madurez_ia"]:checked'); add(name, c && c.value); }
+        else add(name, value(name));
+      });
+      add('km_cta_version', ctaVersion);
+      add('km_hero_variant', heroVariant);
+      Object.keys(tracking).forEach(function (k) { add(k, tracking[k]); });
+      var context = { pageUri: location.href, pageName: document.title };
+      var hutk = cookie('hubspotutk');            // cookie de seguimiento de HubSpot (atribución)
+      if (hutk) context.hutk = hutk;
+      return {
+        fields: fields,
+        context: context,
+        legalConsentOptions: { consent: { consentToProcess: true, text: consentText.replace(/\s+/g, ' ').trim(), communications: [] } }
+      };
+    }
+
+    function setSending(on) {
+      submitBtn.disabled = on;
+      submitBtn.setAttribute('aria-busy', String(on));
+      submitBtn.classList.toggle('is-sending', on);
+    }
+
+    function done(data) {
       root.dispatchEvent(new CustomEvent('kmf:submit', { detail: data, bubbles: true }));
       showSuccess();
       success.focus();
+    }
+
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      submitErr.hidden = true;
+      var firstInvalid = validateAll();
+      if (firstInvalid) { firstInvalid.focus(); return; }
+
+      var data = payload();
+      if (!portalId || !formGuid) {
+        if (window.console) console.info('kmf: modo demostración (sin data-hs-portal / data-hs-form), no se envía nada.', data);
+        done(data);
+        return;
+      }
+      setSending(true);
+      fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + encodeURIComponent(portalId) + '/' + encodeURIComponent(formGuid), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (res) {
+        if (res.ok) { done(data); return; }
+        return res.json().catch(function () { return {}; }).then(function (body) {
+          // HubSpot rechaza el email (gratuito o no válido): se muestra en su campo
+          var errs = (body && body.errors) || [];
+          var emailErr = errs.some(function (e) { return /BLOCKED_EMAIL|INVALID_EMAIL|FREE_EMAIL/.test(e.errorType || ''); });
+          if (emailErr) { touched.email = true; showError('email', 'Introduce tu email corporativo.'); form.elements.email.focus(); }
+          else submitErr.hidden = false;
+        });
+      }).catch(function () {
+        submitErr.hidden = false;
+      }).then(function () { setSending(false); });
     });
 
     /* Estados forzados para revisión (equivalen al tweak «formState») */
     var state = params.get('form');
     if (state === 'error') {
-      form.elements.nombre.value = 'Laura Martín';
+      form.elements.firstname.value = 'Laura';
+      form.elements.lastname.value = 'Martín';
       form.elements.email.value = 'laura.martin@gmail.com';
-      form.elements.cargo.value = 'Directora de Operaciones';
+      form.elements.jobtitle.value = 'Directora de Operaciones';
       radios[1].checked = true;
       syncRadios();
       validateAll();
     } else if (state === 'success') {
-      form.elements.nombre.value = 'Laura Martín';
+      form.elements.firstname.value = 'Laura';
       showSuccess();
     }
   }

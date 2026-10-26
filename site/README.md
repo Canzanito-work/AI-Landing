@@ -44,7 +44,9 @@ Se eligen con parámetros de URL:
 
 ## Formulario
 
-La validación sigue al prototipo: campos obligatorios, formato de email, rechazo de dominios gratuitos («Introduce tu email corporativo.») y consentimiento. Un campo con error se vuelve a validar mientras se edita. Cuando el envío es válido, el formulario emite el evento `kmf:submit` con los datos en `detail` y muestra la confirmación. **Todavía no envía nada a ningún sitio:** hay que conectarlo con HubSpot Forms o el CRM en `js/main.js`, en el punto marcado.
+La validación sigue al prototipo: campos obligatorios, formato de email, rechazo de dominios gratuitos («Introduce tu email corporativo.») y consentimiento. Los campos se llaman como las propiedades de HubSpot (`firstname`, `lastname`, `email`, `company`, `jobtitle`, `km_area_interes`, `km_madurez_ia`).
+
+**Conexión con HubSpot:** el envío va a la Forms API v3 de HubSpot. Para activarlo, rellena `data-hs-portal` (ID del portal) y `data-hs-form` (GUID del formulario) en el `<div id="km-form-diagnostico">` de `index.html`. Con esos atributos vacíos, el formulario funciona en modo demostración: muestra la confirmación sin enviar nada. Además de los campos visibles se envían `km_cta_version`, `km_hero_variant`, los UTM y `gclid` de la URL, la cookie `hubspotutk` y el consentimiento.
 
 ## Pendiente antes de publicar
 

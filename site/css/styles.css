@@ -1241,3 +1241,7 @@ html.hero-static .hero__flutes { display: none !important; }
   .hero__glow, .iso__float { animation: none; }
   .iso__sheen { display: none; }
 }
+
+/* Formulario: estado de envío y error de envío */
+.kmf__submit.is-sending { opacity: .7; cursor: progress; }
+.kmf__alert { margin: 0; font: 500 13px/18px var(--f-sans); color: var(--c-error); text-align: center; }

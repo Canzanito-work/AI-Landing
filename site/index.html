@@ -449,7 +449,9 @@
     </div>
 
     <!-- Formulario (módulo «Formulario Tech»). Sustituible por un formulario de HubSpot con el mismo estilo. -->
-    <div id="km-form-diagnostico" class="kmf" data-module="formulario" data-reveal>
+    <!-- HubSpot: rellenar data-hs-portal (ID del portal) y data-hs-form (GUID del formulario).
+         Vacíos = modo demostración: se muestra la confirmación sin enviar nada. -->
+    <div id="km-form-diagnostico" class="kmf" data-module="formulario" data-reveal data-hs-portal="" data-hs-form="">
       <form class="kmf__form" novalidate>
         <div class="kmf__intro">
           <span class="kmf__eyebrow">/ DIAGNÓSTICO IA</span>
@@ -459,9 +461,14 @@
 
         <div class="kmf__fields">
           <div class="kmf__field">
-            <label class="kmf__label" for="kmf-nombre">Nombre y apellidos</label>
-            <input class="kmf__input" id="kmf-nombre" name="nombre" type="text" autocomplete="name" aria-describedby="kmf-nombre-err">
-            <span class="kmf__error" id="kmf-nombre-err" aria-live="polite"></span>
+            <label class="kmf__label" for="kmf-firstname">Nombre</label>
+            <input class="kmf__input" id="kmf-firstname" name="firstname" type="text" autocomplete="given-name" aria-describedby="kmf-firstname-err">
+            <span class="kmf__error" id="kmf-firstname-err" aria-live="polite"></span>
+          </div>
+          <div class="kmf__field">
+            <label class="kmf__label" for="kmf-lastname">Apellidos</label>
+            <input class="kmf__input" id="kmf-lastname" name="lastname" type="text" autocomplete="family-name" aria-describedby="kmf-lastname-err">
+            <span class="kmf__error" id="kmf-lastname-err" aria-live="polite"></span>
           </div>
           <div class="kmf__field">
             <label class="kmf__label" for="kmf-email">Email corporativo</label>
@@ -469,60 +476,60 @@
             <span class="kmf__error" id="kmf-email-err" aria-live="polite"></span>
           </div>
           <div class="kmf__field">
-            <label class="kmf__label" for="kmf-empresa">Empresa</label>
-            <input class="kmf__input" id="kmf-empresa" name="empresa" type="text" autocomplete="organization" aria-describedby="kmf-empresa-err">
-            <span class="kmf__error" id="kmf-empresa-err" aria-live="polite"></span>
+            <label class="kmf__label" for="kmf-company">Empresa</label>
+            <input class="kmf__input" id="kmf-company" name="company" type="text" autocomplete="organization" aria-describedby="kmf-company-err">
+            <span class="kmf__error" id="kmf-company-err" aria-live="polite"></span>
           </div>
           <div class="kmf__field">
-            <label class="kmf__label" for="kmf-cargo">Cargo</label>
-            <input class="kmf__input" id="kmf-cargo" name="cargo" type="text" autocomplete="organization-title" aria-describedby="kmf-cargo-err">
-            <span class="kmf__error" id="kmf-cargo-err" aria-live="polite"></span>
+            <label class="kmf__label" for="kmf-jobtitle">Cargo</label>
+            <input class="kmf__input" id="kmf-jobtitle" name="jobtitle" type="text" autocomplete="organization-title" aria-describedby="kmf-jobtitle-err">
+            <span class="kmf__error" id="kmf-jobtitle-err" aria-live="polite"></span>
           </div>
         </div>
 
         <div class="kmf__field kmf__field--full">
-          <label class="kmf__label" for="kmf-area">Área de interés</label>
+          <label class="kmf__label" for="kmf-km_area_interes">Área de interés</label>
           <span class="kmf__select-wrap">
-            <select class="kmf__input kmf__select" id="kmf-area" name="area" aria-describedby="kmf-area-err">
+            <select class="kmf__input kmf__select" id="kmf-km_area_interes" name="km_area_interes" aria-describedby="kmf-km_area_interes-err">
               <option value="">Selecciona una opción</option>
               <optgroup label="Inteligencia artificial">
-                <option>Estrategia y diagnóstico de IA</option>
-                <option>Datos, gobierno y seguridad de la IA</option>
-                <option>Desarrollo e implantación de soluciones de IA</option>
-                <option>AI SDLC: ciclo de desarrollo impulsado por IA</option>
-                <option>Hiperautomatización de procesos</option>
-                <option>Centro de Excelencia de IA</option>
-                <option>Formación, adopción y gestión del cambio</option>
+                <option value="ia_estrategia">Estrategia y diagnóstico de IA</option>
+                <option value="ia_datos_gobierno">Datos, gobierno y seguridad de la IA</option>
+                <option value="ia_desarrollo">Desarrollo e implantación de soluciones de IA</option>
+                <option value="ia_ai_sdlc">AI SDLC: ciclo de desarrollo impulsado por IA</option>
+                <option value="ia_hiperautomatizacion">Hiperautomatización de procesos</option>
+                <option value="ia_coe">Centro de Excelencia de IA</option>
+                <option value="ia_adopcion">Formación, adopción y gestión del cambio</option>
               </optgroup>
               <optgroup label="Otras áreas">
-                <option>Arquitectura y desarrollo de software</option>
-                <option>Plataformas de aplicaciones empresariales</option>
-                <option>Operaciones inteligentes e innovación industrial</option>
-                <option>Gobierno TI y modernización</option>
-                <option>Experiencia de cliente y crecimiento digital</option>
-                <option>Ciberseguridad y confianza digital</option>
-                <option>Formación, puesto de trabajo digital y gestión del cambio</option>
-                <option>Aún no lo tengo claro</option>
+                <option value="arquitectura_desarrollo">Arquitectura y desarrollo de software</option>
+                <option value="plataformas_empresariales">Plataformas de aplicaciones empresariales</option>
+                <option value="operaciones_industria">Operaciones inteligentes e innovación industrial</option>
+                <option value="gobierno_ti">Gobierno TI y modernización</option>
+                <option value="cx_digital">Experiencia de cliente y crecimiento digital</option>
+                <option value="ciberseguridad">Ciberseguridad y confianza digital</option>
+                <option value="workplace_cambio">Formación, puesto de trabajo digital y gestión del cambio</option>
+                <option value="sin_definir">Aún no lo tengo claro</option>
               </optgroup>
             </select>
             <span class="kmf__select-caret" aria-hidden="true">▼</span>
           </span>
-          <span class="kmf__error" id="kmf-area-err" aria-live="polite"></span>
+          <span class="kmf__error" id="kmf-km_area_interes-err" aria-live="polite"></span>
         </div>
 
         <fieldset class="kmf__fieldset">
           <legend class="kmf__label">¿En qué punto está tu organización con la IA? <small>(opcional)</small></legend>
           <div class="kmf__options">
-            <label class="kmf__option"><input type="radio" name="madurez" value="Estamos explorando por dónde empezar"><span>Estamos explorando por dónde empezar</span></label>
-            <label class="kmf__option"><input type="radio" name="madurez" value="Tenemos pilotos o pruebas de concepto en marcha"><span>Tenemos pilotos o pruebas de concepto en marcha</span></label>
-            <label class="kmf__option"><input type="radio" name="madurez" value="Tenemos soluciones en producción, pero aisladas o con poca adopción"><span>Tenemos soluciones en producción, pero aisladas o con poca adopción</span></label>
-            <label class="kmf__option"><input type="radio" name="madurez" value="La IA ya forma parte de varios procesos y queremos escalarla y gobernarla"><span>La IA ya forma parte de varios procesos y queremos escalarla y gobernarla</span></label>
+            <label class="kmf__option"><input type="radio" name="km_madurez_ia" value="explorando"><span>Estamos explorando por dónde empezar</span></label>
+            <label class="kmf__option"><input type="radio" name="km_madurez_ia" value="pilotos"><span>Tenemos pilotos o pruebas de concepto en marcha</span></label>
+            <label class="kmf__option"><input type="radio" name="km_madurez_ia" value="produccion_aislada"><span>Tenemos soluciones en producción, pero aisladas o con poca adopción</span></label>
+            <label class="kmf__option"><input type="radio" name="km_madurez_ia" value="escalar"><span>La IA ya forma parte de varios procesos y queremos escalarla y gobernarla</span></label>
           </div>
         </fieldset>
 
         <div class="kmf__consent-wrap">
           <label class="kmf__consent">
-            <input type="checkbox" name="consent" id="kmf-consent" aria-describedby="kmf-consent-err">
+            <input type="checkbox" name="consent" id="kmf-consent" aria-describedby="kmf-consent-err" data-consent-text>
             <span>He leído y acepto la <a href="#privacidad" target="_blank">Política de privacidad</a> y consiento el tratamiento de mis datos para gestionar esta solicitud.</span>
           </label>
           <span class="kmf__error" id="kmf-consent-err" aria-live="polite"></span>
@@ -530,6 +537,7 @@
 
         <div class="kmf__submit-wrap">
           <button class="btn kmf__submit" type="submit"><span data-cta>Solicitar diagnóstico de IA</span> <span aria-hidden="true">→</span></button>
+          <p class="kmf__alert" role="alert" data-submit-error hidden>No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.</p>
           <p class="kmf__note">Solo usaremos tus datos para gestionar tu solicitud.</p>
         </div>
 
