@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>knowmad mood · No es lo mismo</title>
+<meta name="description" content="knowmad mood, multinacional tecnológica española: ocho áreas de especialización y una IA aplicada con sentido, de la estrategia a la operación.">
+<meta name="theme-color" content="#08061A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+<script>
+  /* Activa las animaciones de scroll antes del primer pintado (salvo movimiento reducido).
+     Si main.js no llega a cargar, se desactivan para no dejar contenido oculto. */
+  (function (d) {
+    d.classList.add('js'); /* con JS el fondo del hero es la cinta animada (js/hero-fx.js) */
+    if (/[?&]fondo=estatico\b/.test(location.search)) d.classList.add('hero-static'); /* fondo del hero fijo */
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    d.classList.add('fx');
+    setTimeout(function () { if (!window.__kmFx) d.classList.remove('fx'); }, 3000);
+  })(document.documentElement);
+</script>
+<script defer src="js/main.js"></script>
+<script defer src="js/globe-data.js"></script>
+<script defer src="js/globe.js"></script>
+<script defer src="js/hero-fx.js"></script>
+<script defer src="js/people-data.js"></script>
+<script defer src="js/people.js"></script>
+</head>
+<body>
+<a class="visually-hidden" href="#main">Saltar al contenido</a>
+<main id="main" class="page">
+
+<!-- ============ 01 · Hero ============ -->
+<div class="hero" data-module="hero">
+  <div class="hero__panel" data-fx>
+    <div class="hero__flutes" aria-hidden="true"></div>
+    <header class="hero__header">
+      <img class="hero__logo" src="assets/km-logo-white.png" alt="knowmad mood" width="207" height="30">
+      <div class="hero__header-right">
+        <a class="btn btn--sm d-only" href="#km-form-diagnostico"><span data-cta>Solicitar diagnóstico de IA</span> <span aria-hidden="true">→</span></a>
+      </div>
+    </header>
+    <div class="hero__grid">
+      <div class="hero__copy" data-reveal-group>
+        <span class="hero__pill"><span class="hero__pill-dot" aria-hidden="true"></span>Partner tecnológico global · +3.500 profesionales</span>
+        <h1 class="hero__title" data-hero="A">Usar IA y obtener resultados <span class="grad-text">no es lo mismo.</span></h1>
+        <h1 class="hero__title hero__title--b" data-hero="B" hidden>Tecnología, datos e IA con un solo objetivo: <span class="grad-text">el impacto en tu negocio.</span></h1>
+        <p class="hero__lead">Somos knowmad mood, una multinacional tecnológica española que acompaña a las organizaciones de la estrategia a la operación. Combinamos ocho áreas de especialización con una IA aplicada con sentido: la que se integra en tu negocio, con tus datos y con tus equipos.</p>
+        <ul class="hero__points">
+          <li>Más de 30 años acompañando la transformación digital de las empresas.</li>
+          <li>Equipos especializados en cloud, datos, inteligencia artificial, ciberseguridad y experiencia digital.</li>
+          <li>Un único partner, de la estrategia a la operación.</li>
+        </ul>
+      </div>
+      <div class="hero__visual" data-reveal>
+        <div class="hero__glow" aria-hidden="true"></div>
+        <div class="hero__shadow" aria-hidden="true"></div>
+        <div class="iso">
+          <div class="iso__float">
+            <picture>
+              <source srcset="assets/isologo-3d.webp" type="image/webp">
+              <img class="hero__iso" src="assets/isologo-3d.png" alt="Isologo knowmad mood" width="720" height="694" fetchpriority="high">
+            </picture>
+            <span class="iso__sheen" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero__cta" data-reveal>
+      <a class="btn" href="#km-form-diagnostico"><span data-cta>Solicitar diagnóstico de IA</span> <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <ul class="kpis" data-reveal-group>
+    <li class="kpi kpi--1"><span class="kpi__i d-only">/ 01</span><div class="kpi__body"><span class="kpi__n">+3.500</span><span class="kpi__l">profesionales</span></div></li>
+    <li class="kpi kpi--2"><span class="kpi__i d-only">/ 02</span><div class="kpi__body"><span class="kpi__n">+30</span><span class="kpi__l">años de trayectoria</span></div></li>
+    <li class="kpi kpi--3"><span class="kpi__i d-only">/ 03</span><div class="kpi__body"><span class="kpi__n">14</span><span class="kpi__l">países</span></div></li>
+    <li class="kpi kpi--4"><span class="kpi__i d-only">/ 04</span><div class="kpi__body"><span class="kpi__n">+100</span><span class="kpi__l">partners tecnológicos</span></div></li>
+  </ul>
+</div>
+
+<!-- ============ 02 · Clientes ============ -->
+<section class="clients" data-module="clientes" aria-labelledby="clients-title">
+  <div class="clients__head" data-reveal>
+    <h2 id="clients-title" class="eyebrow">/ CONFÍAN EN NOSOTROS</h2>
+    <span class="clients__rule d-only" aria-hidden="true"></span>
+    <span class="pend d-only">[PENDIENTE: autorización de uso de logotipos de clientes en campañas de pago]</span>
+  </div>
+  <!-- Texto provisional hasta recibir los SVG oficiales de cada cliente -->
+  <ul class="clients__grid" data-reveal-group>
+    <li>Inditex</li><li>El Corte Inglés</li><li>Santander</li><li>CaixaBank</li><li>Mapfre</li><li>AXA</li>
+    <li>Iberia</li><li>Telefónica</li><li>Iberdrola</li><li>Boehringer Ingelheim</li><li>Volkswagen Group Services</li><li>RTVE</li>
+  </ul>
+  <span class="pend m-only">[PENDIENTE: autorización de logotipos]</span>
+</section>
+
+<!-- ============ 03 · Quiénes somos ============ -->
+<section class="about" data-fx data-module="quienes-somos" aria-labelledby="about-title">
+  <div class="about__watermark d-only" aria-hidden="true"><span>knowmad</span><span>mood</span></div>
+  <div class="about__grid">
+    <div class="globe-card" data-globe data-reveal>
+      <span class="globe-card__badge d-only">● 14 PAÍSES · 33 CON PROYECTOS</span>
+      <div class="globe-card__stats">
+        <div class="globe-card__stat"><span class="globe-card__stat-n">1994</span><span class="globe-card__stat-l">Nacimos como atSistemas</span></div>
+        <div class="globe-card__stat"><span class="globe-card__stat-n grad-text">2023</span><span class="globe-card__stat-l">Nueva marca knowmad mood</span></div>
+      </div>
+    </div>
+    <div class="about__copy">
+      <div class="about__intro" data-reveal-group>
+        <span class="eyebrow eyebrow--crimson">/ QUIÉNES SOMOS</span>
+        <h2 id="about-title" class="about__title">+3.500 profesionales. <span>Y la capacidad de responder cuando los necesitas.</span></h2>
+        <p class="about__lead">Somos una multinacional tecnológica española que ayuda y acompaña a empresas de todo el mundo en su transformación digital. Nacimos en 1994, en 2023 evolucionamos nuestra marca a knowmad mood y hoy cotizamos en BME Growth.</p>
+      </div>
+      <h3 class="eyebrow eyebrow--ink about__difs-label d-only">LO QUE NOS DIFERENCIA</h3>
+      <div class="difs" data-reveal-group>
+        <div class="dif"><span class="dif__n outline-num" aria-hidden="true">01</span><h3 class="dif__t">Un partner global, cerca de ti.</h3><p class="dif__d">Presencia en 14 países y proyectos en 33, con la cercanía y la adaptación de un equipo local.</p></div>
+        <div class="dif"><span class="dif__n outline-num" aria-hidden="true">02</span><h3 class="dif__t">Multiespecialistas con visión integral.</h3><p class="dif__d">Amplitud para cubrir tus necesidades tecnológicas y de negocio, y especialización profunda donde más valor aporta.</p></div>
+        <div class="dif"><span class="dif__n outline-num" aria-hidden="true">03</span><h3 class="dif__t">IA con los pies en la tierra.</h3><p class="dif__d">Una innovación que no es de escaparate: soluciones aplicables que resuelven problemas reales.</p></div>
+        <div class="dif"><span class="dif__n outline-num" aria-hidden="true">04</span><h3 class="dif__t">Valor que permanece.</h3><p class="dif__d">Cada proyecto debe dejar resultados reales y sostenibles en el tiempo.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 · Personas (diferencial de marca) — versión editorial ============ -->
+<!-- Solo datos ya publicados en la presentación corporativa (pp. 2, 8, 9 y 13).
+     Sin cifras nuevas de RR. HH.: si llegan, se añaden como filas del ledger. -->
+<section class="crew" data-module="personas" aria-labelledby="crew-title">
+  <div class="crew__top">
+  <div class="crew__head" data-reveal-group>
+    <span class="eyebrow">/ PERSONAS</span>
+    <h2 id="crew-title" class="crew__title">La misma tecnología con otras personas <span class="grad-text">no es lo mismo.</span></h2>
+    <p class="crew__lead">Somos un equipo, por encima de todo. Apostamos por la formación y el desarrollo de carrera de cada persona, con una cultura centrada en ellas y un talento que se queda: tenemos una alta fidelización.</p>
+  </div>
+  <figure class="people" data-reveal>
+    <div class="people__art" data-people role="img" aria-label="El isologo de knowmad mood formado por 3.500 figuras de personas"></div>
+    <figcaption class="people__cap"><span class="people__n">+3.500 personas</span> forman knowmad mood. Cada figura es una de ellas. <span class="people__hint d-only">Pasa el ratón para verlas de cerca.</span><span class="people__hint m-only">Toca para verlas de cerca.</span></figcaption>
+  </figure>
+  </div>
+
+  <dl class="ledger" data-reveal-group>
+    <div class="ledger__row"><dt class="ledger__k">+3.500</dt><dd class="ledger__v">personas en 14 países</dd></div>
+    <div class="ledger__row"><dt class="ledger__k">+40</dt><dd class="ledger__v">nacionalidades en nuestros equipos</dd></div>
+    <div class="ledger__row"><dt class="ledger__k">+20</dt><dd class="ledger__v">comunidades tecnológicas donde el conocimiento se comparte</dd></div>
+  </dl>
+  <h3 class="eyebrow eyebrow--white ledger__label" data-reveal>RECONOCIMIENTOS</h3>
+  <dl class="ledger ledger--awards" data-reveal-group>
+    <div class="ledger__row"><dt class="ledger__k">Nailted</dt><dd class="ledger__v">Ranking Mejores Equipos de HR · Líderes en Experiencia del Empleado 2025</dd></div>
+    <div class="ledger__row"><dt class="ledger__k">Alares</dt><dd class="ledger__v">Premio Alares 2024</dd></div>
+    <div class="ledger__row"><dt class="ledger__k">ESR</dt><dd class="ledger__v">Empresa socialmente responsable con su plantilla, 2021–2025</dd></div>
+    <div class="ledger__row"><dt class="ledger__k">Top 100</dt><dd class="ledger__v">Mejores Empresas para Trabajar en España 2022 · Actualidad Económica</dd></div>
+  </dl>
+
+  <div class="how">
+    <h3 class="eyebrow eyebrow--white how__label" data-reveal>CÓMO LO HACEMOS</h3>
+    <ul class="how__list" data-reveal-group>
+      <li><span class="how__t">Dirección Técnica</span><span class="how__d">Lidera la estrategia tecnológica, articula las comunidades y aporta los expertos y las arquitecturas de cada proyecto.</span></li>
+      <li><span class="how__t">Comunidades tecnológicas</span><span class="how__d">Aseguran la excelencia técnica en cada capacidad tecnológica.</span></li>
+      <li><span class="how__t">Centros expertos</span><span class="how__d">Definen guías, aceleradores y buenas prácticas para elevar la calidad de los desarrollos.</span></li>
+      <li><span class="how__t">Equipos de alto desempeño</span><span class="how__d">Metodologías ágiles, entregas de máxima calidad y control riguroso de KPIs.</span></li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- ============ 04 · Qué hacemos ============ -->
+<section class="offering" data-module="que-hacemos" aria-labelledby="offering-title">
+  <div class="offering__deco d-only" aria-hidden="true"></div>
+  <div class="sec-head">
+    <div class="sec-head__main" data-reveal-group>
+      <span class="eyebrow">/ QUÉ HACEMOS</span>
+      <h2 id="offering-title" class="h2">Ocho áreas de especialización. <span class="grad-text">Un solo partner.</span></h2>
+    </div>
+    <p class="sec-head__lead" data-reveal>Cubrimos el recorrido completo de la transformación tecnológica, con equipos especializados en cada área y conectados entre sí.</p>
+  </div>
+  <ul class="areas" data-reveal-group>
+    <li class="area"><div class="area__top"><span class="area__n">01</span></div><div class="area__body"><h3 class="area__t">Architecture &amp; Development</h3><p class="area__d">Arquitectura y desarrollo de software</p></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">02</span></div><div class="area__body"><h3 class="area__t">Business Application Platforms</h3><p class="area__d">Plataformas de aplicaciones empresariales</p></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">03</span></div><div class="area__body"><h3 class="area__t">Smart Operations &amp; Industrial Innovation</h3><p class="area__d">Operaciones inteligentes e innovación industrial</p></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">04</span></div><div class="area__body"><h3 class="area__t">IT Governance &amp; Modernization</h3><p class="area__d">Gobierno TI y modernización de sistemas</p></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">05</span></div><div class="area__body"><h3 class="area__t">Customer Experience &amp; Digital Growth</h3><p class="area__d">Experiencia de cliente y crecimiento digital</p></div></li>
+    <li class="area area--hl"><div class="area__top"><span class="area__n">06</span></div><div class="area__body"><a class="area__badge d-only" href="#ia-aplicada">SERVICIOS DE IA ↓</a><h3 class="area__t">IA Aplicada: Data, Analytics, AI SDLC &amp; Intelligent Automation</h3><p class="area__d">Llevamos la IA a todo el ciclo de valor: datos preparados y analítica avanzada, desarrollo de software aumentado con IA e hiperautomatización de procesos.</p></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">07</span></div><div class="area__body"><h3 class="area__t">Cybersecurity &amp; Digital Trust</h3><p class="area__d">Ciberseguridad y confianza digital</p></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">08</span></div><div class="area__body"><h3 class="area__t">Learning, Digital Workplace &amp; Change Enablement</h3><p class="area__d">Formación, puesto de trabajo digital y gestión del cambio</p></div></li>
+  </ul>
+  <p class="offering__pend pend-block d-only"><span class="pend">[PENDIENTE: descripción de una o dos líneas por área, validada por cada línea de negocio]</span></p>
+</section>
+
+<div class="marquee d-only" data-reveal aria-hidden="true">
+  <div class="marquee__track">
+    <span class="marquee__item"><span class="marquee__outline">Usar IA y obtener resultados </span><span class="grad-text">no es lo mismo.</span></span>
+    <span class="marquee__item"><span class="marquee__outline">Usar IA y obtener resultados </span><span class="grad-text">no es lo mismo.</span></span>
+  </div>
+</div>
+
+<!-- ============ 05 · IA aplicada ============ -->
+<section id="ia-aplicada" class="ai" data-fx data-module="ia-aplicada" aria-labelledby="ai-title">
+  <div class="ai__grid-overlay d-only" aria-hidden="true"></div>
+  <div class="sec-head">
+    <div class="sec-head__main" data-reveal-group>
+      <span class="ai__pill"><span class="ai__pill-dot" aria-hidden="true"></span>INTELIGENCIA ARTIFICIAL APLICADA</span>
+      <h2 id="ai-title" class="ai__title">Menos pilotos. <span>Más IA en producción.</span></h2>
+    </div>
+    <p class="sec-head__lead" data-reveal>Muchas organizaciones ya han explorado la IA, pero se encuentran con iniciativas aisladas, pilotos que no escalan, datos que no están preparados o equipos que no la adoptan. Te ayudamos a pasar de la exploración al impacto.</p>
+  </div>
+
+  <div class="ai__steps-wrap">
+    <div class="ai__steps-head" data-reveal><h3 class="eyebrow eyebrow--gold">/ DE LA EXPLORACIÓN AL IMPACTO, EN CUATRO PASOS</h3><span class="ai__steps-rule d-only" aria-hidden="true"></span></div>
+    <ol class="steps" data-reveal-group>
+      <li class="step"><div class="step__top"><span class="step__n" aria-hidden="true">1</span><span class="step__k d-only">DIAGNÓSTICO</span></div><div class="step__body"><h4 class="step__t">Diagnosticar y priorizar</h4><p class="step__d">Evaluamos tu madurez en IA y datos y definimos una hoja de ruta priorizada por valor y viabilidad.</p></div></li>
+      <li class="step"><div class="step__top"><span class="step__n" aria-hidden="true">2</span><span class="step__k d-only">DATOS</span></div><div class="step__body"><h4 class="step__t">Preparar el dato</h4><p class="step__d">Ordenamos, integramos y gobernamos los datos que necesita la IA, con criterios de calidad, seguridad y cumplimiento normativo.</p></div></li>
+      <li class="step"><div class="step__top"><span class="step__n" aria-hidden="true">3</span><span class="step__k d-only">MLOPS</span></div><div class="step__body"><h4 class="step__t">Construir e integrar</h4><p class="step__d">Desarrollamos las soluciones de IA y las integramos en tus procesos y sistemas, con el ciclo de vida (MLOps) necesario para llevarlas a producción.</p></div></li>
+      <li class="step"><div class="step__top"><span class="step__n" aria-hidden="true">4</span><span class="step__k d-only">ESCALA</span></div><div class="step__body"><h4 class="step__t">Adoptar y escalar</h4><p class="step__d">Formamos a directivos y equipos, medimos el impacto y operamos y evolucionamos las soluciones.</p></div></li>
+    </ol>
+  </div>
+
+  <div class="ai__services">
+    <div class="ai__services-head" data-reveal-group>
+      <span class="eyebrow eyebrow--gold">/ SERVICIOS DE IA</span>
+      <h3 class="ai__services-title d-only">Siete servicios para todo el recorrido de la IA</h3>
+    </div>
+    <ul class="services" data-reveal-group>
+      <li class="svc"><span class="svc__n">01</span><h4 class="svc__t">Estrategia y diagnóstico de IA</h4><p class="svc__d">Formación del comité de dirección, assessment de madurez y roadmap priorizado.</p></li>
+      <li class="svc"><span class="svc__n">02</span><h4 class="svc__t">Datos, gobierno y seguridad de la IA</h4><p class="svc__d">Gobierno del dato con know4data, nuestro framework propio, y uso seguro y responsable de la IA, alineado con el Reglamento de IA, el RGPD y DORA.</p></li>
+      <li class="svc"><span class="svc__n">03</span><h4 class="svc__t">Desarrollo e implantación de soluciones de IA</h4><p class="svc__d">Modelos descriptivos, predictivos y prescriptivos, con plataformas MLOps.</p></li>
+      <li class="svc"><span class="svc__n">04</span><h4 class="svc__t">AI SDLC: ciclo de desarrollo impulsado por IA</h4><p class="svc__d">Sistemas agénticos integrados en todo el ciclo de vida del software (planificación, diseño, código, pruebas, despliegue y mantenimiento), con supervisión humana en cada fase.</p></li>
+      <li class="svc"><span class="svc__n">05</span><h4 class="svc__t">Hiperautomatización de procesos</h4><p class="svc__d">Diseño, implantación y operación continua de procesos automatizados de extremo a extremo con IA, con mejora constante.</p></li>
+      <li class="svc"><span class="svc__n">06</span><h4 class="svc__t">Centro de Excelencia de IA</h4><p class="svc__d">Creamos los activos para escalar la IA, internos y para clientes: metodologías, aceleradores, componentes reutilizables y marco de gobierno.</p></li>
+      <li class="svc"><span class="svc__n">07</span><h4 class="svc__t">Formación, adopción y gestión del cambio</h4><p class="svc__d">Formación, acompañamiento al cambio y reconversión de perfiles, con Forward Deployed Engineers (FDE) integrados en tus equipos para que la IA llegue a producción y genere valor real.</p></li>
+    </ul>
+  </div>
+
+  <div class="ai__adoption" data-reveal>
+    <p>La IA solo genera impacto cuando las personas la usan. <span class="accent-crimson">Por eso la adopción forma parte del proyecto desde el primer día.</span></p>
+    <a class="btn" href="#km-form-diagnostico"><span data-cta>Solicitar diagnóstico de IA</span> <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<!-- ============ 06 · Casos de éxito ============ -->
+<section class="cases" data-module="casos-de-exito" aria-labelledby="cases-title">
+  <div class="cases__head" data-reveal-group>
+    <span class="eyebrow">/ CASOS DE ÉXITO</span>
+    <h2 id="cases-title" class="h2">De la exploración al impacto: <span class="grad-text">así lo están haciendo</span></h2>
+  </div>
+  <div class="cases__grid" data-reveal-group>
+    <article class="case">
+      <div class="case__media case__media--frs">
+        <span class="case__tag d-only">IA GENERATIVA · ADOPCIÓN</span>
+        <div class="case__id"><h3 class="case__name">FRS Systems</h3><span class="case__sub">Filial tecnológica del operador de ferris FRS</span></div>
+      </div>
+      <div class="case__body">
+        <dl class="case__rows">
+          <div class="case__row"><dt>RETO</dt><dd>Llevar la IA generativa del conocimiento a la práctica en sus equipos de desarrollo.</dd></div>
+          <div class="case__row"><dt>SOLUCIÓN</dt><dd>Siete sesiones en directo con DEXS, aplicadas con GitHub Copilot sobre su stack, con acompañamiento experto, casos de uso priorizados, hoja de ruta de adopción y medición del impacto.</dd></div>
+          <div class="case__row"><dt>RESULTADO</dt><dd>Adopción práctica desde el primer día y valoración de excelencia de 3,8 sobre 4.</dd></div>
+        </dl>
+        <p class="case__pend pend-block d-only"><span class="pend">[PENDIENTE: métrica de impacto]</span></p>
+        <blockquote class="case__quote">
+          <span class="case__qmark grad-text d-only" aria-hidden="true">“</span>
+          <p>Esta iniciativa ha permitido a nuestros equipos adoptar la IA generativa de una forma práctica e impactante, cerrando la brecha entre conocimiento y aplicación.</p>
+          <footer><cite>Jordi Puigsegur</cite>, Managing Director, FRS Systems Spain</footer>
+        </blockquote>
+      </div>
+    </article>
+    <article class="case">
+      <div class="case__media case__media--alier">
+        <span class="case__tag d-only">ESTRATEGIA · ROADMAP IA</span>
+        <div class="case__id"><h3 class="case__name">Alier</h3><span class="case__sub">Industria papelera, fundada en 1833</span></div>
+      </div>
+      <div class="case__body">
+        <dl class="case__rows">
+          <div class="case__row"><dt>RETO</dt><dd>Pasar de explorar la IA a un modelo AI &amp; Data Driven.</dd></div>
+          <div class="case__row"><dt>SOLUCIÓN</dt><dd>INCIPY, compañía del grupo, formó al Comité de Dirección, realizó un Assessment IA &amp; Data y definió la Estrategia y Roadmap IA 2025–2027, priorizada por valor y viabilidad.</dd></div>
+          <div class="case__row"><dt>RESULTADO</dt><dd>Programa de transformación IA en marcha y proyectos tractores en personas, procesos comerciales y gestión por KPIs.</dd></div>
+        </dl>
+        <p class="case__pend pend-block d-only"><span class="pend">[PENDIENTE: métrica de impacto]</span></p>
+        <blockquote class="case__quote">
+          <span class="case__qmark grad-text d-only" aria-hidden="true">“</span>
+          <p>Buscábamos avanzar hacia un modelo AI &amp; Data Driven con foco e impacto real. Contar con un roadmap nos permitió priorizar iniciativas y avanzar con una visión común.</p>
+          <footer><cite>Cristina Moliner</cite>, CHRO &amp; Change Management de Alier</footer>
+        </blockquote>
+      </div>
+    </article>
+  </div>
+  <div class="cases__placeholders pend-block d-only" data-reveal-group>
+    <div class="cases__placeholder"><span class="pend">[PENDIENTE: tarjeta 3 · caso de otra área del offering]</span></div>
+    <div class="cases__placeholder"><span class="pend">[PENDIENTE: tarjeta 4 · caso de otra área del offering]</span></div>
+  </div>
+</section>
+
+<!-- ============ 07 · Modelos de colaboración ============ -->
+<section class="models" data-fx data-module="modelos-colaboracion" aria-labelledby="models-title">
+  <div class="models__head">
+    <div class="models__head-main" data-reveal-group>
+      <span class="eyebrow eyebrow--crimson">/ MODELOS DE COLABORACIÓN</span>
+      <h2 id="models-title" class="models__title">Tú decides <span class="accent-crimson">cómo trabajamos juntos</span></h2>
+      <p class="models__lead">Diseñamos y operamos modelos que se adaptan a tu negocio: desde reforzar tu equipo hasta vincular nuestro trabajo a resultados de negocio.</p>
+    </div>
+    <a data-reveal class="btn btn--soft-shadow d-only" href="#km-form-diagnostico"><span data-cta>Solicitar diagnóstico de IA</span> <span aria-hidden="true">→</span></a>
+  </div>
+  <div class="models__grid" data-reveal-group>
+    <div class="model">
+      <div class="model__head"><h3 class="model__t">Modelos de ejecución</h3><span class="model__k">EXECUTION</span></div>
+      <ul class="model__items">
+        <li class="model__item"><span class="model__item-t">Staff Augmentation</span><span class="model__item-d">Refuerzo de tus equipos con talento especializado, manteniendo el control de la operación.</span></li>
+        <li class="model__item"><span class="model__item-t">Squad as a Service</span><span class="model__item-d">Equipos multidisciplinares autónomos con objetivos concretos y entrega continua de valor.</span></li>
+        <li class="model__item"><span class="model__item-t">MS3 | Managed Services 3.0</span><span class="model__item-d">Gestión integral del servicio, con eficiencia operativa, control y evolución continua.</span></li>
+        <li class="model__item"><span class="model__item-t">Fixed Price Projects</span><span class="model__item-d">Alcance, plazos y presupuesto definidos, con responsabilidad de extremo a extremo.</span></li>
+      </ul>
+    </div>
+    <div class="model model--dark">
+      <div class="model__head"><h3 class="model__t">Modelos de valor</h3><span class="model__k">VALUE</span></div>
+      <ul class="model__items">
+        <li class="model__item"><span class="model__item-t">Outcome-Based Services</span><span class="model__item-d">Modelos vinculados a resultados de negocio medibles.</span></li>
+        <li class="model__item"><span class="model__item-t">AI &amp; Automation as a Service</span><span class="model__item-d">Diseño, implantación y operación continua de soluciones de IA y automatización.</span></li>
+        <li class="model__item"><span class="model__item-t">Platform &amp; Product Engineering</span><span class="model__item-d">Plataformas y productos digitales con evolución continua y roadmap compartido.</span></li>
+      </ul>
+    </div>
+    <div class="model">
+      <div class="model__head"><h3 class="model__t">Modelos estratégicos</h3><span class="model__k">STRATEGIC</span></div>
+      <ul class="model__items">
+        <li class="model__item"><span class="model__item-t">Transformation Programs (End-to-End)</span><span class="model__item-d">Programas integrales que abarcan estrategia, gobierno, ejecución, adopción y escalado.</span></li>
+        <li class="model__item"><span class="model__item-t">Center of Excellence (CoE) as a Service</span><span class="model__item-d">Centros de excelencia para crear capacidades internas clave, como IA, datos o DevOps.</span></li>
+        <li class="model__item"><span class="model__item-t">Global Delivery</span><span class="model__item-d">Equipos internacionales y nearshore para optimizar coste y calidad y acelerar la escalabilidad.</span></li>
+      </ul>
+    </div>
+  </div>
+  <a data-reveal class="btn m-only" href="#km-form-diagnostico"><span data-cta>Solicitar diagnóstico de IA</span> <span aria-hidden="true">→</span></a>
+</section>
+
+<!-- ============ 08 · Clientes y sectores ============ -->
+<section class="sectors" data-module="sectores" aria-labelledby="sectors-title">
+  <div class="sec-head">
+    <div class="sec-head__main" data-reveal-group>
+      <span class="eyebrow">/ CLIENTES Y SECTORES</span>
+      <h2 id="sectors-title" class="h2">Experiencia en <span class="grad-text">12 sectores</span></h2>
+    </div>
+    <p class="sec-head__lead" data-reveal>Trabajamos con organizaciones de sectores muy distintos. Esa diversidad nos ayuda a entender tu negocio y a trasladar a él lo que ya funciona en otros.</p>
+  </div>
+  <!-- Explorador de sectores: índice con el peso de cada sector en el negocio (barras) + foco
+       en el sector activo. Recorre los sectores solo (js/main.js) hasta que el usuario interactúa.
+       Los datos viven en cada botón (data-share, data-clients) para editarlos sin tocar el JS. -->
+  <div class="sx" data-sx>
+    <ol class="sx-list" data-reveal-group>
+      <li><button type="button" class="sx-row is-active" aria-pressed="true" aria-controls="sx-spot" data-share="15,9" data-clients="Inditex|El Corte Inglés|Carrefour|Decathlon"><span class="sx-row__n">01</span><span class="sx-row__t">Retail</span><span class="sx-row__v">15,9 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:100.0%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="15,3" data-clients="Mapfre|AXA|Zurich|Generali"><span class="sx-row__n">02</span><span class="sx-row__t">Seguros</span><span class="sx-row__v">15,3 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:96.2%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="11,7" data-clients="Guardia Civil|Generalitat Valenciana|INTA|AESA"><span class="sx-row__n">03</span><span class="sx-row__t">Administración pública</span><span class="sx-row__v">11,7 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:73.6%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="11,3" data-clients="Santander|CaixaBank|Bankinter|ING"><span class="sx-row__n">04</span><span class="sx-row__t">Banca y servicios financieros</span><span class="sx-row__v">11,3 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:71.1%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="9,8" data-clients="Skyscanner|SGS|Prosegur|Applus"><span class="sx-row__n">05</span><span class="sx-row__t">Servicios</span><span class="sx-row__v">9,8 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:61.6%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="7,8" data-clients="Mercedes-Benz|Volkswagen Group Services|LG|Saint-Gobain"><span class="sx-row__n">06</span><span class="sx-row__t">Industria</span><span class="sx-row__v">7,8 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:49.1%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="7,1" data-clients="Iberia|Vueling|Meliá|Barceló"><span class="sx-row__n">07</span><span class="sx-row__t">Turismo, transporte y logística</span><span class="sx-row__v">7,1 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:44.7%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="5,5" data-clients="DAZN|Mediaset|Atresmedia|RTVE"><span class="sx-row__n">08</span><span class="sx-row__t">Media y editoriales</span><span class="sx-row__v">5,5 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:34.6%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="5,3" data-clients="Telefónica|Vodafone|BT|Cellnex"><span class="sx-row__n">09</span><span class="sx-row__t">Telecomunicaciones</span><span class="sx-row__v">5,3 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:33.3%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="4,3" data-clients="Boehringer Ingelheim|Sanitas|Esteve|Werfen"><span class="sx-row__n">10</span><span class="sx-row__t">Ciencias de la salud</span><span class="sx-row__v">4,3 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:27.0%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="3,7" data-clients="Iberdrola|Endesa|Naturgy|Acciona"><span class="sx-row__n">11</span><span class="sx-row__t">Energía y utilities</span><span class="sx-row__v">3,7 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:23.3%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+      <li><button type="button" class="sx-row" aria-pressed="false" aria-controls="sx-spot" data-share="2,4" data-clients="Universidad Europea|UNED|ESADE|UNIR"><span class="sx-row__n">12</span><span class="sx-row__t">Educación</span><span class="sx-row__v">2,4 %</span><span class="sx-row__bar" aria-hidden="true"><span style="width:15.1%"></span></span><span class="sx-row__timer" aria-hidden="true"></span></button></li>
+    </ol>
+    <aside class="sx-spot" id="sx-spot" aria-live="polite" data-reveal>
+      <span class="sx-spot__ghost" aria-hidden="true" data-sx-num>01</span>
+      <span class="sx-spot__eyebrow">SECTOR <span data-sx-pos>01</span> / 12</span>
+      <h3 class="sx-spot__title" data-sx-title>Retail</h3>
+      <div class="sx-spot__metric"><span class="sx-spot__value"><span data-sx-value>15,9</span><small>%</small></span><span class="sx-spot__label">del negocio de knowmad mood</span></div>
+      <div class="sx-spot__meter" aria-hidden="true"><span data-sx-meter style="width:100%"></span></div>
+      <span class="sx-spot__clients-label">ALGUNOS CLIENTES</span>
+      <ul class="sx-spot__clients" data-sx-clients><li>Inditex</li><li>El Corte Inglés</li><li>Carrefour</li><li>Decathlon</li></ul>
+      <p class="sx-spot__pend pend-block"><span class="pend">[PENDIENTE: validar si se publica el peso de cada sector]</span> <span class="pend">[PENDIENTE: autorización de uso de logotipos de clientes en campañas de pago]</span></p>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 09 · Grupo y presencia ============ -->
+<section class="group" data-module="grupo-presencia" aria-labelledby="group-title">
+  <div class="group__top">
+    <div class="globe-card" data-globe data-reveal>
+      <div class="globe-card__stats">
+        <div class="globe-card__stat"><span class="globe-card__stat-n">14</span><span class="globe-card__stat-l">países con presencia</span></div>
+        <div class="globe-card__stat"><span class="globe-card__stat-n">33</span><span class="globe-card__stat-l">países con proyectos</span></div>
+        <div class="globe-card__stat"><span class="globe-card__stat-n">+40</span><span class="globe-card__stat-l">nacionalidades</span></div>
+      </div>
+    </div>
+    <div class="group__copy" data-reveal-group>
+      <span class="eyebrow">/ GRUPO Y PRESENCIA</span>
+      <h2 id="group-title" class="h2">Un grupo global, <span class="grad-text">cerca de ti</span></h2>
+      <p class="group__lead d-only">Presencia en 14 países. Proyectos en 33 países y +40 nacionalidades en nuestros equipos.</p>
+      <ul class="countries">
+        <li class="chip">España</li><li class="chip">Portugal</li><li class="chip">Italia</li><li class="chip">Alemania</li><li class="chip">Reino Unido</li><li class="chip">Irlanda</li><li class="chip">Estados Unidos</li>
+        <li class="chip">Uruguay</li><li class="chip">Marruecos</li><li class="chip">India</li><li class="chip">México</li><li class="chip">Argentina</li><li class="chip">Chile</li><li class="chip">Perú</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="companies-block">
+    <h3 class="eyebrow eyebrow--white d-only">COMPAÑÍAS DEL GRUPO</h3>
+    <!-- Dos filas en bucle: la de arriba hacia la izquierda y la de abajo hacia la derecha.
+         js/main.js duplica cada fila (copia con aria-hidden) para que el bucle sea continuo. -->
+    <div class="companies-marquee">
+      <div class="cm-row" data-reveal>
+        <ul class="companies cm-track">
+        <li class="company"><span class="company__t">INCIPY</span><span class="company__d">Transformación y estrategia digital con foco en las personas.</span></li>
+        <li class="company"><span class="company__t">DEXS</span><span class="company__d">Ecosistema de formación, tecnología y servicios para el aprendizaje en las organizaciones.</span></li>
+        <li class="company"><span class="company__t">CDA</span><span class="company__d">Software, cloud, quality engineering, IA y automatización.</span></li>
+        <li class="company"><span class="company__t">Grupo Antea</span><span class="company__d">Ciberseguridad y optimización de sistemas.</span></li>
+        <li class="company"><span class="company__t">Vanture</span><span class="company__d">Soluciones de gestión empresarial, especializada en SAP y Odoo.</span></li>
+        </ul>
+      </div>
+      <div class="cm-row cm-row--reverse" data-reveal>
+        <ul class="companies cm-track">
+        <li class="company"><span class="company__t">Interwor</span><span class="company__d">Infraestructura TI, seguridad, comunicaciones, sistemas, cloud y puesto de trabajo digital.</span></li>
+        <li class="company"><span class="company__t">BUZZ</span><span class="company__d">Agencia creativa digital de campañas, medios, performance y experiencias digitales.</span></li>
+        <li class="company"><span class="company__t">Newverve Consulting</span><span class="company__d">Soluciones y productos Atlassian para clientes en Reino Unido e Irlanda.</span></li>
+        <li class="company"><span class="company__t">knowmad mood Germany</span><span class="company__f">(formerly ASERVO Software)</span><span class="company__d">Servicios profesionales DevOps y ALM con Atlassian, GitLab y digital.ai, para clientes en Alemania, Austria y Suiza.</span></li>
+        <li class="company company--acq"><span class="company__acq-n">9</span><span class="company__acq-l">empresas adquiridas</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-card" data-reveal>
+    <div class="timeline-card__head d-only">
+      <h3 class="eyebrow eyebrow--white">TRAYECTORIA</h3>
+      <span class="pend">[PENDIENTE: validar si se publican cifras financieras en la campaña]</span>
+    </div>
+    <ol class="timeline" data-reveal-group>
+      <li class="timeline__item"><span class="timeline__dot" aria-hidden="true"></span><span class="timeline__y">1994</span><span class="timeline__l">Nacimiento</span></li>
+      <li class="timeline__item"><span class="timeline__dot" aria-hidden="true"></span><span class="timeline__y">2019–2022</span><span class="timeline__l">Expansión internacional</span></li>
+      <li class="timeline__item"><span class="timeline__dot" aria-hidden="true"></span><span class="timeline__y">2023</span><span class="timeline__l">Nueva marca knowmad mood</span></li>
+      <li class="timeline__item"><span class="timeline__dot" aria-hidden="true"></span><span class="timeline__y">BME Growth</span><span class="timeline__l">Compañía cotizada</span></li>
+      <li class="timeline__item"><span class="timeline__dot" aria-hidden="true"></span><span class="timeline__y">270,1 M€</span><span class="timeline__l">de ingresos</span></li>
+    </ol>
+  </div>
+
+  <div class="certs" data-reveal>
+    <h3 class="eyebrow eyebrow--white d-only">CERTIFICACIONES</h3>
+    <ul class="certs__list">
+      <li class="cert">ISO 9001</li><li class="cert">ISO 27001</li><li class="cert">ISO 22301</li><li class="cert">ISO 14001</li><li class="cert">ENS</li><li class="cert">CMMI V3.0 nivel 3</li>
+    </ul>
+    <span class="pend d-only">[PENDIENTE: validar vigencia y alcance]</span>
+  </div>
+</section>
+
+<!-- ============ 10 · Cierre con formulario ============ -->
+<section class="closing" data-module="cierre" aria-labelledby="closing-title">
+  <div class="closing__panel" data-fx>
+    <div class="closing__copy" data-reveal-group>
+      <span class="eyebrow d-only">/ EMPECEMOS</span>
+      <h2 id="closing-title" class="closing__title">Empecemos por <span class="grad-text">tu punto de partida.</span></h2>
+      <p class="closing__lead" data-close-text>En una sesión de diagnóstico, un experto en IA de knowmad mood analizará contigo la situación de tu organización e identificará las oportunidades de mayor impacto.</p>
+    </div>
+
+    <!-- Formulario (módulo «Formulario Tech»). Sustituible por un formulario de HubSpot con el mismo estilo. -->
+    <!-- HubSpot: rellenar data-hs-portal (ID del portal) y data-hs-form (GUID del formulario).
+         Vacíos = modo demostración: se muestra la confirmación sin enviar nada. -->
+    <div id="km-form-diagnostico" class="kmf" data-module="formulario" data-reveal data-hs-portal="1234567" data-hs-form="aaaa-bbbb">
+      <form class="kmf__form" novalidate>
+        <div class="kmf__intro">
+          <span class="kmf__eyebrow">/ DIAGNÓSTICO IA</span>
+          <h3 class="kmf__title" data-form-title>Solicita una sesión de diagnóstico con un experto en IA</h3>
+          <p class="kmf__text"><span data-form-text>Evaluaremos el punto de partida de tu organización e identificaremos las oportunidades de mayor impacto.</span> <span class="pend" data-diag-only>[PENDIENTE: validar formato de la sesión de diagnóstico]</span></p>
+        </div>
+
+        <div class="kmf__fields">
+          <div class="kmf__field">
+            <label class="kmf__label" for="kmf-firstname">Nombre</label>
+            <input class="kmf__input" id="kmf-firstname" name="firstname" type="text" autocomplete="given-name" aria-describedby="kmf-firstname-err">
+            <span class="kmf__error" id="kmf-firstname-err" aria-live="polite"></span>
+          </div>
+          <div class="kmf__field">
+            <label class="kmf__label" for="kmf-lastname">Apellidos</label>
+            <input class="kmf__input" id="kmf-lastname" name="lastname" type="text" autocomplete="family-name" aria-describedby="kmf-lastname-err">
+            <span class="kmf__error" id="kmf-lastname-err" aria-live="polite"></span>
+          </div>
+          <div class="kmf__field">
+            <label class="kmf__label" for="kmf-email">Email corporativo</label>
+            <input class="kmf__input" id="kmf-email" name="email" type="email" autocomplete="email" aria-describedby="kmf-email-err">
+            <span class="kmf__error" id="kmf-email-err" aria-live="polite"></span>
+          </div>
+          <div class="kmf__field">
+            <label class="kmf__label" for="kmf-company">Empresa</label>
+            <input class="kmf__input" id="kmf-company" name="company" type="text" autocomplete="organization" aria-describedby="kmf-company-err">
+            <span class="kmf__error" id="kmf-company-err" aria-live="polite"></span>
+          </div>
+          <div class="kmf__field">
+            <label class="kmf__label" for="kmf-jobtitle">Cargo</label>
+            <input class="kmf__input" id="kmf-jobtitle" name="jobtitle" type="text" autocomplete="organization-title" aria-describedby="kmf-jobtitle-err">
+            <span class="kmf__error" id="kmf-jobtitle-err" aria-live="polite"></span>
+          </div>
+        </div>
+
+        <div class="kmf__field kmf__field--full">
+          <label class="kmf__label" for="kmf-km_area_interes">Área de interés</label>
+          <span class="kmf__select-wrap">
+            <select class="kmf__input kmf__select" id="kmf-km_area_interes" name="km_area_interes" aria-describedby="kmf-km_area_interes-err">
+              <option value="">Selecciona una opción</option>
+              <optgroup label="Inteligencia artificial">
+                <option value="ia_estrategia">Estrategia y diagnóstico de IA</option>
+                <option value="ia_datos_gobierno">Datos, gobierno y seguridad de la IA</option>
+                <option value="ia_desarrollo">Desarrollo e implantación de soluciones de IA</option>
+                <option value="ia_ai_sdlc">AI SDLC: ciclo de desarrollo impulsado por IA</option>
+                <option value="ia_hiperautomatizacion">Hiperautomatización de procesos</option>
+                <option value="ia_coe">Centro de Excelencia de IA</option>
+                <option value="ia_adopcion">Formación, adopción y gestión del cambio</option>
+              </optgroup>
+              <optgroup label="Otras áreas">
+                <option value="arquitectura_desarrollo">Arquitectura y desarrollo de software</option>
+                <option value="plataformas_empresariales">Plataformas de aplicaciones empresariales</option>
+                <option value="operaciones_industria">Operaciones inteligentes e innovación industrial</option>
+                <option value="gobierno_ti">Gobierno TI y modernización</option>
+                <option value="cx_digital">Experiencia de cliente y crecimiento digital</option>
+                <option value="ciberseguridad">Ciberseguridad y confianza digital</option>
+                <option value="workplace_cambio">Formación, puesto de trabajo digital y gestión del cambio</option>
+                <option value="sin_definir">Aún no lo tengo claro</option>
+              </optgroup>
+            </select>
+            <span class="kmf__select-caret" aria-hidden="true">▼</span>
+          </span>
+          <span class="kmf__error" id="kmf-km_area_interes-err" aria-live="polite"></span>
+        </div>
+
+        <fieldset class="kmf__fieldset">
+          <legend class="kmf__label">¿En qué punto está tu organización con la IA? <small>(opcional)</small></legend>
+          <div class="kmf__options">
+            <label class="kmf__option"><input type="radio" name="km_madurez_ia" value="explorando"><span>Estamos explorando por dónde empezar</span></label>
+            <label class="kmf__option"><input type="radio" name="km_madurez_ia" value="pilotos"><span>Tenemos pilotos o pruebas de concepto en marcha</span></label>
+            <label class="kmf__option"><input type="radio" name="km_madurez_ia" value="produccion_aislada"><span>Tenemos soluciones en producción, pero aisladas o con poca adopción</span></label>
+            <label class="kmf__option"><input type="radio" name="km_madurez_ia" value="escalar"><span>La IA ya forma parte de varios procesos y queremos escalarla y gobernarla</span></label>
+          </div>
+        </fieldset>
+
+        <div class="kmf__consent-wrap">
+          <label class="kmf__consent">
+            <input type="checkbox" name="consent" id="kmf-consent" aria-describedby="kmf-consent-err" data-consent-text>
+            <span>He leído y acepto la <a href="#privacidad" target="_blank">Política de privacidad</a> y consiento el tratamiento de mis datos para gestionar esta solicitud.</span>
+          </label>
+          <span class="kmf__error" id="kmf-consent-err" aria-live="polite"></span>
+        </div>
+
+        <div class="kmf__submit-wrap">
+          <button class="btn kmf__submit" type="submit"><span data-cta>Solicitar diagnóstico de IA</span> <span aria-hidden="true">→</span></button>
+          <p class="kmf__alert" role="alert" data-submit-error hidden>No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.</p>
+          <p class="kmf__note">Solo usaremos tus datos para gestionar tu solicitud.</p>
+        </div>
+
+        <div class="kmf__rgpd">
+          <button class="kmf__rgpd-toggle" type="button" aria-expanded="false" aria-controls="kmf-rgpd-body">Información básica sobre protección de datos <span aria-hidden="true" data-rgpd-icon>+</span></button>
+          <p class="kmf__rgpd-body" id="kmf-rgpd-body" hidden><b>Responsable:</b> <span class="pend">[PENDIENTE: razón social y CIF de la entidad responsable]</span>. <b>Finalidad:</b> gestionar tu solicitud y contactar contigo en relación con ella. <b>Legitimación:</b> tu consentimiento. <b>Destinatarios:</b> no se cederán datos a terceros, salvo obligación legal. <span class="pend">[PENDIENTE: confirmar encargados del tratamiento y compañías del grupo]</span> <b>Derechos:</b> acceder, rectificar y suprimir los datos, así como otros derechos, tal como se explica en la información adicional. <b>Información adicional:</b> consulta nuestra <a href="#privacidad" target="_blank">Política de privacidad</a>.</p>
+        </div>
+      </form>
+
+      <div class="kmf__success" role="status" tabindex="-1" hidden>
+        <div class="kmf__check" aria-hidden="true">✓</div>
+        <h3 class="kmf__success-title">Gracias, <span data-success-name>{{nombre}}</span>. Hemos recibido tu solicitud.</h3>
+        <p class="kmf__success-text">Un experto de knowmad mood revisará la información que nos has enviado y se pondrá en contacto contigo <span class="pend">[PENDIENTE: plazo de respuesta]</span> para acordar <span data-confirm-end>la sesión de diagnóstico.</span></p>
+        <div class="kmf__success-rule"></div>
+        <p class="kmf__success-sign"><b>knowmad mood.</b></p>
+      </div>
+    </div>
+
+    <div class="closing__sign" data-reveal>
+      <span>No es lo mismo.</span>
+      <img src="assets/km-logo-white.png" alt="knowmad mood" width="180" height="26" loading="lazy">
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer page" data-module="pie">
+  <img class="footer__logo d-only" src="assets/km-logo-white.png" alt="knowmad mood" width="152" height="22" loading="lazy">
+  <div class="footer__links">
+    <span>© 2026 knowmad mood</span>
+    <a href="#aviso-legal" target="_blank">Aviso legal</a>
+    <a href="#privacidad" target="_blank">Política de privacidad</a>
+    <a href="#cookies" target="_blank">Política de cookies</a>
+  </div>
+</footer>
+
+<!-- Barra CTA fija (móvil, a partir del segundo pantallazo) -->
+<div class="sticky-cta" data-sticky-cta>
+  <a class="btn" href="#km-form-diagnostico"><span data-cta>Solicitar diagnóstico de IA</span> <span aria-hidden="true">→</span></a>
+</div>
+</body>
+</html>

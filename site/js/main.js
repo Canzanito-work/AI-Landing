@@ -60,7 +60,8 @@
   // Nombres = nombres internos de las propiedades de HubSpot (ver la especificación del formulario)
   var REQUIRED = ['firstname', 'lastname', 'email', 'company', 'jobtitle', 'km_area_interes', 'consent'];
   var HS_FIELDS = ['firstname', 'lastname', 'email', 'company', 'jobtitle', 'km_area_interes', 'km_madurez_ia'];
-  var TRACKING = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid'];
+  // Campos ocultos: solo los UTM que aportan valor en la campaña de ChatGPT Ads (fuente, campaña y anuncio)
+  var TRACKING = ['utm_source', 'utm_campaign', 'utm_content'];
 
   var root = document.getElementById('km-form-diagnostico');
   if (root) initForm(root);
@@ -150,7 +151,7 @@
     var submitErr = form.querySelector('[data-submit-error]');
     var consentText = (form.querySelector('.kmf__consent span') || {}).textContent || '';
 
-    // UTMs y gclid de la URL de llegada; se guardan para la sesión por si el usuario recarga
+    // UTMs de la URL de llegada; se guardan para la sesión por si el usuario recarga
     var tracking = {};
     TRACKING.forEach(function (k) {
       var v = params.get(k);
@@ -172,8 +173,6 @@
         if (name === 'km_madurez_ia') { var c = form.querySelector('input[name="km_madurez_ia"]:checked'); add(name, c && c.value); }
         else add(name, value(name));
       });
-      add('km_cta_version', ctaVersion);
-      add('km_hero_variant', heroVariant);
       Object.keys(tracking).forEach(function (k) { add(k, tracking[k]); });
       var context = { pageUri: location.href, pageName: document.title };
       var hutk = cookie('hubspotutk');            // cookie de seguimiento de HubSpot (atribución)
