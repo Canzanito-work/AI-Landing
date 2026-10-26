@@ -34,6 +34,7 @@ if STATIC_HERO:
     assert html.count('<html lang="es">')==1
     html=html.replace('<html lang="es">','<html lang="es" class="hero-static">')
 assert 'font/woff2;base64' in html, 'Figtree no embebida'
-assert not re.findall(r'(?:href|src)="(?:https?://|assets/|css/|js/)[^"]*"',html)
+# Ningún recurso externo (imágenes, estilos, scripts); los enlaces <a href> sí pueden serlo
+assert not re.findall(r'(?:\ssrc|\ssrcset|<link[^>]*\shref)="(?:https?://|assets/|css/|js/)[^"]*"',html)
 open(os.path.join(ROOT,OUT),'w').write(html)
 print(OUT, os.path.getsize(os.path.join(ROOT,OUT))//1024,'KB')

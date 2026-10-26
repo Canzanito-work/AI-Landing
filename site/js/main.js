@@ -114,16 +114,6 @@
     }
     radios.forEach(function (r) { r.addEventListener('change', syncRadios); });
 
-    var toggle = form.querySelector('.kmf__rgpd-toggle');
-    var rgpdBody = document.getElementById('kmf-rgpd-body');
-    var rgpdIcon = toggle.querySelector('[data-rgpd-icon]');
-    toggle.addEventListener('click', function () {
-      var open = rgpdBody.hidden;
-      rgpdBody.hidden = !open;
-      toggle.setAttribute('aria-expanded', String(open));
-      rgpdIcon.textContent = open ? '−' : '+';
-    });
-
     function validateAll() {
       var firstInvalid = null;
       REQUIRED.forEach(function (name) {
@@ -150,7 +140,10 @@
     var region = (root.getAttribute('data-hs-region') || '').trim();   // p. ej. eu1 (portales alojados en la UE)
     var submitBtn = form.querySelector('.kmf__submit');
     var submitErr = form.querySelector('[data-submit-error]');
-    var consentText = (form.querySelector('.kmf__consent span') || {}).textContent || '';
+    var clean = function (sel) { return ((form.querySelector(sel) || {}).textContent || '').replace(/\s+/g, ' ').trim(); };
+    var consentText = clean('[data-process-intro]') + ' ' + clean('[data-process-text]');
+    // Consentimiento de comunicaciones: HubSpot lo registra por tipo de suscripción (data-hs-subscription).
+    var subscriptionId = parseInt(root.getAttribute('data-hs-subscription') || '', 10);
 
     // UTMs de la URL de llegada; se guardan para la sesión por si el usuario recarga
     var tracking = {};
@@ -208,7 +201,10 @@
       return {
         fields: fields,
         context: context,
-        legalConsentOptions: { consent: { consentToProcess: true, text: consentText.replace(/\s+/g, ' ').trim(), communications: [] } }
+        legalConsentOptions: { consent: {
+          consentToProcess: true, text: consentText,
+          communications: subscriptionId ? [{ value: !!form.elements.consent_comms.checked, subscriptionTypeId: subscriptionId, text: clean('[data-comms-text]') }] : []
+        } }
       };
     }
 

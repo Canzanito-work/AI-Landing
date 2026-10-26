@@ -6,6 +6,7 @@
 <title>knowmad mood · No es lo mismo</title>
 <meta name="description" content="knowmad mood, multinacional tecnológica española: ocho áreas de especialización y una IA aplicada con sentido, de la estrategia a la operación.">
 <meta name="theme-color" content="#08061A">
+<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap">
@@ -85,14 +86,12 @@
   <div class="clients__head" data-reveal>
     <h2 id="clients-title" class="eyebrow">/ CONFÍAN EN NOSOTROS</h2>
     <span class="clients__rule d-only" aria-hidden="true"></span>
-    <span class="pend d-only">[PENDIENTE: autorización de uso de logotipos de clientes en campañas de pago]</span>
   </div>
   <!-- Texto provisional hasta recibir los SVG oficiales de cada cliente -->
   <ul class="clients__grid" data-reveal-group>
     <li>Inditex</li><li>El Corte Inglés</li><li>Santander</li><li>CaixaBank</li><li>Mapfre</li><li>AXA</li>
     <li>Iberia</li><li>Telefónica</li><li>Iberdrola</li><li>Boehringer Ingelheim</li><li>Volkswagen Group Services</li><li>RTVE</li>
   </ul>
-  <span class="pend m-only">[PENDIENTE: autorización de logotipos]</span>
 </section>
 
 <!-- ============ 03 · Quiénes somos ============ -->
@@ -297,7 +296,20 @@
         <p class="case__pend pend-block"><span class="pend">[PENDIENTE: testimonio de SGS]</span></p>
       </div>
     </article>
-    <div class="cases__placeholder pend-block d-only"><span class="pend">[PENDIENTE: tarjeta 4 · caso de otra área del offering]</span></div>
+    <article class="case">
+      <div class="case__media case__media--altima">
+        <span class="case__tag d-only">AGENTES IA · SERVICE DESK</span>
+        <div class="case__id"><h3 class="case__name">ÁLTIMA</h3><span class="case__sub">Servicios funerarios integrales en Cataluña</span></div>
+      </div>
+      <div class="case__body">
+        <dl class="case__rows">
+          <div class="case__row"><dt>RETO</dt><dd>Un agente virtual en su portal de Service Desk que creara tickets en Jira Service Management a partir de peticiones en lenguaje natural, con todos los campos completos. Los agentes Rovo no podían rellenar de forma nativa los campos de Assets/CMDB, como el centro del usuario.</dd></div>
+          <div class="case__row"><dt>SOLUCIÓN</dt><dd>Una arquitectura híbrida: un agente Rovo conversa con el usuario y una acción personalizada en Forge construye los datos que completan el campo Assets y crea el ticket. Integrada con su catálogo de peticiones: altas, bajas, viajes, correo, impresoras y otros servicios internos.</dd></div>
+          <div class="case__row"><dt>RESULTADO</dt><dd>Creación de tickets automatizada al 100 % en este flujo, sin cumplimentación manual por parte de soporte, y un patrón reutilizable para futuros agentes virtuales.</dd></div>
+        </dl>
+        <p class="case__pend pend-block"><span class="pend">[PENDIENTE: testimonio de ÁLTIMA]</span></p>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -376,7 +388,6 @@
       <div class="sx-spot__meter" aria-hidden="true"><span data-sx-meter style="width:100%"></span></div>
       <span class="sx-spot__clients-label">ALGUNOS CLIENTES</span>
       <ul class="sx-spot__clients" data-sx-clients><li>Inditex</li><li>El Corte Inglés</li><li>Carrefour</li><li>Decathlon</li></ul>
-      <p class="sx-spot__pend pend-block"><span class="pend">[PENDIENTE: validar si se publica el peso de cada sector]</span> <span class="pend">[PENDIENTE: autorización de uso de logotipos de clientes en campañas de pago]</span></p>
     </aside>
   </div>
 </section>
@@ -431,7 +442,6 @@
   <div class="timeline-card" data-reveal>
     <div class="timeline-card__head d-only">
       <h3 class="eyebrow eyebrow--white">TRAYECTORIA</h3>
-      <span class="pend">[PENDIENTE: validar si se publican cifras financieras en la campaña]</span>
     </div>
     <ol class="timeline" data-reveal-group>
       <li class="timeline__item"><span class="timeline__dot" aria-hidden="true"></span><span class="timeline__y">1994</span><span class="timeline__l">Nacimiento</span></li>
@@ -447,7 +457,6 @@
     <ul class="certs__list">
       <li class="cert">ISO 9001</li><li class="cert">ISO 27001</li><li class="cert">ISO 22301</li><li class="cert">ISO 14001</li><li class="cert">ENS</li><li class="cert">CMMI V3.0 nivel 3</li>
     </ul>
-    <span class="pend d-only">[PENDIENTE: validar vigencia y alcance]</span>
   </div>
 </section>
 
@@ -462,8 +471,10 @@
 
     <!-- Formulario (módulo «Formulario Tech»). Sustituible por un formulario de HubSpot con el mismo estilo. -->
     <!-- HubSpot: portal, formulario y región («Formulario Diagnóstico IA»). Si se vacían
-         data-hs-portal o data-hs-form, modo demostración: confirmación sin enviar nada. -->
-    <div id="km-form-diagnostico" class="kmf" data-module="formulario" data-reveal data-hs-portal="145598533" data-hs-form="8f22b61e-186e-48e2-ad0a-b7457eb15294" data-hs-region="eu1">
+         data-hs-portal o data-hs-form, modo demostración: confirmación sin enviar nada.
+         data-hs-subscription = ID del tipo de suscripción para registrar el consentimiento de
+         comunicaciones (Configuración → Marketing → Email → Tipos de suscripción). -->
+    <div id="km-form-diagnostico" class="kmf" data-module="formulario" data-reveal data-hs-portal="145598533" data-hs-form="8f22b61e-186e-48e2-ad0a-b7457eb15294" data-hs-region="eu1" data-hs-subscription="">
       <form class="kmf__form" novalidate>
         <div class="kmf__intro">
           <span class="kmf__eyebrow">/ DIAGNÓSTICO IA</span>
@@ -539,23 +550,27 @@
           </div>
         </fieldset>
 
-        <div class="kmf__consent-wrap">
+        <!-- Texto de consentimiento del formulario de HubSpot (Privacidad y consentimiento). -->
+        <div class="kmf__legal">
+          <p class="kmf__legal-text">knowmadmood se compromete a proteger y respetar tu privacidad, y solo usaremos tu información personal para administrar tu cuenta y proporcionar los productos y servicios que nos solicitaste. De vez en cuando, nos gustaría ponernos en contacto contigo acerca de nuestros productos y servicios, así como sobre otros contenidos que puedan interesarte. Si aceptas que nos comuniquemos contigo para este fin, marca la casilla a continuación para indicar cómo deseas que nos comuniquemos:</p>
           <label class="kmf__consent">
-            <input type="checkbox" name="consent" id="kmf-consent" aria-describedby="kmf-consent-err" data-consent-text>
-            <span>He leído y acepto la <a href="#privacidad" target="_blank">Política de privacidad</a> y consiento el tratamiento de mis datos para gestionar esta solicitud.</span>
+            <input type="checkbox" name="consent_comms" id="kmf-consent-comms">
+            <span data-comms-text>Acepto recibir otras comunicaciones de knowmadmood.</span>
           </label>
-          <span class="kmf__error" id="kmf-consent-err" aria-live="polite"></span>
+          <p class="kmf__legal-text" data-process-intro>Para procesar tu solicitud, necesitamos tu permiso para almacenar y procesar tus datos personales. Marca la casilla de abajo para confirmar tu consentimiento:</p>
+          <div class="kmf__consent-wrap">
+            <label class="kmf__consent">
+              <input type="checkbox" name="consent" id="kmf-consent" aria-describedby="kmf-consent-err">
+              <span data-process-text>Acepto que knowmadmood almacene y trate mis datos personales.</span>
+            </label>
+            <span class="kmf__error" id="kmf-consent-err" aria-live="polite"></span>
+          </div>
         </div>
 
         <div class="kmf__submit-wrap">
           <button class="btn kmf__submit" type="submit"><span data-cta>Solicitar diagnóstico de IA</span> <span aria-hidden="true">→</span></button>
           <p class="kmf__alert" role="alert" data-submit-error hidden>No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.</p>
-          <p class="kmf__note">Solo usaremos tus datos para gestionar tu solicitud.</p>
-        </div>
-
-        <div class="kmf__rgpd">
-          <button class="kmf__rgpd-toggle" type="button" aria-expanded="false" aria-controls="kmf-rgpd-body">Información básica sobre protección de datos <span aria-hidden="true" data-rgpd-icon>+</span></button>
-          <p class="kmf__rgpd-body" id="kmf-rgpd-body" hidden><b>Responsable:</b> <span class="pend">[PENDIENTE: razón social y CIF de la entidad responsable]</span>. <b>Finalidad:</b> gestionar tu solicitud y contactar contigo en relación con ella. <b>Legitimación:</b> tu consentimiento. <b>Destinatarios:</b> no se cederán datos a terceros, salvo obligación legal. <span class="pend">[PENDIENTE: confirmar encargados del tratamiento y compañías del grupo]</span> <b>Derechos:</b> acceder, rectificar y suprimir los datos, así como otros derechos, tal como se explica en la información adicional. <b>Información adicional:</b> consulta nuestra <a href="#privacidad" target="_blank">Política de privacidad</a>.</p>
+          <p class="kmf__legal-text kmf__legal-text--foot">Puedes darte de baja de estas comunicaciones en cualquier momento. Para obtener más información sobre cómo darte de baja, nuestras prácticas de privacidad y cómo nos comprometemos a proteger y respetar tu privacidad, consulta nuestra <a href="https://www.knowmadmood.com/es/politica-privacidad" target="_blank" rel="noopener">Política de privacidad</a>.</p>
         </div>
       </form>
 
@@ -580,9 +595,9 @@
   <img class="footer__logo d-only" src="assets/km-logo-white.png" alt="knowmad mood" width="152" height="22" loading="lazy">
   <div class="footer__links">
     <span>© 2026 knowmad mood</span>
-    <a href="#aviso-legal" target="_blank">Aviso legal</a>
-    <a href="#privacidad" target="_blank">Política de privacidad</a>
-    <a href="#cookies" target="_blank">Política de cookies</a>
+    <a href="https://www.knowmadmood.com/es/aviso-legal" target="_blank" rel="noopener">Aviso legal</a>
+    <a href="https://www.knowmadmood.com/es/politica-privacidad" target="_blank" rel="noopener">Política de privacidad</a>
+    <a href="https://www.knowmadmood.com/es/cookies" target="_blank" rel="noopener">Política de cookies</a>
   </div>
 </footer>
 

@@ -38,8 +38,10 @@
   --f-sans: Figtree, system-ui, sans-serif;
   --f-mono: ui-monospace, Menlo, monospace;
 
-  --page-max: 1440px;
-  --pad-x: 96px;             /* padding lateral de secciones (escritorio) */
+  /* Ancho completo: fondos y paneles ocupan toda la pantalla; el contenido mantiene la
+     maqueta de 1.440 px centrada. --wide = lo que la pantalla excede de 1.440 px, por lado. */
+  --wide: max(0px, (100vw - 1440px) / 2);
+  --pad-x: calc(96px + var(--wide));   /* padding lateral de secciones (escritorio) */
 }
 
 /* ---------- Base ---------- */
@@ -59,7 +61,7 @@ a:hover { color: var(--c-yellow); }
 h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 [hidden] { display: none !important; }
 
-.page { max-width: var(--page-max); margin: 0 auto; overflow-x: clip; }
+.page { overflow-x: clip; }
 
 .visually-hidden {
   position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -143,7 +145,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .hero__panel {
   position: relative; border-radius: 32px; overflow: hidden;
   background: var(--c-ink) url(../assets/bg/hero.jpg) center / cover no-repeat;
-  padding: 28px 64px 72px;
+  padding: 28px calc(64px + var(--wide)) 72px;
 }
 .hero__header {
   display: flex; justify-content: space-between; align-items: center;
@@ -191,7 +193,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .hero__cta { display: flex; justify-content: flex-start; margin-top: 8px; }
 
 /* KPIs */
-.kpis { padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+.kpis { padding: 0 var(--wide); list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
 .kpi {
   position: relative; overflow: hidden; border-radius: 24px; padding: 28px 32px; min-height: 150px;
   display: flex; flex-direction: column; justify-content: space-between;
@@ -210,7 +212,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 /* ==========================================================================
    02 · Clientes
    ========================================================================== */
-.clients { padding: 72px 80px; display: flex; flex-direction: column; gap: 28px; }
+.clients { padding: 72px calc(80px + var(--wide)); display: flex; flex-direction: column; gap: 28px; }
 .clients__head { display: flex; align-items: center; gap: 24px; }
 .clients__head .eyebrow { white-space: nowrap; }
 .clients__rule { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255, 255, 255, .2), rgba(255, 255, 255, 0)); }
@@ -231,7 +233,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .about {
   position: relative; margin: 0 16px; border-radius: 32px; overflow: hidden;
   background: var(--c-light); color: var(--c-navy-800);
-  padding: 112px 96px 96px;
+  padding: 112px calc(96px + var(--wide)) 96px;
 }
 .about__watermark {
   position: absolute; right: -40px; top: 24px;
@@ -442,6 +444,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .case__media--frs { background-image: url(../assets/bg/hero.jpg); background-position: 75% 45%; }
 .case__media--alier { background-image: url(../assets/bg/mesh.jpg); background-position: center; }
 .case__media--sgs { background-image: url(../assets/bg/ia.jpg); background-position: 30% 40%; }
+.case__media--altima { background-image: url(../assets/bg/close.jpg); background-position: 50% 85%; }
 .case__tag {
   position: absolute; z-index: 1; left: 28px; top: 24px;
   font: 600 11px/1 var(--f-mono); letter-spacing: .12em; padding: 8px 12px; border-radius: 999px;
@@ -481,7 +484,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .models {
   position: relative; overflow: hidden;
   margin: 0 16px; border-radius: 32px; background: var(--c-light); color: var(--c-navy-800);
-  padding: 112px 80px 96px; display: flex; flex-direction: column; gap: 56px;
+  padding: 112px calc(80px + var(--wide)) 96px; display: flex; flex-direction: column; gap: 56px;
 }
 .models__head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 48px; align-items: end; }
 .models__head-main { display: flex; flex-direction: column; gap: 24px; }
@@ -680,7 +683,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .closing__panel {
   position: relative; border-radius: 32px; overflow: hidden;
   background: var(--c-ink) url(../assets/bg/close.jpg) center bottom / cover;
-  padding: 112px 96px;
+  padding: 112px calc(96px + var(--wide));
   display: grid; grid-template-columns: minmax(0, 1fr) 500px; column-gap: 80px; align-items: center;
   grid-template-areas: "copy form" "sign form";
 }
@@ -756,19 +759,10 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .kmf__consent a { color: #fff; text-decoration: underline; font-weight: 600; }
 .kmf__submit-wrap { display: flex; flex-direction: column; gap: 8px; }
 .kmf__submit { height: 52px; padding: 0 24px; font-size: 15px; box-shadow: 0 10px 30px rgba(214, 29, 79, .45); white-space: normal; }
-.kmf__note { font: 400 12px/16px var(--f-sans); color: var(--c-text-3); text-align: center; }
-.kmf__rgpd { border-top: 1px solid rgba(255, 255, 255, .12); padding-top: 10px; }
-.kmf__rgpd-toggle {
-  display: flex; justify-content: space-between; align-items: center; width: 100%;
-  background: none; border: 0; padding: 0; cursor: pointer;
-  font: 600 12px/16px var(--f-sans); color: var(--c-text-1); text-align: left;
-}
-.kmf__rgpd-toggle:focus-visible { outline: 2px solid var(--c-yellow); outline-offset: 2px; }
-.kmf__rgpd-body { margin-top: 8px; font: 400 11.5px/17px var(--f-sans); color: var(--c-text-2); text-wrap: pretty; }
-.kmf__rgpd-body b { color: #fff; }
-.kmf__rgpd-body a { color: #fff; text-decoration: underline; }
-.kmf__rgpd-body .pend { font-size: 10.5px; padding: 1px 5px; }
-
+.kmf__legal { display: flex; flex-direction: column; gap: 10px; }
+.kmf__legal-text { margin: 0; font: 400 11.5px/17px var(--f-sans); color: var(--c-text-2); text-wrap: pretty; }
+.kmf__legal-text--foot { text-align: center; color: var(--c-text-3); }
+.kmf__legal-text a { color: #fff; text-decoration: underline; }
 .kmf__success { display: flex; flex-direction: column; gap: 18px; padding: 12px 4px; }
 .kmf__success:focus { outline: none; }
 .kmf__check {
@@ -786,7 +780,6 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 /* ==========================================================================
    Pie
    ========================================================================== */
-.footer.page { margin: 0 auto; }
 .footer {
   padding: 36px var(--pad-x); display: flex; justify-content: space-between; align-items: center; gap: 24px;
   font: 400 14px/20px var(--f-sans); color: var(--c-text-3);
