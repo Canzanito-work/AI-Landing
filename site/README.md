@@ -44,7 +44,7 @@ Se eligen con parámetros de URL:
 
 ## Versión para HubSpot
 
-`python3 tools/build-hubspot.py` genera `hubspot/landing-ia-hubspot.html` (con `--fondo-estatico`, `landing-ia-hubspot-fondo-estatico.html`): una plantilla de página para pegar en el administrador de diseño de HubSpot. Incluye la anotación de plantilla, las etiquetas estándar de HubSpot (código de seguimiento y banner de cookies) y todo el contenido dentro de `{% raw %}` para que HubL no lo interprete. El CSS y el JS van en línea; las imágenes se cargan desde jsDelivr (repositorio público de GitHub, fijadas a un commit). Para producción, sube las imágenes de `site/assets/` al File Manager de HubSpot y genera la plantilla con `ASSET_BASE=<url de la carpeta>/ python3 tools/build-hubspot.py`.
+`python3 tools/build-hubspot.py` genera `hubspot/landing-ia-hubspot.html` (con `--fondo-estatico`, `landing-ia-hubspot-fondo-estatico.html`): una plantilla de página para pegar en el administrador de diseño de HubSpot. Incluye la anotación de plantilla, las etiquetas estándar de HubSpot (código de seguimiento y banner de cookies) y todo el contenido dentro de `{% raw %}` para que HubL no lo interprete. El CSS y el JS van en línea. Las imágenes se cargan desde el File Manager de HubSpot (carpeta `Landing-IA`, todas en el mismo nivel; el zip `hubspot/imagenes-landing-ia.zip` las contiene). Si se cambian de sitio, edita `HUBSPOT_FILES` en el script; con `ASSET_BASE=github` se cargan desde el repositorio (solo para pruebas).
 
 ## Formulario
 

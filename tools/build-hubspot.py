@@ -3,19 +3,27 @@
 # - Anotación de plantilla de página y las etiquetas estándar de HubSpot (seguimiento,
 #   banner de cookies), necesarias para la atribución y el consentimiento del oppref.
 # - Todo el contenido propio va dentro de {% raw %} para que HubL no interprete nada.
-# - CSS y JS en línea; imágenes servidas por jsDelivr desde el repositorio público de
-#   GitHub, fijadas al commit actual (para producción, subirlas al File Manager de HubSpot
-#   y cambiar ASSET_BASE). Tipografía desde Google Fonts.
+# - CSS y JS en línea; imágenes desde el File Manager de HubSpot (carpeta Landing-IA).
+#   Tipografía desde Google Fonts.
 import os, re, subprocess, sys
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 S = os.path.join(ROOT, 'site') + '/'
 sha = subprocess.run(['git', '-C', ROOT, 'rev-parse', 'HEAD'], capture_output=True, text=True, check=True).stdout.strip()
-ASSET_BASE = os.environ.get('ASSET_BASE') or f'https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@{sha}/site/'
+# Imágenes en el File Manager de HubSpot, todas en la carpeta Landing-IA (sin subcarpetas: se enlazan por nombre).
+# ASSET_BASE=github → jsDelivr desde el repositorio (solo para pruebas, con la estructura assets/ y bg/).
+HUBSPOT_FILES = 'https://145598533.fs1.hubspotusercontent-eu1.net/hubfs/145598533/Landing-IA/'
+_base = os.environ.get('ASSET_BASE', '')
+if _base == 'github':
+    ASSET_BASE, FLAT = f'https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@{sha}/site/', False
+else:
+    ASSET_BASE = _base or HUBSPOT_FILES
+    FLAT = os.environ.get('ASSET_FLAT', '0' if _base else '1') == '1'
+def asset_url(a): return ASSET_BASE + (os.path.basename(a) if FLAT else a)
 STATIC_HERO = '--fondo-estatico' in sys.argv
 
 html = open(S + 'index.html').read()
 css = open(S + 'css/styles.css').read()
-css = re.sub(r'url\(\.\./(assets/[^)]+)\)', lambda m: f'url("{ASSET_BASE}{m.group(1)}")', css)
+css = re.sub(r'url\(\.\./(assets/[^)]+)\)', lambda m: f'url("{asset_url(m.group(1))}")', css)
 
 head_open = html.index('<head>') + len('<head>'); head_close = html.index('</head>')
 body_open = html.index('<body>') + len('<body>'); body_close = html.index('</body>')
@@ -29,7 +37,7 @@ head = re.sub(r'<title>.*?</title>\n', '', head)
 head = re.sub(r'<meta name="description"[^>]*>\n', '', head)
 head = re.sub(r'<meta charset="utf-8">\n', '', head)
 head = re.sub(r'<meta name="viewport"[^>]*>\n', '', head)
-body = re.sub(r'(src|srcset)="(assets/[^"]+)"', lambda m: f'{m.group(1)}="{ASSET_BASE}{m.group(2)}"', body)
+body = re.sub(r'(src|srcset)="(assets/[^"]+)"', lambda m: f'{m.group(1)}="{asset_url(m.group(2))}"', body)
 js = ''.join('<script>\n' + open(S + p).read() + '\n</script>\n' for p in scripts)
 
 assert '{% endraw %}' not in head + body + js
@@ -62,6 +70,6 @@ out = f'''<!--
 os.makedirs(os.path.join(ROOT, 'hubspot'), exist_ok=True)
 name = 'landing-ia-hubspot-fondo-estatico.html' if STATIC_HERO else 'landing-ia-hubspot.html'
 open(os.path.join(ROOT, 'hubspot', name), 'w').write(out)
-assets = sorted(set(re.findall(re.escape(ASSET_BASE) + r'(assets/[^"\)\s]+)', out)))
+assets = sorted(set(re.findall(re.escape(ASSET_BASE) + r'([^"\)\s]+)', out)))
 print(name, len(out.encode()) // 1024, 'KB ·', len(assets), 'imágenes desde', ASSET_BASE)
-for a in assets: assert os.path.exists(S + a), a
+for a in assets: print('  ', ASSET_BASE + a)
