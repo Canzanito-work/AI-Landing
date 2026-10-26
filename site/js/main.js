@@ -161,6 +161,33 @@
       if (v) tracking[k] = v;
     });
 
+    // oppref (identificador de clic de ChatGPT Ads, lo añade OpenAI a la URL).
+    // Se conserva para la sesión siempre y, con consentimiento de cookies de
+    // publicidad en el banner de HubSpot, durante OPPREF_DAYS días: quien hace
+    // clic hoy puede volver y convertir más tarde. Gana el último clic.
+    var OPPREF_DAYS = 90, OPPREF_KEY = 'km_oppref';
+    var oppref = params.get('oppref');
+    try {
+      if (oppref) sessionStorage.setItem(OPPREF_KEY, oppref);
+      else oppref = sessionStorage.getItem(OPPREF_KEY);
+      if (!oppref) {
+        var saved = JSON.parse(localStorage.getItem(OPPREF_KEY) || 'null');
+        if (saved && Date.now() - saved.t < OPPREF_DAYS * 864e5) oppref = saved.v;
+        else if (saved) localStorage.removeItem(OPPREF_KEY);
+      }
+    } catch (e) { /* almacenamiento no disponible: se usa solo la URL */ }
+    if (oppref) tracking.oppref = oppref;
+    var freshOppref = params.get('oppref');
+    if (freshOppref) {
+      (window._hsp = window._hsp || []).push(['addPrivacyConsentListener', function (consent) {
+        try {
+          var ok = consent && (consent.allowed || (consent.categories && consent.categories.advertisement));
+          if (ok) localStorage.setItem(OPPREF_KEY, JSON.stringify({ v: freshOppref, t: Date.now() }));
+          else localStorage.removeItem(OPPREF_KEY);
+        } catch (e) { /* sin almacenamiento */ }
+      }]);
+    }
+
     function cookie(name) {
       var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
       return m ? decodeURIComponent(m[1]) : '';

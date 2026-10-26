@@ -46,7 +46,7 @@ Se eligen con parámetros de URL:
 
 La validación sigue al prototipo: campos obligatorios, formato de email, rechazo de dominios gratuitos («Introduce tu email corporativo.») y consentimiento. Los campos se llaman como las propiedades de HubSpot (`firstname`, `lastname`, `email`, `company`, `jobtitle`, `km_area_interes`, `km_madurez_ia`).
 
-**Conexión con HubSpot:** el envío va a la Forms API v3 de HubSpot. Para activarlo, rellena `data-hs-portal` (ID del portal) y `data-hs-form` (GUID del formulario) en el `<div id="km-form-diagnostico">` de `index.html`. Con esos atributos vacíos, el formulario funciona en modo demostración: muestra la confirmación sin enviar nada. Además de los campos visibles se envían `utm_source`, `utm_campaign` y `utm_content` de la URL (campaña de ChatGPT Ads), la cookie `hubspotutk` y el consentimiento.
+**Conexión con HubSpot:** el envío va a la Forms API v3 de HubSpot. Para activarlo, rellena `data-hs-portal` (ID del portal) y `data-hs-form` (GUID del formulario) en el `<div id="km-form-diagnostico">` de `index.html`. Con esos atributos vacíos, el formulario funciona en modo demostración: muestra la confirmación sin enviar nada. Además de los campos visibles se envían `utm_source`, `utm_campaign` y `utm_content` de la URL (campaña de ChatGPT Ads), `oppref` (identificador de clic de ChatGPT Ads; se conserva 90 días solo con consentimiento de cookies de publicidad en el banner de HubSpot, si no, durante la sesión), la cookie `hubspotutk` y el consentimiento.
 
 ## Pendiente antes de publicar
 
