@@ -234,6 +234,8 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   border-right: 1px solid var(--line-dark-08); border-bottom: 1px solid var(--line-dark-08);
   font: 700 19px/1.1 var(--f-sans); letter-spacing: -.01em; color: var(--c-logo);
 }
+.clients__grid img { display: block; width: var(--w); max-width: 100%; height: auto; opacity: .72; transition: opacity .3s ease; }
+.clients__grid li:hover img { opacity: 1; }
 
 /* ==========================================================================
    03 · Quiénes somos (panel claro)
@@ -909,6 +911,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   .clients { padding: 48px 20px; gap: 20px; }
   .clients__grid { grid-template-columns: repeat(3, 1fr); }
   .clients__grid li { height: 64px; padding: 0 6px; font-size: 13px; line-height: 16px; letter-spacing: normal; }
+  .clients__grid img { width: calc(var(--w) * .66); }
   .clients > .pend { font-size: 10.5px; align-self: flex-start; }
 
   /* Quiénes somos */

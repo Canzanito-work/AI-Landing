@@ -1,0 +1,86 @@
+[
+ {
+  "slug": "inditex",
+  "name": "Inditex",
+  "w": 123,
+  "h": 24,
+  "kb": 2.9
+ },
+ {
+  "slug": "el-corte-ingles",
+  "name": "El Corte Inglés",
+  "w": 112,
+  "h": 27,
+  "kb": 6.2
+ },
+ {
+  "slug": "santander",
+  "name": "Santander",
+  "w": 132,
+  "h": 23,
+  "kb": 5.4
+ },
+ {
+  "slug": "caixabank",
+  "name": "CaixaBank",
+  "w": 122,
+  "h": 25,
+  "kb": 6.2
+ },
+ {
+  "slug": "mapfre",
+  "name": "Mapfre",
+  "w": 141,
+  "h": 21,
+  "kb": 4.9
+ },
+ {
+  "slug": "axa",
+  "name": "AXA",
+  "w": 49,
+  "h": 44,
+  "kb": 2.8
+ },
+ {
+  "slug": "iberia",
+  "name": "Iberia",
+  "w": 117,
+  "h": 26,
+  "kb": 4.3
+ },
+ {
+  "slug": "telefonica",
+  "name": "Telefónica",
+  "w": 112,
+  "h": 27,
+  "kb": 5
+ },
+ {
+  "slug": "iberdrola",
+  "name": "Iberdrola",
+  "w": 110,
+  "h": 27,
+  "kb": 5.5
+ },
+ {
+  "slug": "boehringer-ingelheim",
+  "name": "Boehringer Ingelheim",
+  "w": 100,
+  "h": 30,
+  "kb": 7.3
+ },
+ {
+  "slug": "volkswagen",
+  "name": "Volkswagen Group Services",
+  "w": 44,
+  "h": 44,
+  "kb": 4.6
+ },
+ {
+  "slug": "rtve",
+  "name": "RTVE",
+  "w": 76,
+  "h": 39,
+  "kb": 4
+ }
+]

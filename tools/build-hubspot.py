@@ -18,7 +18,12 @@ if _base == 'github':
 else:
     ASSET_BASE = _base or HUBSPOT_FILES
     FLAT = os.environ.get('ASSET_FLAT', '0' if _base else '1') == '1'
-def asset_url(a): return ASSET_BASE + (os.path.basename(a) if FLAT else a)
+import base64
+def asset_url(a):
+    # Logos de clientes (3–7 KB): incrustados en la plantilla, no hay que subirlos a HubSpot
+    if a.startswith('assets/clients/'):
+        return 'data:image/webp;base64,' + base64.b64encode(open(S + a, 'rb').read()).decode()
+    return ASSET_BASE + (os.path.basename(a) if FLAT else a)
 STATIC_HERO = '--fondo-estatico' in sys.argv
 
 html = open(S + 'index.html').read()
