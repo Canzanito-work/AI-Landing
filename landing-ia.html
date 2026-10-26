@@ -2254,7 +2254,6 @@ html.hero-static .hero__flutes { display: none !important; }
       return m ? decodeURIComponent(m[1]) : '';
     }
 
-    var COMMS_FIELD = 'km_acepta_comunicaciones';
     function payload() {
       var fields = [];
       function add(name, v) { if (v) fields.push({ objectTypeId: '0-1', name: name, value: v }); }
@@ -2263,8 +2262,6 @@ html.hero-static .hero__flutes { display: none !important; }
         else add(name, value(name));
       });
       Object.keys(tracking).forEach(function (k) { add(k, tracking[k]); });
-      // Casilla de comunicaciones: se guarda en el contacto como propiedad (Sí/No), sin depender del ID del tipo de suscripción
-      fields.push({ objectTypeId: '0-1', name: COMMS_FIELD, value: form.elements.consent_comms.checked ? 'true' : 'false' });
       var context = { pageUri: location.href, pageName: document.title };
       var hutk = cookie('hubspotutk');            // cookie de seguimiento de HubSpot (atribución)
       if (hutk) context.hutk = hutk;
@@ -2336,20 +2333,7 @@ html.hero-static .hero__flutes { display: none !important; }
           throw err;
         });
       }
-      // Si el formulario de HubSpot aún no tiene el campo de comunicaciones, se reenvía sin él (el envío nunca se pierde)
-      function sendWithFallback() {
-        return post(0).then(function (res) {
-          if (res.ok || res.status !== 400) return res;
-          return res.clone().json().catch(function () { return {}; }).then(function (body) {
-            var missing = ((body && body.errors) || []).some(function (e) { return (e.message || '').indexOf(COMMS_FIELD) !== -1; });
-            if (!missing) return res;
-            if (window.console) console.warn('kmf: el formulario de HubSpot no tiene el campo ' + COMMS_FIELD + '; se envía sin él.');
-            data.fields = data.fields.filter(function (f) { return f.name !== COMMS_FIELD; });
-            return post(0);
-          });
-        });
-      }
-      sendWithFallback().then(function (res) {
+      post(0).then(function (res) {
         if (res.ok) { done(data); return; }
         return res.json().catch(function () { return {}; }).then(function (body) {
           report('HubSpot respondió ' + res.status, body, data);
