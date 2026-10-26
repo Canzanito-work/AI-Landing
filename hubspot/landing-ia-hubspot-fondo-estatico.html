@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ page_meta.html_title|default("knowmad mood · No es lo mismo") }}</title>
 <meta name="description" content="{{ page_meta.meta_description|default("knowmad mood, multinacional tecnológica española: ocho áreas de especialización y una IA aplicada con sentido, de la estrategia a la operación.") }}">
-<meta name="km-build" content="f383b06">
+<meta name="km-build" content="aeb585a">
 {{ standard_header_includes }}
 {% raw %}
 <meta name="theme-color" content="#08061A">
@@ -167,7 +167,8 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   position: relative; border-radius: 32px; overflow: hidden;
   /* Imagen anclada a la derecha (detrás del isologo) a la altura del panel, sin estirarse a lo
      ancho; por la izquierda se funde con el fondo para que el texto quede limpio en cualquier ancho. */
-  --hero-fade: linear-gradient(90deg, var(--c-ink) 0%, rgba(8, 6, 26, .88) calc(var(--wide) + 22%), rgba(8, 6, 26, 0) calc(var(--wide) + 50%));
+  /* Opaco hasta pasado el borde izquierdo de la imagen (su tono no coincide exactamente con el fondo) */
+  --hero-fade: linear-gradient(90deg, var(--c-ink) 0%, var(--c-ink) calc(var(--wide) + 30%), rgba(8, 6, 26, 0) calc(var(--wide) + 56%));
   background-color: var(--c-ink);
   background-image: var(--hero-fade), url("https://145598533.fs1.hubspotusercontent-eu1.net/hubfs/145598533/Landing-IA/hero.jpg");
   background-size: 100% 100%, auto 112%;
