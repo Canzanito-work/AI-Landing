@@ -415,7 +415,9 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .ledger__row { padding: 28px 0 30px; border-top: 1px solid rgba(255, 255, 255, .14); display: flex; flex-direction: column; gap: 10px; }
 .ledger__k { font: 600 44px/1 var(--f-sans); letter-spacing: -.02em; color: #fff; }
 .ledger__v { margin: 0; max-width: 300px; font: 400 15px/22px var(--f-sans); color: var(--c-text-2); }
-.ledger__pend { margin: 4px 0 0; }
+.ledger__label { margin: 56px 0 0; }
+.ledger--awards { margin-top: 20px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.ledger--awards .ledger__k { font-size: 32px; }
 
 .how { margin-top: 72px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; align-items: start; }
 .how__label { padding-top: 22px; }
@@ -445,14 +447,9 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
   transition: border-color .2s ease, transform .2s ease;
 }
-.area:hover { border-color: var(--c-red); transform: translateY(-2px); }
 .area--hl { background: linear-gradient(160deg, #DE2330 0%, #B3163F 60%, #6E0A26 100%); border-color: var(--c-red); }
 .area__top { display: flex; justify-content: space-between; align-items: center; }
 .area__n { font: 600 13px/1 var(--f-mono); color: var(--c-yellow); }
-.area__arrow {
-  width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .2);
-  display: flex; align-items: center; justify-content: center; font: 500 16px var(--f-sans);
-}
 .area__body { display: flex; flex-direction: column; gap: 10px; }
 .area__badge {
   align-self: flex-start; font: 600 11px/1 var(--f-mono); letter-spacing: .1em;
@@ -762,6 +759,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .company:hover { border-color: var(--c-red); }
 .company__t { font: 800 22px/1 var(--f-sans); letter-spacing: .02em; }
 .company__d { font: 400 14px/21px var(--f-sans); color: var(--c-text-2); }
+.company__f { margin-top: -4px; font: 500 12.5px/16px var(--f-sans); color: var(--c-text-3); }
 .company--acq { background: var(--g-brand-diag); border: 0; justify-content: flex-end; gap: 6px; }
 .company--acq:hover { border-color: transparent; }
 .company__acq-n { font: 700 40px/1 var(--f-sans); }
@@ -906,7 +904,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   padding: 36px var(--pad-x); display: flex; justify-content: space-between; align-items: center; gap: 24px;
   font: 400 14px/20px var(--f-sans); color: var(--c-text-3);
 }
-.footer__logo { height: 22px; width: auto; opacity: .85; }
+.footer__logo { height: 22px; width: auto; }
 .footer__links { display: flex; flex-wrap: wrap; gap: 24px; }
 .footer__links a { color: var(--c-text-2); }
 .footer__links a:hover { color: var(--c-yellow); }
@@ -1044,6 +1042,9 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   .crew__title { font-size: 32px; line-height: 38px; letter-spacing: -.02em; text-wrap: wrap; }
   .crew__lead { font-size: 16px; line-height: 24px; }
   .ledger { margin-top: 32px; grid-template-columns: 1fr 1fr; column-gap: 20px; }
+  .ledger__label { margin-top: 32px; }
+  .ledger--awards { margin-top: 12px; }
+  .ledger--awards .ledger__k { font-size: 24px; }
   .ledger__row { padding: 18px 0 20px; gap: 6px; }
   .ledger__k { font-size: 28px; }
   .ledger__v { font-size: 13px; line-height: 19px; }
@@ -1065,7 +1066,6 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
     background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none;
     display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px;
   }
-  .area:hover { transform: none; border-color: var(--line-dark); }
   .area--hl { background: linear-gradient(90deg, rgba(222, 35, 48, .35), rgba(222, 35, 48, 0)); border-color: var(--line-dark); }
   .area__top { display: block; }
   .area__n { font-size: 12px; line-height: 22px; }
@@ -1473,11 +1473,14 @@ html.hero-static .hero__flutes { display: none !important; }
     <div class="ledger__row"><dt class="ledger__k">+3.500</dt><dd class="ledger__v">personas en 14 países</dd></div>
     <div class="ledger__row"><dt class="ledger__k">+40</dt><dd class="ledger__v">nacionalidades en nuestros equipos</dd></div>
     <div class="ledger__row"><dt class="ledger__k">+20</dt><dd class="ledger__v">comunidades tecnológicas donde el conocimiento se comparte</dd></div>
-    <div class="ledger__row"><dt class="ledger__k">Top 100</dt><dd class="ledger__v">Mejores Empresas para Trabajar en España 2022 · Actualidad Económica</dd></div>
-    <div class="ledger__row"><dt class="ledger__k">ESR</dt><dd class="ledger__v">Empresa socialmente responsable con su plantilla, 2021–2025</dd></div>
-    <div class="ledger__row"><dt class="ledger__k">Alares</dt><dd class="ledger__v">Premio Alares 2024</dd></div>
   </dl>
-  <p class="ledger__pend pend-block" data-reveal><span class="pend">[PENDIENTE: validar vigencia de los reconocimientos]</span></p>
+  <h3 class="eyebrow eyebrow--white ledger__label" data-reveal>RECONOCIMIENTOS</h3>
+  <dl class="ledger ledger--awards" data-reveal-group>
+    <div class="ledger__row"><dt class="ledger__k">Nailted</dt><dd class="ledger__v">Ranking Mejores Equipos de HR · Líderes en Experiencia del Empleado 2025</dd></div>
+    <div class="ledger__row"><dt class="ledger__k">Alares</dt><dd class="ledger__v">Premio Alares 2024</dd></div>
+    <div class="ledger__row"><dt class="ledger__k">ESR</dt><dd class="ledger__v">Empresa socialmente responsable con su plantilla, 2021–2025</dd></div>
+    <div class="ledger__row"><dt class="ledger__k">Top 100</dt><dd class="ledger__v">Mejores Empresas para Trabajar en España 2022 · Actualidad Económica</dd></div>
+  </dl>
 
   <div class="how">
     <h3 class="eyebrow eyebrow--white how__label" data-reveal>CÓMO LO HACEMOS</h3>
@@ -1502,14 +1505,14 @@ html.hero-static .hero__flutes { display: none !important; }
     <p class="sec-head__lead" data-reveal>Cubrimos el recorrido completo de la transformación tecnológica, con equipos especializados en cada área y conectados entre sí.</p>
   </div>
   <ul class="areas" data-reveal-group>
-    <li class="area"><div class="area__top"><span class="area__n">01</span><span class="area__arrow d-only" aria-hidden="true">↗</span></div><div class="area__body"><h3 class="area__t">Architecture &amp; Development</h3><p class="area__d">Arquitectura y desarrollo de software</p></div></li>
-    <li class="area"><div class="area__top"><span class="area__n">02</span><span class="area__arrow d-only" aria-hidden="true">↗</span></div><div class="area__body"><h3 class="area__t">Business Application Platforms</h3><p class="area__d">Plataformas de aplicaciones empresariales</p></div></li>
-    <li class="area"><div class="area__top"><span class="area__n">03</span><span class="area__arrow d-only" aria-hidden="true">↗</span></div><div class="area__body"><h3 class="area__t">Smart Operations &amp; Industrial Innovation</h3><p class="area__d">Operaciones inteligentes e innovación industrial</p></div></li>
-    <li class="area"><div class="area__top"><span class="area__n">04</span><span class="area__arrow d-only" aria-hidden="true">↗</span></div><div class="area__body"><h3 class="area__t">IT Governance &amp; Modernization</h3><p class="area__d">Gobierno TI y modernización de sistemas</p></div></li>
-    <li class="area"><div class="area__top"><span class="area__n">05</span><span class="area__arrow d-only" aria-hidden="true">↗</span></div><div class="area__body"><h3 class="area__t">Customer Experience &amp; Digital Growth</h3><p class="area__d">Experiencia de cliente y crecimiento digital</p></div></li>
-    <li class="area area--hl"><div class="area__top"><span class="area__n">06</span><span class="area__arrow d-only" aria-hidden="true">↗</span></div><div class="area__body"><a class="area__badge d-only" href="#ia-aplicada">SERVICIOS DE IA ↓</a><h3 class="area__t">IA Aplicada: Data, Analytics, ADSLC &amp; Intelligent Automation</h3><p class="area__d">Llevamos la IA a todo el ciclo de valor: datos preparados y analítica avanzada, desarrollo de software aumentado con IA e hiperautomatización de procesos.</p></div></li>
-    <li class="area"><div class="area__top"><span class="area__n">07</span><span class="area__arrow d-only" aria-hidden="true">↗</span></div><div class="area__body"><h3 class="area__t">Cybersecurity &amp; Digital Trust</h3><p class="area__d">Ciberseguridad y confianza digital</p></div></li>
-    <li class="area"><div class="area__top"><span class="area__n">08</span><span class="area__arrow d-only" aria-hidden="true">↗</span></div><div class="area__body"><h3 class="area__t">Learning, Digital Workplace &amp; Change Enablement</h3><p class="area__d">Formación, puesto de trabajo digital y gestión del cambio</p></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">01</span></div><div class="area__body"><h3 class="area__t">Architecture &amp; Development</h3><p class="area__d">Arquitectura y desarrollo de software</p></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">02</span></div><div class="area__body"><h3 class="area__t">Business Application Platforms</h3><p class="area__d">Plataformas de aplicaciones empresariales</p></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">03</span></div><div class="area__body"><h3 class="area__t">Smart Operations &amp; Industrial Innovation</h3><p class="area__d">Operaciones inteligentes e innovación industrial</p></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">04</span></div><div class="area__body"><h3 class="area__t">IT Governance &amp; Modernization</h3><p class="area__d">Gobierno TI y modernización de sistemas</p></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">05</span></div><div class="area__body"><h3 class="area__t">Customer Experience &amp; Digital Growth</h3><p class="area__d">Experiencia de cliente y crecimiento digital</p></div></li>
+    <li class="area area--hl"><div class="area__top"><span class="area__n">06</span></div><div class="area__body"><a class="area__badge d-only" href="#ia-aplicada">SERVICIOS DE IA ↓</a><h3 class="area__t">IA Aplicada: Data, Analytics, AI SDLC &amp; Intelligent Automation</h3><p class="area__d">Llevamos la IA a todo el ciclo de valor: datos preparados y analítica avanzada, desarrollo de software aumentado con IA e hiperautomatización de procesos.</p></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">07</span></div><div class="area__body"><h3 class="area__t">Cybersecurity &amp; Digital Trust</h3><p class="area__d">Ciberseguridad y confianza digital</p></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">08</span></div><div class="area__body"><h3 class="area__t">Learning, Digital Workplace &amp; Change Enablement</h3><p class="area__d">Formación, puesto de trabajo digital y gestión del cambio</p></div></li>
   </ul>
   <p class="offering__pend pend-block d-only"><span class="pend">[PENDIENTE: descripción de una o dos líneas por área, validada por cada línea de negocio]</span></p>
 </section>
@@ -1551,7 +1554,7 @@ html.hero-static .hero__flutes { display: none !important; }
       <li class="svc"><span class="svc__n">01</span><h4 class="svc__t">Estrategia y diagnóstico de IA</h4><p class="svc__d">Formación del comité de dirección, assessment de madurez y roadmap priorizado.</p></li>
       <li class="svc"><span class="svc__n">02</span><h4 class="svc__t">Datos, gobierno y seguridad de la IA</h4><p class="svc__d">Gobierno del dato con know4data, nuestro framework propio, y uso seguro y responsable de la IA, alineado con el Reglamento de IA, el RGPD y DORA.</p></li>
       <li class="svc"><span class="svc__n">03</span><h4 class="svc__t">Desarrollo e implantación de soluciones de IA</h4><p class="svc__d">Modelos descriptivos, predictivos y prescriptivos, con plataformas MLOps.</p></li>
-      <li class="svc"><span class="svc__n">04</span><h4 class="svc__t">ADSLC: ciclo de desarrollo impulsado por IA</h4><p class="svc__d">Sistemas agénticos integrados en todo el ciclo de vida del software (planificación, diseño, código, pruebas, despliegue y mantenimiento), con supervisión humana en cada fase.</p></li>
+      <li class="svc"><span class="svc__n">04</span><h4 class="svc__t">AI SDLC: ciclo de desarrollo impulsado por IA</h4><p class="svc__d">Sistemas agénticos integrados en todo el ciclo de vida del software (planificación, diseño, código, pruebas, despliegue y mantenimiento), con supervisión humana en cada fase.</p></li>
       <li class="svc"><span class="svc__n">05</span><h4 class="svc__t">Hiperautomatización de procesos</h4><p class="svc__d">Diseño, implantación y operación continua de procesos automatizados de extremo a extremo con IA, con mejora constante.</p></li>
       <li class="svc"><span class="svc__n">06</span><h4 class="svc__t">Centro de Excelencia de IA</h4><p class="svc__d">Creamos los activos para escalar la IA, internos y para clientes: metodologías, aceleradores, componentes reutilizables y marco de gobierno.</p></li>
       <li class="svc"><span class="svc__n">07</span><h4 class="svc__t">Formación, adopción y gestión del cambio</h4><p class="svc__d">Formación, acompañamiento al cambio y reconversión de perfiles, con Forward Deployed Engineers (FDE) integrados en tus equipos para que la IA llegue a producción y genere valor real.</p></li>
@@ -1736,7 +1739,7 @@ html.hero-static .hero__flutes { display: none !important; }
         <li class="company"><span class="company__t">Interwor</span><span class="company__d">Infraestructura TI, seguridad, comunicaciones, sistemas, cloud y puesto de trabajo digital.</span></li>
         <li class="company"><span class="company__t">BUZZ</span><span class="company__d">Agencia creativa digital de campañas, medios, performance y experiencias digitales.</span></li>
         <li class="company"><span class="company__t">Newverve Consulting</span><span class="company__d">Soluciones y productos Atlassian para clientes en Reino Unido e Irlanda.</span></li>
-        <li class="company"><span class="company__t">Antes ASERVO Software</span><span class="company__d">Servicios profesionales DevOps y ALM con Atlassian, GitLab y digital.ai, para clientes en Alemania, Austria y Suiza. <span class="pend">[PENDIENTE: nombre actual de la compañía]</span></span></li>
+        <li class="company"><span class="company__t">knowmad mood Germany</span><span class="company__f">(formerly ASERVO Software)</span><span class="company__d">Servicios profesionales DevOps y ALM con Atlassian, GitLab y digital.ai, para clientes en Alemania, Austria y Suiza.</span></li>
         <li class="company company--acq"><span class="company__acq-n">9</span><span class="company__acq-l">empresas adquiridas</span></li>
         </ul>
       </div>
@@ -1816,7 +1819,7 @@ html.hero-static .hero__flutes { display: none !important; }
                 <option>Estrategia y diagnóstico de IA</option>
                 <option>Datos, gobierno y seguridad de la IA</option>
                 <option>Desarrollo e implantación de soluciones de IA</option>
-                <option>ADSLC: ciclo de desarrollo impulsado por IA</option>
+                <option>AI SDLC: ciclo de desarrollo impulsado por IA</option>
                 <option>Hiperautomatización de procesos</option>
                 <option>Centro de Excelencia de IA</option>
                 <option>Formación, adopción y gestión del cambio</option>
