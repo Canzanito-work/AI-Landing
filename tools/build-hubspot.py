@@ -45,6 +45,7 @@ out = f'''<!--
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{{{ page_meta.html_title|default("knowmad mood · No es lo mismo") }}}}</title>
 <meta name="description" content="{{{{ page_meta.meta_description|default("knowmad mood, multinacional tecnológica española: ocho áreas de especialización y una IA aplicada con sentido, de la estrategia a la operación.") }}}}">
+<meta name="km-build" content="{sha[:7]}">
 {{{{ standard_header_includes }}}}
 {{% raw %}}
 {head.strip()}

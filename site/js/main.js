@@ -214,7 +214,7 @@
 
     // Diagnóstico: el detalle siempre va a la consola; con ?debug=1 también se muestra bajo el botón
     var debug = params.get('debug') === '1';
-    function report(title, body) {
+    function report(title, body, sent) {
       var errs = (body && body.errors) || [];
       var lines = errs.length ? errs.map(function (e) { return (e.errorType || 'ERROR') + ': ' + (e.message || ''); })
                               : [body && (body.message || body.status) || ''];
@@ -226,7 +226,9 @@
           box.style.cssText = 'margin:0;white-space:pre-wrap;font:12px/1.5 ui-monospace,Menlo,monospace;color:#FFE45C;background:rgba(0,0,0,.4);padding:10px 12px;border-radius:10px;text-align:left';
           submitErr.insertAdjacentElement('afterend', box);
         }
-        box.textContent = title + '\n' + lines.join('\n');
+        var build = (document.querySelector('meta[name="km-build"]') || {}).content || 'local';
+        var names = sent && sent.fields ? sent.fields.map(function (f) { return f.name; }).join(', ') : '';
+        box.textContent = title + '\n' + lines.join('\n') + '\n\nVersión: ' + build + (names ? '\nCampos enviados: ' + names : '');
       }
     }
 
@@ -271,7 +273,7 @@
       post(0).then(function (res) {
         if (res.ok) { done(data); return; }
         return res.json().catch(function () { return {}; }).then(function (body) {
-          report('HubSpot respondió ' + res.status, body);
+          report('HubSpot respondió ' + res.status, body, data);
           // HubSpot rechaza el email (gratuito o no válido): se muestra en su campo
           var errs = (body && body.errors) || [];
           var emailErr = errs.some(function (e) { return /BLOCKED_EMAIL|INVALID_EMAIL|FREE_EMAIL/.test(e.errorType || ''); });
@@ -279,7 +281,7 @@
           else submitErr.hidden = false;
         });
       }).catch(function (err) {
-        report('Sin respuesta de HubSpot (red, bloqueador o CORS)', { message: String(err && err.message || err) });
+        report('Sin respuesta de HubSpot (red, bloqueador o CORS)', { message: String(err && err.message || err) }, data);
         submitErr.hidden = false;
       }).then(function () { setSending(false); });
     });
