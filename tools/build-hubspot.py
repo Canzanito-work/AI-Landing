@@ -1,0 +1,66 @@
+# Uso: python3 tools/build-hubspot.py  →  hubspot/landing-ia-hubspot.html
+# Plantilla lista para pegar en el administrador de diseño de HubSpot (Design Manager):
+# - Anotación de plantilla de página y las etiquetas estándar de HubSpot (seguimiento,
+#   banner de cookies), necesarias para la atribución y el consentimiento del oppref.
+# - Todo el contenido propio va dentro de {% raw %} para que HubL no interprete nada.
+# - CSS y JS en línea; imágenes servidas por jsDelivr desde el repositorio público de
+#   GitHub, fijadas al commit actual (para producción, subirlas al File Manager de HubSpot
+#   y cambiar ASSET_BASE). Tipografía desde Google Fonts.
+import os, re, subprocess, sys
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
+S = os.path.join(ROOT, 'site') + '/'
+sha = subprocess.run(['git', '-C', ROOT, 'rev-parse', 'HEAD'], capture_output=True, text=True, check=True).stdout.strip()
+ASSET_BASE = os.environ.get('ASSET_BASE') or f'https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@{sha}/site/'
+STATIC_HERO = '--fondo-estatico' in sys.argv
+
+html = open(S + 'index.html').read()
+css = open(S + 'css/styles.css').read()
+css = re.sub(r'url\(\.\./(assets/[^)]+)\)', lambda m: f'url("{ASSET_BASE}{m.group(1)}")', css)
+
+head_open = html.index('<head>') + len('<head>'); head_close = html.index('</head>')
+body_open = html.index('<body>') + len('<body>'); body_close = html.index('</body>')
+head = html[head_open:head_close]; body = html[body_open:body_close]
+
+head = head.replace('<link rel="stylesheet" href="css/styles.css">', '<style>\n' + css + '\n</style>')
+scripts = re.findall(r'<script defer src="(js/[^"]+)"></script>\n?', head)
+head = re.sub(r'<script defer src="js/[^"]+"></script>\n?', '', head)
+# título y descripción: los de la configuración de la página en HubSpot, o los de la landing
+head = re.sub(r'<title>.*?</title>\n', '', head)
+head = re.sub(r'<meta name="description"[^>]*>\n', '', head)
+head = re.sub(r'<meta charset="utf-8">\n', '', head)
+head = re.sub(r'<meta name="viewport"[^>]*>\n', '', head)
+body = re.sub(r'(src|srcset)="(assets/[^"]+)"', lambda m: f'{m.group(1)}="{ASSET_BASE}{m.group(2)}"', body)
+js = ''.join('<script>\n' + open(S + p).read() + '\n</script>\n' for p in scripts)
+
+assert '{% endraw %}' not in head + body + js
+out = f'''<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Landing IA · No es lo mismo
+-->
+<!DOCTYPE html>
+<html lang="es"{' class="hero-static"' if STATIC_HERO else ''}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{{{ page_meta.html_title|default("knowmad mood · No es lo mismo") }}}}</title>
+<meta name="description" content="{{{{ page_meta.meta_description|default("knowmad mood, multinacional tecnológica española: ocho áreas de especialización y una IA aplicada con sentido, de la estrategia a la operación.") }}}}">
+{{{{ standard_header_includes }}}}
+{{% raw %}}
+{head.strip()}
+{{% endraw %}}
+</head>
+<body>
+{{% raw %}}
+{body.strip()}
+{js}{{% endraw %}}
+{{{{ standard_footer_includes }}}}
+</body>
+</html>
+'''
+os.makedirs(os.path.join(ROOT, 'hubspot'), exist_ok=True)
+name = 'landing-ia-hubspot-fondo-estatico.html' if STATIC_HERO else 'landing-ia-hubspot.html'
+open(os.path.join(ROOT, 'hubspot', name), 'w').write(out)
+assets = sorted(set(re.findall(re.escape(ASSET_BASE) + r'(assets/[^"\)\s]+)', out)))
+print(name, len(out.encode()) // 1024, 'KB ·', len(assets), 'imágenes desde', ASSET_BASE)
+for a in assets: assert os.path.exists(S + a), a

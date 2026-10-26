@@ -42,6 +42,10 @@ Se eligen con parámetros de URL:
 
 `python3 tools/build-single.py` regenera `landing-ia.html` (con `--fondo-estatico` genera `landing-ia-fondo-estatico.html`, con la imagen fija en el hero) en la raíz del repo, con CSS, JS, imágenes y la tipografía Figtree incluidos. Se abre con doble clic y funciona sin conexión. Vuelve a ejecutarlo después de cada cambio en `site/`.
 
+## Versión para HubSpot
+
+`python3 tools/build-hubspot.py` genera `hubspot/landing-ia-hubspot.html` (con `--fondo-estatico`, `landing-ia-hubspot-fondo-estatico.html`): una plantilla de página para pegar en el administrador de diseño de HubSpot. Incluye la anotación de plantilla, las etiquetas estándar de HubSpot (código de seguimiento y banner de cookies) y todo el contenido dentro de `{% raw %}` para que HubL no lo interprete. El CSS y el JS van en línea; las imágenes se cargan desde jsDelivr (repositorio público de GitHub, fijadas a un commit). Para producción, sube las imágenes de `site/assets/` al File Manager de HubSpot y genera la plantilla con `ASSET_BASE=<url de la carpeta>/ python3 tools/build-hubspot.py`.
+
 ## Formulario
 
 La validación sigue al prototipo: campos obligatorios, formato de email, rechazo de dominios gratuitos («Introduce tu email corporativo.») y consentimiento. Los campos se llaman como las propiedades de HubSpot (`firstname`, `lastname`, `email`, `company`, `jobtitle`, `km_area_interes`, `km_madurez_ia`).
