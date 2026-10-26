@@ -38,6 +38,7 @@ Se eligen con parámetros de URL:
 - `?form=error` o `?form=success`: fuerza un estado del formulario para revisarlo.
 - `?fondo=estatico`: el hero usa la imagen fija en lugar de la cinta animada. El isologo sigue animado.
 - `?titulares=cursiva` o `?titulares=serif`: la parte resaltada de los titulares en cursiva (Figtree o Instrument Serif). Para HubSpot: `python3 tools/build-hubspot.py --fondo-estatico --titulares=serif`.
+- Para publicar: `python3 tools/build-hubspot.py --fondo-estatico --sin-pendientes --indexar` genera la plantilla sin marcadores [PENDIENTE] en el HTML y sin `noindex`.
 
 ## Versión en un solo archivo
 
