@@ -3,7 +3,8 @@ import re,base64,subprocess,os
 #      python3 tools/build-single.py --fondo-estatico  →  landing-ia-fondo-estatico.html (hero con la imagen fija)
 import sys
 STATIC_HERO='--fondo-estatico' in sys.argv
-OUT='landing-ia-fondo-estatico.html' if STATIC_HERO else 'landing-ia.html'
+TIT=next((a.split('=',1)[1] for a in sys.argv if a.startswith('--titulares=')),'')   # cursiva | serif
+OUT=('landing-ia-fondo-estatico' if STATIC_HERO else 'landing-ia')+(f'-{TIT}' if TIT else '')+'.html'
 CA=os.environ.get('CURL_CA_BUNDLE') or ('/root/.ccr/ca-bundle.crt' if os.path.exists('/root/.ccr/ca-bundle.crt') else '')
 CURL_CA=['--cacert',CA] if CA else []
 ROOT=os.path.join(os.path.dirname(os.path.abspath(__file__)),'..')
@@ -30,9 +31,10 @@ scripts=re.findall(r'<script defer src="(js/[^"]+)"></script>\n?',html)
 html=re.sub(r'<script defer src="js/[^"]+"></script>\n?','',html)
 html=html.replace('</body>',''.join('<script>\n'+open(S+p).read()+'\n</script>\n' for p in scripts)+'</body>')
 html=re.sub(r'(src|srcset)="(assets/[^"]+)"',lambda m:f'{m.group(1)}="{uri(m.group(2))}"',html)
-if STATIC_HERO:
+cls=' '.join(c for c in [('hero-static' if STATIC_HERO else ''),(f'tit-{TIT}' if TIT else '')] if c)
+if cls:
     assert html.count('<html lang="es">')==1
-    html=html.replace('<html lang="es">','<html lang="es" class="hero-static">')
+    html=html.replace('<html lang="es">',f'<html lang="es" class="{cls}">')
 assert 'font/woff2;base64' in html, 'Figtree no embebida'
 # Ningún recurso externo (imágenes, estilos, scripts); los enlaces <a href> sí pueden serlo
 assert not re.findall(r'(?:\ssrc|\ssrcset|<link[^>]*\shref)="(?:https?://|assets/|css/|js/)[^"]*"',html)
