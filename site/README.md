@@ -16,6 +16,7 @@ npx serve site
 | `css/styles.css` | Tokens (`:root`), componentes compartidos (`.btn`, `.eyebrow`, `.pend`, `.chip`, `.sec-head`) y un bloque por sección. |
 | `js/main.js` | Variantes, validación y estados del formulario, desplegable RGPD y barra CTA fija en móvil. |
 | `js/globe.js` + `js/globe-data.js` | Globo giratorio de «Quiénes somos» y «Grupo y presencia» (canvas, sin dependencias). Los datos se generan con `tools/gen-globe.cjs` a partir de Natural Earth 1:50m; para cambiar los países de presencia, edita la lista `PRESENCE` y vuelve a generarlos. |
+| `js/people.js` + `js/people-data.js` | Ilustración de «Personas»: el isologo formado por 3.500 figuras (una por persona), que se agrupan al entrar en pantalla, con lupa. Las posiciones se generan con `tools/gen-people.cjs` a partir del isologo 3D. |
 | `js/hero-fx.js` | Hero vivo: cinta de luz animada en canvas (sustituye a la imagen fija cuando hay JS) e isologo con inclinación 3D hacia el cursor. El flotado y el destello del isologo están en CSS. |
 | `assets/` | Fondos con las imágenes originales a resolución completa (JPEG; reducirlas producía bandas visibles), versión ligera del hero para móvil (`hero-m.webp`, fallback sin JS), isologo en WebP/PNG y globo estático de respaldo. |
 
