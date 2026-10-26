@@ -1845,9 +1845,9 @@ html.hero-static .hero__flutes { display: none !important; }
             <span class="kmf__error" id="kmf-company-err" aria-live="polite"></span>
           </div>
           <div class="kmf__field">
-            <label class="kmf__label" for="kmf-jobtitle">Cargo</label>
-            <input class="kmf__input" id="kmf-jobtitle" name="jobtitle" type="text" autocomplete="organization-title" aria-describedby="kmf-jobtitle-err">
-            <span class="kmf__error" id="kmf-jobtitle-err" aria-live="polite"></span>
+            <label class="kmf__label" for="kmf-job_title">Cargo</label>
+            <input class="kmf__input" id="kmf-job_title" name="job_title" type="text" autocomplete="organization-title" aria-describedby="kmf-job_title-err">
+            <span class="kmf__error" id="kmf-job_title-err" aria-live="polite"></span>
           </div>
         </div>
 
@@ -2003,8 +2003,8 @@ html.hero-static .hero__flutes { display: none !important; }
   var REQ = 'Este campo es obligatorio.';
   var MSG_CONSENT = 'Para enviar tu solicitud, acepta la política de privacidad.';
   // Nombres = nombres internos de las propiedades de HubSpot (ver la especificación del formulario)
-  var REQUIRED = ['firstname', 'lastname', 'email', 'company', 'jobtitle', 'km_area_interes', 'consent'];
-  var HS_FIELDS = ['firstname', 'lastname', 'email', 'company', 'jobtitle', 'km_area_interes', 'km_madurez_ia'];
+  var REQUIRED = ['firstname', 'lastname', 'email', 'company', 'job_title', 'km_area_interes', 'consent'];
+  var HS_FIELDS = ['firstname', 'lastname', 'email', 'company', 'job_title', 'km_area_interes', 'km_madurez_ia'];
   // Campos ocultos: solo los UTM que aportan valor en la campaña de ChatGPT Ads (fuente, campaña y anuncio)
   var TRACKING = ['utm_source', 'utm_campaign', 'utm_content'];
 
@@ -2235,7 +2235,7 @@ html.hero-static .hero__flutes { display: none !important; }
       form.elements.firstname.value = 'Laura';
       form.elements.lastname.value = 'Martín';
       form.elements.email.value = 'laura.martin@gmail.com';
-      form.elements.jobtitle.value = 'Directora de Operaciones';
+      form.elements.job_title.value = 'Directora de Operaciones';
       radios[1].checked = true;
       syncRadios();
       validateAll();

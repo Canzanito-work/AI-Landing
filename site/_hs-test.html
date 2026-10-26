@@ -282,10 +282,22 @@
         </blockquote>
       </div>
     </article>
-  </div>
-  <div class="cases__placeholders pend-block d-only" data-reveal-group>
-    <div class="cases__placeholder"><span class="pend">[PENDIENTE: tarjeta 3 · caso de otra área del offering]</span></div>
-    <div class="cases__placeholder"><span class="pend">[PENDIENTE: tarjeta 4 · caso de otra área del offering]</span></div>
+    <article class="case">
+      <div class="case__media case__media--sgs">
+        <span class="case__tag d-only">AI SDLC · REVISIÓN DE CÓDIGO</span>
+        <div class="case__id"><h3 class="case__name">SGS</h3><span class="case__sub">Líder mundial en ensayos, inspección y certificación</span></div>
+      </div>
+      <div class="case__body">
+        <dl class="case__rows">
+          <div class="case__row"><dt>RETO</dt><dd>Incorporar en el desarrollo front-end una validación técnica más temprana y consistente, alineada con sus estándares, para anticipar incidencias antes de que el código avance a fases posteriores.</dd></div>
+          <div class="case__row"><dt>SOLUCIÓN</dt><dd>Un Agente de Revisión de Código con IA integrado en el flujo Git mediante hooks de pre-push. Con GitHub Copilot CLI analiza los archivos .vue, .ts y .js modificados con reglas de negocio y estándares propios, y bloquea la subida si detecta errores críticos de lógica o tipado.</dd></div>
+          <div class="case__row"><dt>RESULTADO</dt><dd>Incidencias detectadas antes del merge, menos tiempo en revisiones manuales y un desarrollo más estandarizado, con más control desde las primeras fases.</dd></div>
+        </dl>
+        <p class="case__pend pend-block d-only"><span class="pend">[PENDIENTE: métrica de impacto]</span></p>
+        <p class="case__pend pend-block"><span class="pend">[PENDIENTE: testimonio de SGS]</span></p>
+      </div>
+    </article>
+    <div class="cases__placeholder pend-block d-only"><span class="pend">[PENDIENTE: tarjeta 4 · caso de otra área del offering]</span></div>
   </div>
 </section>
 
@@ -449,9 +461,9 @@
     </div>
 
     <!-- Formulario (módulo «Formulario Tech»). Sustituible por un formulario de HubSpot con el mismo estilo. -->
-    <!-- HubSpot: rellenar data-hs-portal (ID del portal) y data-hs-form (GUID del formulario).
-         Vacíos = modo demostración: se muestra la confirmación sin enviar nada. -->
-    <div id="km-form-diagnostico" class="kmf" data-module="formulario" data-reveal data-hs-portal="1234567" data-hs-form="aaaa-bbbb">
+    <!-- HubSpot: portal, formulario y región («Formulario Diagnóstico IA»). Si se vacían
+         data-hs-portal o data-hs-form, modo demostración: confirmación sin enviar nada. -->
+    <div id="km-form-diagnostico" class="kmf" data-module="formulario" data-reveal data-hs-portal="145598533" data-hs-form="8f22b61e-186e-48e2-ad0a-b7457eb15294" data-hs-region="eu1">
       <form class="kmf__form" novalidate>
         <div class="kmf__intro">
           <span class="kmf__eyebrow">/ DIAGNÓSTICO IA</span>
@@ -481,9 +493,9 @@
             <span class="kmf__error" id="kmf-company-err" aria-live="polite"></span>
           </div>
           <div class="kmf__field">
-            <label class="kmf__label" for="kmf-jobtitle">Cargo</label>
-            <input class="kmf__input" id="kmf-jobtitle" name="jobtitle" type="text" autocomplete="organization-title" aria-describedby="kmf-jobtitle-err">
-            <span class="kmf__error" id="kmf-jobtitle-err" aria-live="polite"></span>
+            <label class="kmf__label" for="kmf-job_title">Cargo</label>
+            <input class="kmf__input" id="kmf-job_title" name="job_title" type="text" autocomplete="organization-title" aria-describedby="kmf-job_title-err">
+            <span class="kmf__error" id="kmf-job_title-err" aria-live="polite"></span>
           </div>
         </div>
 

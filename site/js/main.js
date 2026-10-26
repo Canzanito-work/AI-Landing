@@ -58,8 +58,8 @@
   var REQ = 'Este campo es obligatorio.';
   var MSG_CONSENT = 'Para enviar tu solicitud, acepta la política de privacidad.';
   // Nombres = nombres internos de las propiedades de HubSpot (ver la especificación del formulario)
-  var REQUIRED = ['firstname', 'lastname', 'email', 'company', 'jobtitle', 'km_area_interes', 'consent'];
-  var HS_FIELDS = ['firstname', 'lastname', 'email', 'company', 'jobtitle', 'km_area_interes', 'km_madurez_ia'];
+  var REQUIRED = ['firstname', 'lastname', 'email', 'company', 'job_title', 'km_area_interes', 'consent'];
+  var HS_FIELDS = ['firstname', 'lastname', 'email', 'company', 'job_title', 'km_area_interes', 'km_madurez_ia'];
   // Campos ocultos: solo los UTM que aportan valor en la campaña de ChatGPT Ads (fuente, campaña y anuncio)
   var TRACKING = ['utm_source', 'utm_campaign', 'utm_content'];
 
@@ -290,7 +290,7 @@
       form.elements.firstname.value = 'Laura';
       form.elements.lastname.value = 'Martín';
       form.elements.email.value = 'laura.martin@gmail.com';
-      form.elements.jobtitle.value = 'Directora de Operaciones';
+      form.elements.job_title.value = 'Directora de Operaciones';
       radios[1].checked = true;
       syncRadios();
       validateAll();
