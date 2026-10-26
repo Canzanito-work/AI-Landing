@@ -10,10 +10,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ page_meta.html_title|default("knowmad mood · No es lo mismo") }}</title>
 <meta name="description" content="{{ page_meta.meta_description|default("knowmad mood, multinacional tecnológica española: ocho áreas de especialización y una IA aplicada con sentido, de la estrategia a la operación.") }}">
-<meta name="km-build" content="1027672">
+<meta name="km-build" content="3727cca">
 {{ standard_header_includes }}
 {% raw %}
 <meta name="theme-color" content="#08061A">
+<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap">
@@ -58,8 +59,10 @@
   --f-sans: Figtree, system-ui, sans-serif;
   --f-mono: ui-monospace, Menlo, monospace;
 
-  --page-max: 1440px;
-  --pad-x: 96px;             /* padding lateral de secciones (escritorio) */
+  /* Ancho completo: fondos y paneles ocupan toda la pantalla; el contenido mantiene la
+     maqueta de 1.440 px centrada. --wide = lo que la pantalla excede de 1.440 px, por lado. */
+  --wide: max(0px, (100vw - 1440px) / 2);
+  --pad-x: calc(96px + var(--wide));   /* padding lateral de secciones (escritorio) */
 }
 
 /* ---------- Base ---------- */
@@ -79,7 +82,7 @@ a:hover { color: var(--c-yellow); }
 h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 [hidden] { display: none !important; }
 
-.page { max-width: var(--page-max); margin: 0 auto; overflow-x: clip; }
+.page { overflow-x: clip; }
 
 .visually-hidden {
   position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -162,8 +165,8 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .hero { padding: 16px 16px 0; }
 .hero__panel {
   position: relative; border-radius: 32px; overflow: hidden;
-  background: var(--c-ink) url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/bg/hero.jpg") center / cover no-repeat;
-  padding: 28px 64px 72px;
+  background: var(--c-ink) url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/bg/hero.jpg") center / cover no-repeat;
+  padding: 28px calc(64px + var(--wide)) 72px;
 }
 .hero__header {
   display: flex; justify-content: space-between; align-items: center;
@@ -211,7 +214,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .hero__cta { display: flex; justify-content: flex-start; margin-top: 8px; }
 
 /* KPIs */
-.kpis { padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+.kpis { padding: 0 var(--wide); list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
 .kpi {
   position: relative; overflow: hidden; border-radius: 24px; padding: 28px 32px; min-height: 150px;
   display: flex; flex-direction: column; justify-content: space-between;
@@ -224,13 +227,13 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .kpi__l { font: 500 16px/22px var(--f-sans); color: var(--kpi-label); }
 .kpi--1 { background: var(--g-brand-diag); --kpi-label: #FFF3E0; }
 .kpi--2 { background: var(--c-navy-900); }
-.kpi--3 { background: var(--c-navy-900) url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/bg/mesh.jpg") center / cover; --kpi-label: var(--c-text-1); }
+.kpi--3 { background: var(--c-navy-900) url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/bg/mesh.jpg") center / cover; --kpi-label: var(--c-text-1); }
 .kpi--4 { background: var(--c-navy-800); }
 
 /* ==========================================================================
    02 · Clientes
    ========================================================================== */
-.clients { padding: 72px 80px; display: flex; flex-direction: column; gap: 28px; }
+.clients { padding: 72px calc(80px + var(--wide)); display: flex; flex-direction: column; gap: 28px; }
 .clients__head { display: flex; align-items: center; gap: 24px; }
 .clients__head .eyebrow { white-space: nowrap; }
 .clients__rule { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255, 255, 255, .2), rgba(255, 255, 255, 0)); }
@@ -251,7 +254,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .about {
   position: relative; margin: 0 16px; border-radius: 32px; overflow: hidden;
   background: var(--c-light); color: var(--c-navy-800);
-  padding: 112px 96px 96px;
+  padding: 112px calc(96px + var(--wide)) 96px;
 }
 .about__watermark {
   position: absolute; right: -40px; top: 24px;
@@ -264,7 +267,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 /* Tarjeta globo (reutilizada en «Grupo y presencia») */
 .globe-card {
   position: relative; border-radius: 28px; overflow: hidden;
-  background: var(--c-ink) url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/bg/globe.webp") center / cover;
+  background: var(--c-ink) url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/bg/globe.webp") center / cover;
   color: #fff;
 }
 .about .globe-card { height: 700px; }
@@ -340,7 +343,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .offering { position: relative; padding: 136px var(--pad-x) 120px; overflow: hidden; }
 .offering__deco {
   position: absolute; right: -200px; top: -120px; width: 1100px; height: 700px;
-  background: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/bg/mesh.jpg") center / cover; opacity: .45;
+  background: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/bg/mesh.jpg") center / cover; opacity: .45;
   -webkit-mask-image: radial-gradient(closest-side, #000, transparent);
   mask-image: radial-gradient(closest-side, #000, transparent);
   pointer-events: none;
@@ -385,7 +388,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
    ========================================================================== */
 .ai {
   position: relative; overflow: hidden; isolation: isolate;
-  --ai-bg: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/bg/ia.jpg") center / cover;
+  --ai-bg: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/bg/ia.jpg") center / cover;
   --ai-feather: 240px;
   padding: 136px var(--pad-x) 128px;
 }
@@ -459,9 +462,10 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 }
 .case__media { position: relative; height: 240px; background-size: cover; }
 .case__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18, 14, 42, 0) 30%, #120E2A); }
-.case__media--frs { background-image: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/bg/hero.jpg"); background-position: 75% 45%; }
-.case__media--alier { background-image: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/bg/mesh.jpg"); background-position: center; }
-.case__media--sgs { background-image: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/bg/ia.jpg"); background-position: 30% 40%; }
+.case__media--frs { background-image: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/bg/hero.jpg"); background-position: 75% 45%; }
+.case__media--alier { background-image: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/bg/mesh.jpg"); background-position: center; }
+.case__media--sgs { background-image: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/bg/ia.jpg"); background-position: 30% 40%; }
+.case__media--altima { background-image: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/bg/close.jpg"); background-position: 50% 85%; }
 .case__tag {
   position: absolute; z-index: 1; left: 28px; top: 24px;
   font: 600 11px/1 var(--f-mono); letter-spacing: .12em; padding: 8px 12px; border-radius: 999px;
@@ -501,7 +505,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .models {
   position: relative; overflow: hidden;
   margin: 0 16px; border-radius: 32px; background: var(--c-light); color: var(--c-navy-800);
-  padding: 112px 80px 96px; display: flex; flex-direction: column; gap: 56px;
+  padding: 112px calc(80px + var(--wide)) 96px; display: flex; flex-direction: column; gap: 56px;
 }
 .models__head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 48px; align-items: end; }
 .models__head-main { display: flex; flex-direction: column; gap: 24px; }
@@ -514,7 +518,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   --model-sub: var(--c-muted-light); --model-line: var(--c-line-card);
 }
 .model--dark {
-  background: var(--c-navy-800) url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/bg/mesh.jpg") center bottom / cover; color: #fff;
+  background: var(--c-navy-800) url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/bg/mesh.jpg") center bottom / cover; color: #fff;
   --model-sub: var(--c-text-2); --model-line: rgba(255, 255, 255, .14);
 }
 .model {
@@ -699,8 +703,8 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .closing { padding: 0 16px; }
 .closing__panel {
   position: relative; border-radius: 32px; overflow: hidden;
-  background: var(--c-ink) url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/bg/close.jpg") center bottom / cover;
-  padding: 112px 96px;
+  background: var(--c-ink) url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/bg/close.jpg") center bottom / cover;
+  padding: 112px calc(96px + var(--wide));
   display: grid; grid-template-columns: minmax(0, 1fr) 500px; column-gap: 80px; align-items: center;
   grid-template-areas: "copy form" "sign form";
 }
@@ -776,19 +780,10 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 .kmf__consent a { color: #fff; text-decoration: underline; font-weight: 600; }
 .kmf__submit-wrap { display: flex; flex-direction: column; gap: 8px; }
 .kmf__submit { height: 52px; padding: 0 24px; font-size: 15px; box-shadow: 0 10px 30px rgba(214, 29, 79, .45); white-space: normal; }
-.kmf__note { font: 400 12px/16px var(--f-sans); color: var(--c-text-3); text-align: center; }
-.kmf__rgpd { border-top: 1px solid rgba(255, 255, 255, .12); padding-top: 10px; }
-.kmf__rgpd-toggle {
-  display: flex; justify-content: space-between; align-items: center; width: 100%;
-  background: none; border: 0; padding: 0; cursor: pointer;
-  font: 600 12px/16px var(--f-sans); color: var(--c-text-1); text-align: left;
-}
-.kmf__rgpd-toggle:focus-visible { outline: 2px solid var(--c-yellow); outline-offset: 2px; }
-.kmf__rgpd-body { margin-top: 8px; font: 400 11.5px/17px var(--f-sans); color: var(--c-text-2); text-wrap: pretty; }
-.kmf__rgpd-body b { color: #fff; }
-.kmf__rgpd-body a { color: #fff; text-decoration: underline; }
-.kmf__rgpd-body .pend { font-size: 10.5px; padding: 1px 5px; }
-
+.kmf__legal { display: flex; flex-direction: column; gap: 10px; }
+.kmf__legal-text { margin: 0; font: 400 11.5px/17px var(--f-sans); color: var(--c-text-2); text-wrap: pretty; }
+.kmf__legal-text--foot { text-align: center; color: var(--c-text-3); }
+.kmf__legal-text a { color: #fff; text-decoration: underline; }
 .kmf__success { display: flex; flex-direction: column; gap: 18px; padding: 12px 4px; }
 .kmf__success:focus { outline: none; }
 .kmf__check {
@@ -806,7 +801,6 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
 /* ==========================================================================
    Pie
    ========================================================================== */
-.footer.page { margin: 0 auto; }
 .footer {
   padding: 36px var(--pad-x); display: flex; justify-content: space-between; align-items: center; gap: 24px;
   font: 400 14px/20px var(--f-sans); color: var(--c-text-3);
@@ -889,7 +883,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   .hero { padding: 8px 8px 0; }
   .hero__panel {
     border-radius: 24px;
-    background: var(--c-ink) url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/bg/hero-m.webp") 70% 30% / auto 520px no-repeat;
+    background: var(--c-ink) url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/bg/hero-m.webp") 70% 30% / auto 520px no-repeat;
     padding: 18px 20px 28px;
     display: flex; flex-direction: column; gap: 20px;
   }
@@ -985,7 +979,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   .area__d, .area--hl .area__d { font-size: 14px; line-height: 20px; color: var(--c-text-2); }
 
   /* IA aplicada */
-  .ai { --ai-bg: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/bg/ia.jpg") 30% 0 / auto 700px; --ai-feather: 120px; padding: 88px 20px; }
+  .ai { --ai-bg: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/bg/ia.jpg") 30% 0 / auto 700px; --ai-feather: 120px; padding: 88px 20px; }
   .ai .sec-head__main { gap: 20px; }
   .ai__pill { gap: 8px; height: 30px; padding: 0 12px; font-size: 10.5px; letter-spacing: .12em; }
   .ai__pill-dot { width: 7px; height: 7px; box-shadow: none; }
@@ -1100,7 +1094,7 @@ h1, h2, h3, h4, p, blockquote, ul { margin: 0; }
   .closing { padding: 0 8px 8px; }
   .closing__panel {
     border-radius: 24px;
-    background: var(--c-ink) url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/bg/close.jpg") 40% 100% / auto 520px no-repeat;
+    background: var(--c-ink) url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/bg/close.jpg") 40% 100% / auto 520px no-repeat;
     padding: 40px 12px 12px;
     display: flex; flex-direction: column; gap: 18px;
   }
@@ -1213,9 +1207,9 @@ html.js .hero__panel { background-image: none; }
 }
 html.js .hero__flutes { display: block; }
 /* Sin WebGL (o si se pierde el contexto) se vuelve a la imagen fija */
-html.js.hero-static .hero__panel { background-image: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/bg/hero.jpg"); }
+html.js.hero-static .hero__panel { background-image: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/bg/hero.jpg"); }
 html.hero-static .hero__flutes { display: none !important; }
-@media (max-width: 900px) { html.js.hero-static .hero__panel { background-image: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/bg/hero-m.webp"); } }
+@media (max-width: 900px) { html.js.hero-static .hero__panel { background-image: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/bg/hero-m.webp"); } }
 .hero__header, .hero__grid, .hero__cta, .hero__copy > *, .hero__visual { position: relative; z-index: 1; }
 @media (max-width: 900px) {
   .hero__flutes {
@@ -1243,8 +1237,8 @@ html.hero-static .hero__flutes { display: none !important; }
    La máscara es fija y la banda de luz se mueve con transform (sin repintar). */
 .iso__sheen {
   position: absolute; inset: 0; pointer-events: none; overflow: hidden;
-  -webkit-mask: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/isologo-3d.webp") center / 100% 100% no-repeat;
-  mask: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/isologo-3d.webp") center / 100% 100% no-repeat;
+  -webkit-mask: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/isologo-3d.webp") center / 100% 100% no-repeat;
+  mask: url("https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/isologo-3d.webp") center / 100% 100% no-repeat;
 }
 .iso__sheen::before {
   content: ""; position: absolute; top: -10%; bottom: -10%; left: 0; width: 45%;
@@ -1290,7 +1284,7 @@ html.hero-static .hero__flutes { display: none !important; }
   <div class="hero__panel" data-fx>
     <div class="hero__flutes" aria-hidden="true"></div>
     <header class="hero__header">
-      <img class="hero__logo" src="https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/km-logo-white.png" alt="knowmad mood" width="207" height="30">
+      <img class="hero__logo" src="https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/km-logo-white.png" alt="knowmad mood" width="207" height="30">
       <div class="hero__header-right">
         <a class="btn btn--sm d-only" href="#km-form-diagnostico"><span data-cta>Solicitar diagnóstico de IA</span> <span aria-hidden="true">→</span></a>
       </div>
@@ -1313,8 +1307,8 @@ html.hero-static .hero__flutes { display: none !important; }
         <div class="iso">
           <div class="iso__float">
             <picture>
-              <source srcset="https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/isologo-3d.webp" type="image/webp">
-              <img class="hero__iso" src="https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/isologo-3d.png" alt="Isologo knowmad mood" width="720" height="694" fetchpriority="high">
+              <source srcset="https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/isologo-3d.webp" type="image/webp">
+              <img class="hero__iso" src="https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/isologo-3d.png" alt="Isologo knowmad mood" width="720" height="694" fetchpriority="high">
             </picture>
             <span class="iso__sheen" aria-hidden="true"></span>
           </div>
@@ -1338,14 +1332,12 @@ html.hero-static .hero__flutes { display: none !important; }
   <div class="clients__head" data-reveal>
     <h2 id="clients-title" class="eyebrow">/ CONFÍAN EN NOSOTROS</h2>
     <span class="clients__rule d-only" aria-hidden="true"></span>
-    <span class="pend d-only">[PENDIENTE: autorización de uso de logotipos de clientes en campañas de pago]</span>
   </div>
   <!-- Texto provisional hasta recibir los SVG oficiales de cada cliente -->
   <ul class="clients__grid" data-reveal-group>
     <li>Inditex</li><li>El Corte Inglés</li><li>Santander</li><li>CaixaBank</li><li>Mapfre</li><li>AXA</li>
     <li>Iberia</li><li>Telefónica</li><li>Iberdrola</li><li>Boehringer Ingelheim</li><li>Volkswagen Group Services</li><li>RTVE</li>
   </ul>
-  <span class="pend m-only">[PENDIENTE: autorización de logotipos]</span>
 </section>
 
 <!-- ============ 03 · Quiénes somos ============ -->
@@ -1550,7 +1542,20 @@ html.hero-static .hero__flutes { display: none !important; }
         <p class="case__pend pend-block"><span class="pend">[PENDIENTE: testimonio de SGS]</span></p>
       </div>
     </article>
-    <div class="cases__placeholder pend-block d-only"><span class="pend">[PENDIENTE: tarjeta 4 · caso de otra área del offering]</span></div>
+    <article class="case">
+      <div class="case__media case__media--altima">
+        <span class="case__tag d-only">AGENTES IA · SERVICE DESK</span>
+        <div class="case__id"><h3 class="case__name">ÁLTIMA</h3><span class="case__sub">Servicios funerarios integrales en Cataluña</span></div>
+      </div>
+      <div class="case__body">
+        <dl class="case__rows">
+          <div class="case__row"><dt>RETO</dt><dd>Un agente virtual en su portal de Service Desk que creara tickets en Jira Service Management a partir de peticiones en lenguaje natural, con todos los campos completos. Los agentes Rovo no podían rellenar de forma nativa los campos de Assets/CMDB, como el centro del usuario.</dd></div>
+          <div class="case__row"><dt>SOLUCIÓN</dt><dd>Una arquitectura híbrida: un agente Rovo conversa con el usuario y una acción personalizada en Forge construye los datos que completan el campo Assets y crea el ticket. Integrada con su catálogo de peticiones: altas, bajas, viajes, correo, impresoras y otros servicios internos.</dd></div>
+          <div class="case__row"><dt>RESULTADO</dt><dd>Creación de tickets automatizada al 100 % en este flujo, sin cumplimentación manual por parte de soporte, y un patrón reutilizable para futuros agentes virtuales.</dd></div>
+        </dl>
+        <p class="case__pend pend-block"><span class="pend">[PENDIENTE: testimonio de ÁLTIMA]</span></p>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -1629,7 +1634,6 @@ html.hero-static .hero__flutes { display: none !important; }
       <div class="sx-spot__meter" aria-hidden="true"><span data-sx-meter style="width:100%"></span></div>
       <span class="sx-spot__clients-label">ALGUNOS CLIENTES</span>
       <ul class="sx-spot__clients" data-sx-clients><li>Inditex</li><li>El Corte Inglés</li><li>Carrefour</li><li>Decathlon</li></ul>
-      <p class="sx-spot__pend pend-block"><span class="pend">[PENDIENTE: validar si se publica el peso de cada sector]</span> <span class="pend">[PENDIENTE: autorización de uso de logotipos de clientes en campañas de pago]</span></p>
     </aside>
   </div>
 </section>
@@ -1684,7 +1688,6 @@ html.hero-static .hero__flutes { display: none !important; }
   <div class="timeline-card" data-reveal>
     <div class="timeline-card__head d-only">
       <h3 class="eyebrow eyebrow--white">TRAYECTORIA</h3>
-      <span class="pend">[PENDIENTE: validar si se publican cifras financieras en la campaña]</span>
     </div>
     <ol class="timeline" data-reveal-group>
       <li class="timeline__item"><span class="timeline__dot" aria-hidden="true"></span><span class="timeline__y">1994</span><span class="timeline__l">Nacimiento</span></li>
@@ -1700,7 +1703,6 @@ html.hero-static .hero__flutes { display: none !important; }
     <ul class="certs__list">
       <li class="cert">ISO 9001</li><li class="cert">ISO 27001</li><li class="cert">ISO 22301</li><li class="cert">ISO 14001</li><li class="cert">ENS</li><li class="cert">CMMI V3.0 nivel 3</li>
     </ul>
-    <span class="pend d-only">[PENDIENTE: validar vigencia y alcance]</span>
   </div>
 </section>
 
@@ -1715,8 +1717,10 @@ html.hero-static .hero__flutes { display: none !important; }
 
     <!-- Formulario (módulo «Formulario Tech»). Sustituible por un formulario de HubSpot con el mismo estilo. -->
     <!-- HubSpot: portal, formulario y región («Formulario Diagnóstico IA»). Si se vacían
-         data-hs-portal o data-hs-form, modo demostración: confirmación sin enviar nada. -->
-    <div id="km-form-diagnostico" class="kmf" data-module="formulario" data-reveal data-hs-portal="145598533" data-hs-form="8f22b61e-186e-48e2-ad0a-b7457eb15294" data-hs-region="eu1">
+         data-hs-portal o data-hs-form, modo demostración: confirmación sin enviar nada.
+         data-hs-subscription = ID del tipo de suscripción para registrar el consentimiento de
+         comunicaciones (Configuración → Marketing → Email → Tipos de suscripción). -->
+    <div id="km-form-diagnostico" class="kmf" data-module="formulario" data-reveal data-hs-portal="145598533" data-hs-form="8f22b61e-186e-48e2-ad0a-b7457eb15294" data-hs-region="eu1" data-hs-subscription="">
       <form class="kmf__form" novalidate>
         <div class="kmf__intro">
           <span class="kmf__eyebrow">/ DIAGNÓSTICO IA</span>
@@ -1792,23 +1796,27 @@ html.hero-static .hero__flutes { display: none !important; }
           </div>
         </fieldset>
 
-        <div class="kmf__consent-wrap">
+        <!-- Texto de consentimiento del formulario de HubSpot (Privacidad y consentimiento). -->
+        <div class="kmf__legal">
+          <p class="kmf__legal-text">knowmadmood se compromete a proteger y respetar tu privacidad, y solo usaremos tu información personal para administrar tu cuenta y proporcionar los productos y servicios que nos solicitaste. De vez en cuando, nos gustaría ponernos en contacto contigo acerca de nuestros productos y servicios, así como sobre otros contenidos que puedan interesarte. Si aceptas que nos comuniquemos contigo para este fin, marca la casilla a continuación para indicar cómo deseas que nos comuniquemos:</p>
           <label class="kmf__consent">
-            <input type="checkbox" name="consent" id="kmf-consent" aria-describedby="kmf-consent-err" data-consent-text>
-            <span>He leído y acepto la <a href="#privacidad" target="_blank">Política de privacidad</a> y consiento el tratamiento de mis datos para gestionar esta solicitud.</span>
+            <input type="checkbox" name="consent_comms" id="kmf-consent-comms">
+            <span data-comms-text>Acepto recibir otras comunicaciones de knowmadmood.</span>
           </label>
-          <span class="kmf__error" id="kmf-consent-err" aria-live="polite"></span>
+          <p class="kmf__legal-text" data-process-intro>Para procesar tu solicitud, necesitamos tu permiso para almacenar y procesar tus datos personales. Marca la casilla de abajo para confirmar tu consentimiento:</p>
+          <div class="kmf__consent-wrap">
+            <label class="kmf__consent">
+              <input type="checkbox" name="consent" id="kmf-consent" aria-describedby="kmf-consent-err">
+              <span data-process-text>Acepto que knowmadmood almacene y trate mis datos personales.</span>
+            </label>
+            <span class="kmf__error" id="kmf-consent-err" aria-live="polite"></span>
+          </div>
         </div>
 
         <div class="kmf__submit-wrap">
           <button class="btn kmf__submit" type="submit"><span data-cta>Solicitar diagnóstico de IA</span> <span aria-hidden="true">→</span></button>
           <p class="kmf__alert" role="alert" data-submit-error hidden>No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.</p>
-          <p class="kmf__note">Solo usaremos tus datos para gestionar tu solicitud.</p>
-        </div>
-
-        <div class="kmf__rgpd">
-          <button class="kmf__rgpd-toggle" type="button" aria-expanded="false" aria-controls="kmf-rgpd-body">Información básica sobre protección de datos <span aria-hidden="true" data-rgpd-icon>+</span></button>
-          <p class="kmf__rgpd-body" id="kmf-rgpd-body" hidden><b>Responsable:</b> <span class="pend">[PENDIENTE: razón social y CIF de la entidad responsable]</span>. <b>Finalidad:</b> gestionar tu solicitud y contactar contigo en relación con ella. <b>Legitimación:</b> tu consentimiento. <b>Destinatarios:</b> no se cederán datos a terceros, salvo obligación legal. <span class="pend">[PENDIENTE: confirmar encargados del tratamiento y compañías del grupo]</span> <b>Derechos:</b> acceder, rectificar y suprimir los datos, así como otros derechos, tal como se explica en la información adicional. <b>Información adicional:</b> consulta nuestra <a href="#privacidad" target="_blank">Política de privacidad</a>.</p>
+          <p class="kmf__legal-text kmf__legal-text--foot">Puedes darte de baja de estas comunicaciones en cualquier momento. Para obtener más información sobre cómo darte de baja, nuestras prácticas de privacidad y cómo nos comprometemos a proteger y respetar tu privacidad, consulta nuestra <a href="https://www.knowmadmood.com/es/politica-privacidad" target="_blank" rel="noopener">Política de privacidad</a>.</p>
         </div>
       </form>
 
@@ -1823,19 +1831,19 @@ html.hero-static .hero__flutes { display: none !important; }
 
     <div class="closing__sign" data-reveal>
       <span>No es lo mismo.</span>
-      <img src="https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/km-logo-white.png" alt="knowmad mood" width="180" height="26" loading="lazy">
+      <img src="https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/km-logo-white.png" alt="knowmad mood" width="180" height="26" loading="lazy">
     </div>
   </div>
 </section>
 </main>
 
 <footer class="footer page" data-module="pie">
-  <img class="footer__logo d-only" src="https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@1027672abda694e14d02ce1504c657ec6ac28037/site/assets/km-logo-white.png" alt="knowmad mood" width="152" height="22" loading="lazy">
+  <img class="footer__logo d-only" src="https://cdn.jsdelivr.net/gh/Canzanito-work/AI-Landing@3727cca031ac38213b31815013fba62c0948ca57/site/assets/km-logo-white.png" alt="knowmad mood" width="152" height="22" loading="lazy">
   <div class="footer__links">
     <span>© 2026 knowmad mood</span>
-    <a href="#aviso-legal" target="_blank">Aviso legal</a>
-    <a href="#privacidad" target="_blank">Política de privacidad</a>
-    <a href="#cookies" target="_blank">Política de cookies</a>
+    <a href="https://www.knowmadmood.com/es/aviso-legal" target="_blank" rel="noopener">Aviso legal</a>
+    <a href="https://www.knowmadmood.com/es/politica-privacidad" target="_blank" rel="noopener">Política de privacidad</a>
+    <a href="https://www.knowmadmood.com/es/cookies" target="_blank" rel="noopener">Política de cookies</a>
   </div>
 </footer>
 
@@ -1960,16 +1968,6 @@ html.hero-static .hero__flutes { display: none !important; }
     }
     radios.forEach(function (r) { r.addEventListener('change', syncRadios); });
 
-    var toggle = form.querySelector('.kmf__rgpd-toggle');
-    var rgpdBody = document.getElementById('kmf-rgpd-body');
-    var rgpdIcon = toggle.querySelector('[data-rgpd-icon]');
-    toggle.addEventListener('click', function () {
-      var open = rgpdBody.hidden;
-      rgpdBody.hidden = !open;
-      toggle.setAttribute('aria-expanded', String(open));
-      rgpdIcon.textContent = open ? '−' : '+';
-    });
-
     function validateAll() {
       var firstInvalid = null;
       REQUIRED.forEach(function (name) {
@@ -1996,7 +1994,10 @@ html.hero-static .hero__flutes { display: none !important; }
     var region = (root.getAttribute('data-hs-region') || '').trim();   // p. ej. eu1 (portales alojados en la UE)
     var submitBtn = form.querySelector('.kmf__submit');
     var submitErr = form.querySelector('[data-submit-error]');
-    var consentText = (form.querySelector('.kmf__consent span') || {}).textContent || '';
+    var clean = function (sel) { return ((form.querySelector(sel) || {}).textContent || '').replace(/\s+/g, ' ').trim(); };
+    var consentText = clean('[data-process-intro]') + ' ' + clean('[data-process-text]');
+    // Consentimiento de comunicaciones: HubSpot lo registra por tipo de suscripción (data-hs-subscription).
+    var subscriptionId = parseInt(root.getAttribute('data-hs-subscription') || '', 10);
 
     // UTMs de la URL de llegada; se guardan para la sesión por si el usuario recarga
     var tracking = {};
@@ -2054,7 +2055,10 @@ html.hero-static .hero__flutes { display: none !important; }
       return {
         fields: fields,
         context: context,
-        legalConsentOptions: { consent: { consentToProcess: true, text: consentText.replace(/\s+/g, ' ').trim(), communications: [] } }
+        legalConsentOptions: { consent: {
+          consentToProcess: true, text: consentText,
+          communications: subscriptionId ? [{ value: !!form.elements.consent_comms.checked, subscriptionTypeId: subscriptionId, text: clean('[data-comms-text]') }] : []
+        } }
       };
     }
 
