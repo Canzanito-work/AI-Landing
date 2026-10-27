@@ -452,6 +452,16 @@ html.tit-serif .ai__adoption p > .accent-crimson {
 .svc__n { font: 600 12px/1 var(--f-mono); color: var(--c-gold-soft); }
 .svc__t { font: 700 18px/24px var(--f-sans); }
 .svc__d { font: 400 14px/21px var(--f-sans); color: var(--c-text-1); }
+.svc { position: relative; }
+.svc__link {
+  margin-top: auto; padding-top: 6px; align-self: flex-start;
+  font: 600 13px/20px var(--f-sans); color: var(--c-gold-soft); text-decoration: none;
+}
+.svc__link::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }   /* toda la tarjeta es clicable */
+.svc__link span { display: inline-block; transition: transform .2s ease; }
+.svc:hover .svc__link span, .svc__link:focus-visible span { transform: translateX(4px); }
+.svc:has(.svc__link:focus-visible) { border-color: var(--c-gold-soft); }
+.svc__link:focus-visible { outline: none; }
 
 .ai__adoption {
   position: relative; margin-top: 72px; border-radius: 28px; background: #fff; color: var(--c-navy-800);
@@ -503,6 +513,15 @@ html.tit-serif .ai__adoption p > .accent-crimson {
 .case__quote p { font: 500 17px/26px var(--f-sans); text-wrap: pretty; }
 .case__quote footer { font: 400 14px/20px var(--f-sans); color: var(--c-text-2); }
 .case__quote cite { font-style: normal; font-weight: 600; color: #fff; }
+.case__more {
+  align-self: flex-start; margin-top: 20px;
+  font: 600 15px/22px var(--f-sans); color: #fff; text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, .3); transition: border-color .2s ease;
+}
+.case__rows + .case__more { margin-top: auto; }
+.case__more span { display: inline-block; transition: transform .2s ease; }
+.case__more:hover { border-color: var(--c-yellow); }
+.case__more:hover span { transform: translateX(4px); }
 .cases__placeholder {
   min-height: 120px; border-radius: 24px; border: 1.5px dashed rgba(255, 229, 92, .5);
   display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 16px;
@@ -676,6 +695,15 @@ html.tit-serif .ai__adoption p > .accent-crimson {
   transition: border-color .2s ease;
 }
 .company:hover { border-color: var(--c-red); }
+.company { position: relative; }
+.company__link { position: absolute; inset: 0; border-radius: inherit; }
+.company__link + .company__t { padding-right: 24px; }
+.company__link::after {   /* indica que abre la web de la compañía */
+  content: '↗'; position: absolute; top: 20px; right: 22px;
+  font: 600 16px/1 var(--f-sans); color: var(--c-text-3); transition: color .2s ease, transform .2s ease;
+}
+.company:hover .company__link::after { color: #fff; transform: translate(2px, -2px); }
+.company__link:focus-visible { outline: 2px solid var(--c-yellow); outline-offset: -2px; }
 .company__t { font: 800 22px/1 var(--f-sans); letter-spacing: .02em; }
 .company__d { font: 400 14px/21px var(--f-sans); color: var(--c-text-2); }
 .company__f { margin-top: -4px; font: 500 12.5px/16px var(--f-sans); color: var(--c-text-3); }
@@ -704,6 +732,10 @@ html.tit-serif .ai__adoption p > .accent-crimson {
   height: 44px; display: inline-flex; align-items: center; padding: 0 18px; border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, .18); font: 700 14px/1 var(--f-mono); color: var(--c-text-1);
 }
+.certs__list li { display: flex; }
+.cert--dl { gap: 8px; text-decoration: none; transition: border-color .2s ease, color .2s ease; }
+.cert--dl:hover { border-color: var(--c-yellow); color: #fff; }
+.cert__icon { width: 14px; height: 14px; color: var(--c-yellow); }
 
 /* ==========================================================================
    10 · Cierre con formulario
@@ -1025,6 +1057,7 @@ html.tit-serif .ai__adoption p > .accent-crimson {
   }
   .svc__t { font-size: 16px; line-height: 22px; }
   .svc__d { grid-column: 1 / -1; font-size: 14px; line-height: 20px; }
+  .svc__link { grid-column: 1 / -1; padding-top: 2px; }
   .ai__adoption { margin-top: 28px; border-radius: 20px; padding: 22px; gap: 16px; align-items: stretch; }
   .ai__adoption p { font-size: 19px; line-height: 26px; letter-spacing: normal; }
   .ai__adoption .btn { width: 100%; height: 52px; box-shadow: none; }
@@ -1099,6 +1132,7 @@ html.tit-serif .ai__adoption p > .accent-crimson {
   .cm-track { gap: 8px; padding-right: 8px; }
   .company { width: 240px; min-height: 128px; border-radius: 18px; padding: 18px; gap: 8px; }
   .company__t { font-size: 17px; letter-spacing: normal; }
+  .company__link::after { top: 18px; right: 18px; font-size: 14px; }
   .company__d { font-size: 13px; line-height: 19px; }
   .company__acq-n { font-size: 32px; }
   .timeline-card { border: 0; border-radius: 0; background: none; padding: 0; gap: 0; }

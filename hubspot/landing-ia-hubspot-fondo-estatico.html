@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ page_meta.html_title|default("knowmad mood · No es lo mismo") }}</title>
 <meta name="description" content="{{ page_meta.meta_description|default("knowmad mood, multinacional tecnológica española: ocho áreas de especialización y una IA aplicada con sentido, de la estrategia a la operación.") }}">
-<meta name="km-build" content="4e20fee">
+<meta name="km-build" content="9cf7fca">
 {{ standard_header_includes }}
 {% raw %}
 <meta name="theme-color" content="#08061A">
@@ -473,6 +473,16 @@ html.tit-serif .ai__adoption p > .accent-crimson {
 .svc__n { font: 600 12px/1 var(--f-mono); color: var(--c-gold-soft); }
 .svc__t { font: 700 18px/24px var(--f-sans); }
 .svc__d { font: 400 14px/21px var(--f-sans); color: var(--c-text-1); }
+.svc { position: relative; }
+.svc__link {
+  margin-top: auto; padding-top: 6px; align-self: flex-start;
+  font: 600 13px/20px var(--f-sans); color: var(--c-gold-soft); text-decoration: none;
+}
+.svc__link::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }   /* toda la tarjeta es clicable */
+.svc__link span { display: inline-block; transition: transform .2s ease; }
+.svc:hover .svc__link span, .svc__link:focus-visible span { transform: translateX(4px); }
+.svc:has(.svc__link:focus-visible) { border-color: var(--c-gold-soft); }
+.svc__link:focus-visible { outline: none; }
 
 .ai__adoption {
   position: relative; margin-top: 72px; border-radius: 28px; background: #fff; color: var(--c-navy-800);
@@ -524,6 +534,15 @@ html.tit-serif .ai__adoption p > .accent-crimson {
 .case__quote p { font: 500 17px/26px var(--f-sans); text-wrap: pretty; }
 .case__quote footer { font: 400 14px/20px var(--f-sans); color: var(--c-text-2); }
 .case__quote cite { font-style: normal; font-weight: 600; color: #fff; }
+.case__more {
+  align-self: flex-start; margin-top: 20px;
+  font: 600 15px/22px var(--f-sans); color: #fff; text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, .3); transition: border-color .2s ease;
+}
+.case__rows + .case__more { margin-top: auto; }
+.case__more span { display: inline-block; transition: transform .2s ease; }
+.case__more:hover { border-color: var(--c-yellow); }
+.case__more:hover span { transform: translateX(4px); }
 .cases__placeholder {
   min-height: 120px; border-radius: 24px; border: 1.5px dashed rgba(255, 229, 92, .5);
   display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 16px;
@@ -697,6 +716,15 @@ html.tit-serif .ai__adoption p > .accent-crimson {
   transition: border-color .2s ease;
 }
 .company:hover { border-color: var(--c-red); }
+.company { position: relative; }
+.company__link { position: absolute; inset: 0; border-radius: inherit; }
+.company__link + .company__t { padding-right: 24px; }
+.company__link::after {   /* indica que abre la web de la compañía */
+  content: '↗'; position: absolute; top: 20px; right: 22px;
+  font: 600 16px/1 var(--f-sans); color: var(--c-text-3); transition: color .2s ease, transform .2s ease;
+}
+.company:hover .company__link::after { color: #fff; transform: translate(2px, -2px); }
+.company__link:focus-visible { outline: 2px solid var(--c-yellow); outline-offset: -2px; }
 .company__t { font: 800 22px/1 var(--f-sans); letter-spacing: .02em; }
 .company__d { font: 400 14px/21px var(--f-sans); color: var(--c-text-2); }
 .company__f { margin-top: -4px; font: 500 12.5px/16px var(--f-sans); color: var(--c-text-3); }
@@ -725,6 +753,10 @@ html.tit-serif .ai__adoption p > .accent-crimson {
   height: 44px; display: inline-flex; align-items: center; padding: 0 18px; border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, .18); font: 700 14px/1 var(--f-mono); color: var(--c-text-1);
 }
+.certs__list li { display: flex; }
+.cert--dl { gap: 8px; text-decoration: none; transition: border-color .2s ease, color .2s ease; }
+.cert--dl:hover { border-color: var(--c-yellow); color: #fff; }
+.cert__icon { width: 14px; height: 14px; color: var(--c-yellow); }
 
 /* ==========================================================================
    10 · Cierre con formulario
@@ -1046,6 +1078,7 @@ html.tit-serif .ai__adoption p > .accent-crimson {
   }
   .svc__t { font-size: 16px; line-height: 22px; }
   .svc__d { grid-column: 1 / -1; font-size: 14px; line-height: 20px; }
+  .svc__link { grid-column: 1 / -1; padding-top: 2px; }
   .ai__adoption { margin-top: 28px; border-radius: 20px; padding: 22px; gap: 16px; align-items: stretch; }
   .ai__adoption p { font-size: 19px; line-height: 26px; letter-spacing: normal; }
   .ai__adoption .btn { width: 100%; height: 52px; box-shadow: none; }
@@ -1120,6 +1153,7 @@ html.tit-serif .ai__adoption p > .accent-crimson {
   .cm-track { gap: 8px; padding-right: 8px; }
   .company { width: 240px; min-height: 128px; border-radius: 18px; padding: 18px; gap: 8px; }
   .company__t { font-size: 17px; letter-spacing: normal; }
+  .company__link::after { top: 18px; right: 18px; font-size: 14px; }
   .company__d { font-size: 13px; line-height: 19px; }
   .company__acq-n { font-size: 32px; }
   .timeline-card { border: 0; border-radius: 0; background: none; padding: 0; gap: 0; }
@@ -1526,13 +1560,13 @@ html.hero-static .hero__flutes { display: none !important; }
       <h3 class="ai__services-title d-only">Siete servicios para todo el recorrido de la IA</h3>
     </div>
     <ul class="services" data-reveal-group>
-      <li class="svc"><span class="svc__n">01</span><h4 class="svc__t">Estrategia y diagnóstico de IA</h4><p class="svc__d">Formación del comité de dirección, assessment de madurez y roadmap priorizado.</p></li>
-      <li class="svc"><span class="svc__n">02</span><h4 class="svc__t">Datos, gobierno y seguridad de la IA</h4><p class="svc__d">Gobierno del dato con know4data, nuestro framework propio, y uso seguro y responsable de la IA, alineado con el Reglamento de IA, el RGPD y DORA.</p></li>
-      <li class="svc"><span class="svc__n">03</span><h4 class="svc__t">Desarrollo e implantación de soluciones de IA</h4><p class="svc__d">Modelos descriptivos, predictivos y prescriptivos, con plataformas MLOps.</p></li>
-      <li class="svc"><span class="svc__n">04</span><h4 class="svc__t">AI SDLC: ciclo de desarrollo impulsado por IA</h4><p class="svc__d">Sistemas agénticos integrados en todo el ciclo de vida del software (planificación, diseño, código, pruebas, despliegue y mantenimiento), con supervisión humana en cada fase.</p></li>
-      <li class="svc"><span class="svc__n">05</span><h4 class="svc__t">Hiperautomatización de procesos</h4><p class="svc__d">Diseño, implantación y operación continua de procesos automatizados de extremo a extremo con IA, con mejora constante.</p></li>
-      <li class="svc"><span class="svc__n">06</span><h4 class="svc__t">Centro de Excelencia de IA</h4><p class="svc__d">Creamos los activos para escalar la IA, internos y para clientes: metodologías, aceleradores, componentes reutilizables y marco de gobierno.</p></li>
-      <li class="svc"><span class="svc__n">07</span><h4 class="svc__t">Formación, adopción y gestión del cambio</h4><p class="svc__d">Formación, acompañamiento al cambio y reconversión de perfiles, con Forward Deployed Engineers (FDE) integrados en tus equipos para que la IA llegue a producción y genere valor real.</p></li>
+      <li class="svc"><span class="svc__n">01</span><h4 class="svc__t">Estrategia y diagnóstico de IA</h4><p class="svc__d">Formación del comité de dirección, assessment de madurez y roadmap priorizado.</p><a class="svc__link" href="#km-form-diagnostico" data-area="ia_estrategia" aria-label="Me interesa: Estrategia y diagnóstico de IA">Me interesa <span aria-hidden="true">→</span></a></li>
+      <li class="svc"><span class="svc__n">02</span><h4 class="svc__t">Datos, gobierno y seguridad de la IA</h4><p class="svc__d">Gobierno del dato con know4data, nuestro framework propio, y uso seguro y responsable de la IA, alineado con el Reglamento de IA, el RGPD y DORA.</p><a class="svc__link" href="#km-form-diagnostico" data-area="ia_datos_gobierno" aria-label="Me interesa: Datos, gobierno y seguridad de la IA">Me interesa <span aria-hidden="true">→</span></a></li>
+      <li class="svc"><span class="svc__n">03</span><h4 class="svc__t">Desarrollo e implantación de soluciones de IA</h4><p class="svc__d">Modelos descriptivos, predictivos y prescriptivos, con plataformas MLOps.</p><a class="svc__link" href="#km-form-diagnostico" data-area="ia_desarrollo" aria-label="Me interesa: Desarrollo e implantación de soluciones de IA">Me interesa <span aria-hidden="true">→</span></a></li>
+      <li class="svc"><span class="svc__n">04</span><h4 class="svc__t">AI SDLC: ciclo de desarrollo impulsado por IA</h4><p class="svc__d">Sistemas agénticos integrados en todo el ciclo de vida del software (planificación, diseño, código, pruebas, despliegue y mantenimiento), con supervisión humana en cada fase.</p><a class="svc__link" href="#km-form-diagnostico" data-area="ia_ai_sdlc" aria-label="Me interesa: AI SDLC: ciclo de desarrollo impulsado por IA">Me interesa <span aria-hidden="true">→</span></a></li>
+      <li class="svc"><span class="svc__n">05</span><h4 class="svc__t">Hiperautomatización de procesos</h4><p class="svc__d">Diseño, implantación y operación continua de procesos automatizados de extremo a extremo con IA, con mejora constante.</p><a class="svc__link" href="#km-form-diagnostico" data-area="ia_hiperautomatizacion" aria-label="Me interesa: Hiperautomatización de procesos">Me interesa <span aria-hidden="true">→</span></a></li>
+      <li class="svc"><span class="svc__n">06</span><h4 class="svc__t">Centro de Excelencia de IA</h4><p class="svc__d">Creamos los activos para escalar la IA, internos y para clientes: metodologías, aceleradores, componentes reutilizables y marco de gobierno.</p><a class="svc__link" href="#km-form-diagnostico" data-area="ia_coe" aria-label="Me interesa: Centro de Excelencia de IA">Me interesa <span aria-hidden="true">→</span></a></li>
+      <li class="svc"><span class="svc__n">07</span><h4 class="svc__t">Formación, adopción y gestión del cambio</h4><p class="svc__d">Formación, acompañamiento al cambio y reconversión de perfiles, con Forward Deployed Engineers (FDE) integrados en tus equipos para que la IA llegue a producción y genere valor real.</p><a class="svc__link" href="#km-form-diagnostico" data-area="ia_adopcion" aria-label="Me interesa: Formación, adopción y gestión del cambio">Me interesa <span aria-hidden="true">→</span></a></li>
     </ul>
   </div>
 
@@ -1565,6 +1599,7 @@ html.hero-static .hero__flutes { display: none !important; }
           <p>Esta iniciativa ha permitido a nuestros equipos adoptar la IA generativa de una forma práctica e impactante, cerrando la brecha entre conocimiento y aplicación.</p>
           <footer><cite>Jordi Puigsegur</cite>, Managing Director, FRS Systems Spain</footer>
         </blockquote>
+        <a class="case__more" href="https://www.knowmadmood.com/es/blog/frs-systems-ia-generativa-desarrollo-software" target="_blank" rel="noopener">Leer el caso completo <span aria-hidden="true">→</span></a>
       </div>
     </article>
     <article class="case">
@@ -1583,6 +1618,7 @@ html.hero-static .hero__flutes { display: none !important; }
           <p>Buscábamos avanzar hacia un modelo AI &amp; Data Driven con foco e impacto real. Contar con un roadmap nos permitió priorizar iniciativas y avanzar con una visión común.</p>
           <footer><cite>Cristina Moliner</cite>, CHRO &amp; Change Management de Alier</footer>
         </blockquote>
+        <a class="case__more" href="https://www.knowmadmood.com/es/blog/alier-transformacion-ai-data-driven-incipy" target="_blank" rel="noopener">Leer el caso completo <span aria-hidden="true">→</span></a>
       </div>
     </article>
     <article class="case">
@@ -1596,6 +1632,7 @@ html.hero-static .hero__flutes { display: none !important; }
           <div class="case__row"><dt>SOLUCIÓN</dt><dd>Un Agente de Revisión de Código con IA integrado en el flujo Git mediante hooks de pre-push. Con GitHub Copilot CLI analiza los archivos .vue, .ts y .js modificados con reglas de negocio y estándares propios, y bloquea la subida si detecta errores críticos de lógica o tipado.</dd></div>
           <div class="case__row"><dt>RESULTADO</dt><dd>Incidencias detectadas antes del merge, menos tiempo en revisiones manuales y un desarrollo más estandarizado, con más control desde las primeras fases.</dd></div>
         </dl>
+        <a class="case__more" href="https://www.knowmadmood.com/es/blog/caso-exito-sgs-revision-codigo-ia" target="_blank" rel="noopener">Leer el caso completo <span aria-hidden="true">→</span></a>
       </div>
     </article>
     <article class="case">
@@ -1721,19 +1758,19 @@ html.hero-static .hero__flutes { display: none !important; }
     <div class="companies-marquee">
       <div class="cm-row" data-reveal>
         <ul class="companies cm-track">
-        <li class="company"><span class="company__t">INCIPY</span><span class="company__d">Transformación y estrategia digital con foco en las personas.</span></li>
-        <li class="company"><span class="company__t">DEXS</span><span class="company__d">Ecosistema de formación, tecnología y servicios para el aprendizaje en las organizaciones.</span></li>
-        <li class="company"><span class="company__t">CDA</span><span class="company__d">Software, cloud, quality engineering, IA y automatización.</span></li>
-        <li class="company"><span class="company__t">Grupo Antea</span><span class="company__d">Ciberseguridad y optimización de sistemas.</span></li>
-        <li class="company"><span class="company__t">Vanture</span><span class="company__d">Soluciones de gestión empresarial, especializada en SAP y Odoo.</span></li>
+        <li class="company"><a class="company__link" href="https://www.incipy.com/" target="_blank" rel="noopener" aria-label="INCIPY (se abre en una pestaña nueva)"></a><span class="company__t">INCIPY</span><span class="company__d">Transformación y estrategia digital con foco en las personas.</span></li>
+        <li class="company"><a class="company__link" href="https://www.dexs.es/" target="_blank" rel="noopener" aria-label="DEXS (se abre en una pestaña nueva)"></a><span class="company__t">DEXS</span><span class="company__d">Ecosistema de formación, tecnología y servicios para el aprendizaje en las organizaciones.</span></li>
+        <li class="company"><a class="company__link" href="https://www.cdainfo.com/index" target="_blank" rel="noopener" aria-label="CDA (se abre en una pestaña nueva)"></a><span class="company__t">CDA</span><span class="company__d">Software, cloud, quality engineering, IA y automatización.</span></li>
+        <li class="company"><a class="company__link" href="https://www.antea.es/" target="_blank" rel="noopener" aria-label="Grupo Antea (se abre en una pestaña nueva)"></a><span class="company__t">Grupo Antea</span><span class="company__d">Ciberseguridad y optimización de sistemas.</span></li>
+        <li class="company"><a class="company__link" href="https://www.vantureess.com/" target="_blank" rel="noopener" aria-label="Vanture (se abre en una pestaña nueva)"></a><span class="company__t">Vanture</span><span class="company__d">Soluciones de gestión empresarial, especializada en SAP y Odoo.</span></li>
         </ul>
       </div>
       <div class="cm-row cm-row--reverse" data-reveal>
         <ul class="companies cm-track">
-        <li class="company"><span class="company__t">Interwor</span><span class="company__d">Infraestructura TI, seguridad, comunicaciones, sistemas, cloud y puesto de trabajo digital.</span></li>
-        <li class="company"><span class="company__t">BUZZ</span><span class="company__d">Agencia creativa digital de campañas, medios, performance y experiencias digitales.</span></li>
-        <li class="company"><span class="company__t">Newverve Consulting</span><span class="company__d">Soluciones y productos Atlassian para clientes en Reino Unido e Irlanda.</span></li>
-        <li class="company"><span class="company__t">knowmad mood Germany</span><span class="company__f">(antes ASERVO Software)</span><span class="company__d">Servicios profesionales DevOps y ALM con Atlassian, GitLab y digital.ai, para clientes en Alemania, Austria y Suiza.</span></li>
+        <li class="company"><a class="company__link" href="https://interwor-tsic.com/" target="_blank" rel="noopener" aria-label="Interwor (se abre en una pestaña nueva)"></a><span class="company__t">Interwor</span><span class="company__d">Infraestructura TI, seguridad, comunicaciones, sistemas, cloud y puesto de trabajo digital.</span></li>
+        <li class="company"><a class="company__link" href="https://www.buzzmn.com/es" target="_blank" rel="noopener" aria-label="BUZZ (se abre en una pestaña nueva)"></a><span class="company__t">BUZZ</span><span class="company__d">Agencia creativa digital de campañas, medios, performance y experiencias digitales.</span></li>
+        <li class="company"><a class="company__link" href="https://www.newverveconsulting.com/" target="_blank" rel="noopener" aria-label="Newverve Consulting (se abre en una pestaña nueva)"></a><span class="company__t">Newverve Consulting</span><span class="company__d">Soluciones y productos Atlassian para clientes en Reino Unido e Irlanda.</span></li>
+        <li class="company"><a class="company__link" href="https://aservo.com/" target="_blank" rel="noopener" aria-label="knowmad mood Germany (se abre en una pestaña nueva)"></a><span class="company__t">knowmad mood Germany</span><span class="company__f">(antes ASERVO Software)</span><span class="company__d">Servicios profesionales DevOps y ALM con Atlassian, GitLab y digital.ai, para clientes en Alemania, Austria y Suiza.</span></li>
         <li class="company company--acq"><span class="company__acq-n">9</span><span class="company__acq-l">empresas adquiridas</span></li>
         </ul>
       </div>
@@ -1756,7 +1793,7 @@ html.hero-static .hero__flutes { display: none !important; }
   <div class="certs" data-reveal>
     <h3 class="eyebrow eyebrow--white d-only">CERTIFICACIONES</h3>
     <ul class="certs__list">
-      <li class="cert">ISO 9001</li><li class="cert">ISO 27001</li><li class="cert">ISO 22301</li><li class="cert">ISO 14001</li><li class="cert">ENS</li><li class="cert">CMMI V3.0 nivel 3</li>
+      <li><a class="cert cert--dl" href="https://www.knowmadmood.com/dam/jcr:6e2faca6-749f-4a71-8e66-dafbd2e3f3c6/9001%20Grupo%20knowmad%20mood_signed%20ESP.pdf" target="_blank" rel="noopener" download aria-label="Descargar certificado ISO 9001 (PDF)">ISO 9001<svg class="cert__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0L4.5 6.5M8 10l3.5-3.5M3 13h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a class="cert cert--dl" href="https://www.knowmadmood.com/dam/jcr:f8a85465-c760-4b68-b9fe-058b52495542/14001%20cast%20-%20GRUPO%20KNOWMAD%20MOOD_signed.pdf" target="_blank" rel="noopener" download aria-label="Descargar certificado ISO 14001 (PDF)">ISO 14001<svg class="cert__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0L4.5 6.5M8 10l3.5-3.5M3 13h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a class="cert cert--dl" href="https://www.knowmadmood.com/dam/jcr:75a7a697-9029-4336-9fd4-af5486f51ccd/ISO+20000-1+-+ESMAD_000693_GenericCertificate_Final(L).pdf" target="_blank" rel="noopener" download aria-label="Descargar certificado ISO 20000-1 (PDF)">ISO 20000-1<svg class="cert__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0L4.5 6.5M8 10l3.5-3.5M3 13h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a class="cert cert--dl" href="https://www.knowmadmood.com/dam/jcr:e2bc9f02-e169-4af3-94c4-58db19a6de4c/CertificadoSI-0041-2024_ES_2026-05-07-1(L).pdf" target="_blank" rel="noopener" download aria-label="Descargar certificado ISO 27001 (PDF)">ISO 27001<svg class="cert__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0L4.5 6.5M8 10l3.5-3.5M3 13h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a class="cert cert--dl" href="https://www.knowmadmood.com/dam/jcr:aca57fe9-c49c-4259-ac0c-64a2df95b00a/1.CertificadoSCN-2025-0022_ES_2025-12-16(L).pdf" target="_blank" rel="noopener" download aria-label="Descargar certificado ISO 22301 (PDF)">ISO 22301<svg class="cert__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0L4.5 6.5M8 10l3.5-3.5M3 13h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a class="cert cert--dl" href="https://www.knowmadmood.com/dam/jcr:66f26c08-0d83-4a24-b11d-dd023b064f8a/CertificadoENS-2023-0005_ES_2026-06-18-1(L).pdf" target="_blank" rel="noopener" download aria-label="Descargar certificado ENS (PDF)">ENS<svg class="cert__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0L4.5 6.5M8 10l3.5-3.5M3 13h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a class="cert cert--dl" href="https://www.knowmadmood.com/dam/jcr:8a56dc34-1f86-4aa0-b456-2084747cf426/CertificadoDORA-2026-0002(L).pdf" target="_blank" rel="noopener" download aria-label="Descargar certificado DORA (PDF)">DORA<svg class="cert__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0L4.5 6.5M8 10l3.5-3.5M3 13h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><span class="cert">CMMI V3.0 nivel 3</span></li>
     </ul>
   </div>
 </section>
@@ -2009,6 +2046,14 @@ html.hero-static .hero__flutes { display: none !important; }
     function syncArea() { area.classList.toggle('is-filled', !!area.value); }
     area.addEventListener('change', syncArea);
 
+    // Servicios de IA: el clic lleva al formulario con el área de interés ya elegida
+    document.querySelectorAll('[data-area]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        area.value = link.getAttribute('data-area');
+        area.dispatchEvent(new Event('change'));
+      });
+    });
+
     var radios = form.querySelectorAll('input[name="km_madurez_ia"]');
     function syncRadios() {
       radios.forEach(function (r) { r.closest('.kmf__option').classList.toggle('is-checked', r.checked); });
@@ -2211,6 +2256,7 @@ html.hero-static .hero__flutes { display: none !important; }
       Array.prototype.slice.call(track.children).forEach(function (li) {
         var copy = li.cloneNode(true);
         copy.setAttribute('aria-hidden', 'true');
+        copy.querySelectorAll('a').forEach(function (a) { a.tabIndex = -1; });
         track.appendChild(copy);
       });
       row.classList.add('is-looping');

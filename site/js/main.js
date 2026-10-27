@@ -103,6 +103,14 @@
     function syncArea() { area.classList.toggle('is-filled', !!area.value); }
     area.addEventListener('change', syncArea);
 
+    // Servicios de IA: el clic lleva al formulario con el área de interés ya elegida
+    document.querySelectorAll('[data-area]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        area.value = link.getAttribute('data-area');
+        area.dispatchEvent(new Event('change'));
+      });
+    });
+
     var radios = form.querySelectorAll('input[name="km_madurez_ia"]');
     function syncRadios() {
       radios.forEach(function (r) { r.closest('.kmf__option').classList.toggle('is-checked', r.checked); });
@@ -305,6 +313,7 @@
       Array.prototype.slice.call(track.children).forEach(function (li) {
         var copy = li.cloneNode(true);
         copy.setAttribute('aria-hidden', 'true');
+        copy.querySelectorAll('a').forEach(function (a) { a.tabIndex = -1; });
         track.appendChild(copy);
       });
       row.classList.add('is-looping');
