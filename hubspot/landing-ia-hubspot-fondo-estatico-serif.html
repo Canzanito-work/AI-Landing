@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ page_meta.html_title|default("knowmad mood · No es lo mismo") }}</title>
 <meta name="description" content="{{ page_meta.meta_description|default("knowmad mood, multinacional tecnológica española: ocho áreas de especialización y una IA aplicada con sentido, de la estrategia a la operación.") }}">
-<meta name="km-build" content="5c29430">
+<meta name="km-build" content="33a0e3c">
 {{ standard_header_includes }}
 {% raw %}
 <meta name="theme-color" content="#08061A">
@@ -46,7 +46,6 @@
   --c-burgundy: #6E0A26;
   --c-gold-soft: #FFD98A;
   --c-pink-soft: #FFE9EE;
-  --c-pend: #FFE45C;
   --c-error: #FF8FA3;
 
   --g-brand: linear-gradient(90deg, #F5BC39, #DE2330 55%, #D61D4F);
@@ -137,16 +136,6 @@ html.tit-serif .ai__adoption p > .accent-crimson {
 .btn:focus-visible { outline: 3px solid var(--c-yellow); outline-offset: 2px; }
 .btn--sm { height: 44px; padding: 0 22px; font-size: 14px; box-shadow: 0 8px 24px rgba(214, 29, 79, .4); }
 .btn--soft-shadow { box-shadow: 0 10px 30px rgba(214, 29, 79, .3); }
-
-/* Marcador [PENDIENTE] — visible por diseño (desactivable con ?pendientes=0) */
-.pend {
-  background: var(--c-pend); color: var(--c-navy-800);
-  font: 600 11px/1.6 var(--f-mono);
-  padding: 2px 6px; border-radius: 4px;
-  -webkit-box-decoration-break: clone; box-decoration-break: clone;
-}
-.no-pendientes .pend,
-.no-pendientes .pend-block { display: none !important; }
 
 /* Números en contorno */
 .outline-num { color: transparent; -webkit-text-stroke: 1.5px var(--c-crimson); }
@@ -337,7 +326,6 @@ html.tit-serif .ai__adoption p > .accent-crimson {
 .crew__title { font: 700 56px/62px var(--f-sans); letter-spacing: -.025em; text-wrap: balance; }  /* = .h2 */
 .crew__title span:not(.grad-text) { color: var(--c-text-3); }
 .crew__lead { max-width: 680px; font: 400 19px/30px var(--f-sans); color: var(--c-text-2); text-wrap: pretty; }
-.crew__pend { margin: 0; }
 
 /* Ledger: datos como prueba, en filas con filete fino. Sin tarjetas ni degradados. */
 .ledger { margin: 72px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 48px; }
@@ -388,7 +376,31 @@ html.tit-serif .ai__adoption p > .accent-crimson {
 .area__t { font: 700 21px/27px var(--f-sans); }
 .area__d { font: 400 15px/22px var(--f-sans); color: var(--c-text-2); }
 .area--hl .area__d { color: var(--c-pink-soft); }
-.offering__pend { position: relative; margin-top: 20px; }
+.area__list { margin: 6px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.area__list li { position: relative; padding-left: 16px; font: 400 14px/20px var(--f-sans); color: var(--c-text-3); }
+.area__list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 7px; height: 2px; border-radius: 1px; background: #F08A2C; }
+
+/* IA: transversal, ocupa las cuatro columnas encima de las ocho áreas */
+.areas { --cols: 4; }
+.area--ia { grid-column: 1 / -1; min-height: 0; padding: 36px 40px; gap: 28px; }
+.area__tag { font: 600 11px/1 var(--f-mono); letter-spacing: .12em; color: #fff; opacity: .85; }
+.area--ia .area__n { font-size: 15px; }
+.area--ia .area__body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 48px; row-gap: 20px; align-items: end; }
+.area--ia .area__t { grid-row: 1 / span 2; align-self: end; font-size: 44px; line-height: 48px; letter-spacing: -.02em; }
+.area--ia .area__d { font-size: 17px; line-height: 26px; }
+.area--ia .area__badge { grid-column: 2; justify-self: start; }
+.area:not(.area--ia) { justify-content: flex-start; }
+/* Conector: de la caja de IA a cada columna de áreas */
+.areas__link { grid-column: 1 / -1; position: relative; height: 40px; margin: -12px 0; display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: 12px; pointer-events: none; }
+.areas__link::before {
+  content: ''; position: absolute; top: 50%; height: 1px;
+  left: calc((100% - (var(--cols) - 1) * 12px) / (var(--cols) * 2)); right: calc((100% - (var(--cols) - 1) * 12px) / (var(--cols) * 2));
+  background: linear-gradient(90deg, var(--c-red), #F08A2C 50%, var(--c-yellow));
+}
+.areas__link::after { content: ''; position: absolute; left: 50%; top: 0; height: 50%; width: 1px; background: #F08A2C; }
+.areas__link span { position: relative; }
+.areas__link span::before { content: ''; position: absolute; left: 50%; top: 50%; bottom: 0; width: 1px; background: linear-gradient(#F08A2C, rgba(240, 138, 44, .2)); }
+.areas__link span::after { content: ''; position: absolute; left: 50%; bottom: -3px; width: 7px; height: 7px; margin-left: -3px; border-radius: 50%; background: #F08A2C; }
 
 /* Línea de texto gigante entre secciones */
 .marquee {
@@ -501,7 +513,6 @@ html.tit-serif .ai__adoption p > .accent-crimson {
 }
 .case__row dt { font: 600 11px/20px var(--f-mono); letter-spacing: .12em; color: var(--c-yellow); }
 .case__row dd { margin: 0; font: 400 15px/23px var(--f-sans); color: var(--c-text-1); }
-.case__pend { margin: -12px 0 24px; }
 .case__rows { margin-bottom: 24px; }
 .case__quote {
   margin-top: auto; padding: 24px; border-radius: 20px;
@@ -636,7 +647,6 @@ html.tit-serif .ai__adoption p > .accent-crimson {
   animation: sx-chip .6s var(--ease-premium) both; animation-delay: calc(var(--i, 0) * 70ms + 120ms);
 }
 @keyframes sx-chip { from { opacity: 0; transform: translate3d(0, 10px, 0); } }
-.sx-spot__pend { position: relative; margin: auto 0 0; padding-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
 /* Cambio de sector: el contenido sale y entra */
 .sx-spot.is-swapping .sx-spot__title,
 .sx-spot.is-swapping .sx-spot__ghost { opacity: 0; transform: translate3d(0, 8px, 0); }
@@ -754,7 +764,6 @@ html.tit-serif .ai__adoption p > .accent-crimson {
 .kmf__eyebrow { font: 600 11px/1 var(--f-mono); letter-spacing: .12em; color: var(--c-yellow); }
 .kmf__title { font: 700 21px/27px var(--f-sans); text-wrap: pretty; }
 .kmf__text { font: 400 14px/20px var(--f-sans); color: var(--c-text-2); text-wrap: pretty; }
-.kmf__text .pend { padding: 1px 5px; }
 .kmf__fields { display: flex; flex-wrap: wrap; gap: 12px; }
 .kmf__field { display: flex; flex-direction: column; gap: 6px; flex: 1 1 180px; min-width: 0; }
 .kmf__field--full { flex-basis: 100%; }
@@ -812,7 +821,6 @@ html.tit-serif .ai__adoption p > .accent-crimson {
 }
 .kmf__success-title { font: 700 26px/32px var(--f-sans); text-wrap: pretty; }
 .kmf__success-text { font: 400 15px/23px var(--f-sans); color: var(--c-text-2); text-wrap: pretty; }
-.kmf__success-text .pend { padding: 1px 5px; }
 .kmf__success-rule { height: 1px; background: rgba(255, 255, 255, .12); }
 .kmf__success-sign { font: 500 17px/22px var(--f-sans); }
 .kmf__success-sign b { font-weight: 700; }
@@ -865,6 +873,9 @@ html.tit-serif .ai__adoption p > .accent-crimson {
   .sec-head, .ai .sec-head, .sectors .sec-head { grid-template-columns: minmax(0, 1fr) 360px; gap: 48px; }
   .h2, .ai__title { font-size: 46px; line-height: 52px; }
   .areas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .areas { --cols: 2; }
+  .areas__link span:nth-child(n+3) { display: none; }
+  .area--ia .area__t { font-size: 36px; line-height: 40px; }
   .crew { padding: 104px var(--pad-x) 96px; }
   .crew__title { font-size: 46px; line-height: 52px; }
   .crew__top { grid-template-columns: minmax(0, 1fr) 380px; gap: 40px; }
@@ -942,7 +953,6 @@ html.tit-serif .ai__adoption p > .accent-crimson {
   .clients__grid { grid-template-columns: repeat(3, 1fr); }
   .clients__grid li { height: 64px; padding: 0 6px; font-size: 13px; line-height: 16px; letter-spacing: normal; }
   .clients__grid img { width: calc(var(--w) * .66); }
-  .clients > .pend { font-size: 10.5px; align-self: flex-start; }
 
   /* Quiénes somos */
   .about { margin: 0 8px; border-radius: 24px; padding: 24px 16px 20px; display: flex; flex-direction: column; gap: 20px; }
@@ -1002,6 +1012,13 @@ html.tit-serif .ai__adoption p > .accent-crimson {
   .area__body { gap: 4px; }
   .area__t { font-size: 16px; line-height: 22px; }
   .area__d, .area--hl .area__d { font-size: 14px; line-height: 20px; color: var(--c-text-2); }
+  .area__list { margin-top: 4px; gap: 4px; }
+  .area__list li { font-size: 13px; line-height: 18px; padding-left: 14px; }
+  .area__list li::before { top: 8px; width: 6px; }
+  .area--ia { padding: 20px 12px; }
+  .area--ia .area__body { display: flex; }
+  .area--ia .area__t { font-size: 22px; line-height: 28px; letter-spacing: 0; }
+  .area--ia .area__n { font-size: 12px; }
 
   /* IA aplicada */
   .ai { --ai-bg: url("https://145598533.fs1.hubspotusercontent-eu1.net/hubfs/145598533/Landing-IA/ia.jpg") 30% 0 / auto 700px; --ai-feather: 120px; padding: 88px 20px; }
@@ -1462,16 +1479,17 @@ html.hero-static .hero__flutes { display: none !important; }
     <p class="sec-head__lead" data-reveal>Cubrimos el recorrido completo de la transformación tecnológica, con equipos especializados en cada área y conectados entre sí.</p>
   </div>
   <ul class="areas" data-reveal-group>
-    <li class="area"><div class="area__top"><span class="area__n">01</span></div><div class="area__body"><h3 class="area__t">Architecture &amp; Development</h3><p class="area__d">Arquitectura y desarrollo de software</p></div></li>
-    <li class="area"><div class="area__top"><span class="area__n">02</span></div><div class="area__body"><h3 class="area__t">Business Application Platforms</h3><p class="area__d">Plataformas de aplicaciones empresariales</p></div></li>
-    <li class="area"><div class="area__top"><span class="area__n">03</span></div><div class="area__body"><h3 class="area__t">Smart Operations &amp; Industrial Innovation</h3><p class="area__d">Operaciones inteligentes e innovación industrial</p></div></li>
-    <li class="area"><div class="area__top"><span class="area__n">04</span></div><div class="area__body"><h3 class="area__t">IT Governance &amp; Modernization</h3><p class="area__d">Gobierno TI y modernización de sistemas</p></div></li>
-    <li class="area"><div class="area__top"><span class="area__n">05</span></div><div class="area__body"><h3 class="area__t">Customer Experience &amp; Digital Growth</h3><p class="area__d">Experiencia de cliente y crecimiento digital</p></div></li>
-    <li class="area area--hl"><div class="area__top"><span class="area__n">06</span></div><div class="area__body"><a class="area__badge d-only" href="#ia-aplicada">SERVICIOS DE IA ↓</a><h3 class="area__t">IA Aplicada: Data, Analytics, AI SDLC &amp; Intelligent Automation</h3><p class="area__d">Llevamos la IA a todo el ciclo de valor: datos preparados y analítica avanzada, desarrollo de software aumentado con IA e hiperautomatización de procesos.</p></div></li>
-    <li class="area"><div class="area__top"><span class="area__n">07</span></div><div class="area__body"><h3 class="area__t">Cybersecurity &amp; Digital Trust</h3><p class="area__d">Ciberseguridad y confianza digital</p></div></li>
-    <li class="area"><div class="area__top"><span class="area__n">08</span></div><div class="area__body"><h3 class="area__t">Learning, Digital Workplace &amp; Change Enablement</h3><p class="area__d">Formación, puesto de trabajo digital y gestión del cambio</p></div></li>
+    <li class="area area--hl area--ia"><div class="area__top"><span class="area__n">IA</span><span class="area__tag d-only">TRANSVERSAL A LAS OCHO ÁREAS</span></div><div class="area__body"><h3 class="area__t">Inteligencia Artificial Aplicada</h3><p class="area__d">No es un área más: está en todo lo que hacemos. Llevamos la IA a cada una de nuestras ocho áreas, del dato y el desarrollo de software a la operación, la experiencia de cliente y la ciberseguridad.</p><a class="area__badge d-only" href="#ia-aplicada">SERVICIOS DE IA ↓</a></div></li>
+    <li class="areas__link d-only" aria-hidden="true"><span></span><span></span><span></span><span></span></li>
+    <li class="area"><div class="area__top"><span class="area__n">01</span></div><div class="area__body"><h3 class="area__t">Data, Analytics &amp; Intelligent Automation</h3><p class="area__d">Convertimos datos en decisiones y procesos inteligentes para tu negocio.</p><ul class="area__list"><li>Gobierno y calidad del dato para la toma de decisiones.</li><li>Automatización inteligente de procesos con RPA y Process Mining.</li><li>Analítica avanzada e Inteligencia Artificial.</li></ul></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">02</span></div><div class="area__body"><h3 class="area__t">Architecture &amp; Development</h3><p class="area__d">Desarrollamos soluciones innovadoras para la evolución de tu negocio.</p><ul class="area__list"><li>Arquitectura, diseño y desarrollo de aplicaciones a medida.</li><li>Modernización legacy y migración de sistemas a entornos Cloud.</li><li>Mantenimiento evolutivo para asegurar la continuidad tecnológica.</li></ul></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">03</span></div><div class="area__body"><h3 class="area__t">Business Application Platforms</h3><p class="area__d">Implementamos y evolucionamos plataformas de gestión empresarial.</p><ul class="area__list"><li>Implantación y evolución de plataformas ERP y CRM: SAP, Odoo y Salesforce.</li><li>Plataformas personalizadas y alineadas con los procesos reales de negocio.</li><li>Acompañamiento end-to-end: consultoría y soporte continuo.</li></ul></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">04</span></div><div class="area__body"><h3 class="area__t">Smart Operations &amp; Industrial Innovation</h3><p class="area__d">Conectamos el mundo físico y digital para ganar eficiencia y competitividad.</p><ul class="area__list"><li>Optimización de procesos industriales y activos conectados.</li><li>Automatización, IoT y SmartX.</li><li>Infraestructuras híbridas que habilitan innovación y escalabilidad.</li></ul></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">05</span></div><div class="area__body"><h3 class="area__t">IT Governance &amp; Modernization</h3><p class="area__d">Diseñamos y operamos ecosistemas IT modernos, eficientes y escalables.</p><ul class="area__list"><li>DevSecOps, CI/CD y automatización del ciclo de vida del software.</li><li>Ingeniería de software segura y escalable.</li><li>Gobierno y operación IT eficientes: ITSM, PMO, Cloud y Digital Workplace.</li></ul></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">06</span></div><div class="area__body"><h3 class="area__t">Customer Experience &amp; Digital Growth</h3><p class="area__d">Creamos experiencias digitales que impulsan el crecimiento y el engagement.</p><ul class="area__list"><li>Ecosistemas digitales, DXP y eCommerce centrados en el cliente.</li><li>CX, UX/UI y diseño de servicios en entornos data-driven y cookieless.</li><li>Experiencias diferenciales con IA y tecnologías inmersivas (AR/VR/XR).</li></ul></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">07</span></div><div class="area__body"><h3 class="area__t">Cybersecurity &amp; Digital Trust</h3><p class="area__d">Protegemos tu negocio, datos y entornos críticos de forma integral.</p><ul class="area__list"><li>Seguridad end-to-end: detección, contención y respuesta 24/7 ante amenazas.</li><li>Gestión del riesgo y cumplimiento regulatorio (NIST, ISO, ENS, NIS2 y DORA).</li><li>Protección total de activos críticos: identidades, aplicaciones, datos y entornos cloud, híbridos y OT.</li></ul></div></li>
+    <li class="area"><div class="area__top"><span class="area__n">08</span></div><div class="area__body"><h3 class="area__t">Learning, Digital Workplace &amp; Change Enablement</h3><p class="area__d">Preparamos a las personas y las organizaciones para liderar el cambio.</p><ul class="area__list"><li>Estrategia y gestión del cambio organizacional.</li><li>Digital Workplace moderno y colaborativo.</li><li>Learning, upskilling y desarrollo del talento.</li></ul></div></li>
   </ul>
-  <p class="offering__pend pend-block d-only"><span class="pend">[PENDIENTE: descripción de una o dos líneas por área, validada por cada línea de negocio]</span></p>
 </section>
 
 <div class="marquee d-only" data-reveal aria-hidden="true">
@@ -1542,7 +1560,6 @@ html.hero-static .hero__flutes { display: none !important; }
           <div class="case__row"><dt>SOLUCIÓN</dt><dd>Siete sesiones en directo con DEXS, aplicadas con GitHub Copilot sobre su stack, con acompañamiento experto, casos de uso priorizados, hoja de ruta de adopción y medición del impacto.</dd></div>
           <div class="case__row"><dt>RESULTADO</dt><dd>Adopción práctica desde el primer día y valoración de excelencia de 3,8 sobre 4.</dd></div>
         </dl>
-        <p class="case__pend pend-block d-only"><span class="pend">[PENDIENTE: métrica de impacto]</span></p>
         <blockquote class="case__quote">
           <span class="case__qmark grad-text d-only" aria-hidden="true">“</span>
           <p>Esta iniciativa ha permitido a nuestros equipos adoptar la IA generativa de una forma práctica e impactante, cerrando la brecha entre conocimiento y aplicación.</p>
@@ -1561,7 +1578,6 @@ html.hero-static .hero__flutes { display: none !important; }
           <div class="case__row"><dt>SOLUCIÓN</dt><dd>INCIPY, compañía del grupo, formó al Comité de Dirección, realizó un Assessment IA &amp; Data y definió la Estrategia y Roadmap IA 2025–2027, priorizada por valor y viabilidad.</dd></div>
           <div class="case__row"><dt>RESULTADO</dt><dd>Programa de transformación IA en marcha y proyectos tractores en personas, procesos comerciales y gestión por KPIs.</dd></div>
         </dl>
-        <p class="case__pend pend-block d-only"><span class="pend">[PENDIENTE: métrica de impacto]</span></p>
         <blockquote class="case__quote">
           <span class="case__qmark grad-text d-only" aria-hidden="true">“</span>
           <p>Buscábamos avanzar hacia un modelo AI &amp; Data Driven con foco e impacto real. Contar con un roadmap nos permitió priorizar iniciativas y avanzar con una visión común.</p>
@@ -1580,8 +1596,6 @@ html.hero-static .hero__flutes { display: none !important; }
           <div class="case__row"><dt>SOLUCIÓN</dt><dd>Un Agente de Revisión de Código con IA integrado en el flujo Git mediante hooks de pre-push. Con GitHub Copilot CLI analiza los archivos .vue, .ts y .js modificados con reglas de negocio y estándares propios, y bloquea la subida si detecta errores críticos de lógica o tipado.</dd></div>
           <div class="case__row"><dt>RESULTADO</dt><dd>Incidencias detectadas antes del merge, menos tiempo en revisiones manuales y un desarrollo más estandarizado, con más control desde las primeras fases.</dd></div>
         </dl>
-        <p class="case__pend pend-block d-only"><span class="pend">[PENDIENTE: métrica de impacto]</span></p>
-        <p class="case__pend pend-block"><span class="pend">[PENDIENTE: testimonio de SGS]</span></p>
       </div>
     </article>
     <article class="case">
@@ -1595,7 +1609,6 @@ html.hero-static .hero__flutes { display: none !important; }
           <div class="case__row"><dt>SOLUCIÓN</dt><dd>Una arquitectura híbrida: un agente Rovo conversa con el usuario y una acción personalizada en Forge construye los datos que completan el campo Assets y crea el ticket. Integrada con su catálogo de peticiones: altas, bajas, viajes, correo, impresoras y otros servicios internos.</dd></div>
           <div class="case__row"><dt>RESULTADO</dt><dd>Creación de tickets automatizada al 100 % en este flujo, sin cumplimentación manual por parte de soporte, y un patrón reutilizable para futuros agentes virtuales.</dd></div>
         </dl>
-        <p class="case__pend pend-block"><span class="pend">[PENDIENTE: testimonio de ÁLTIMA]</span></p>
       </div>
     </article>
   </div>
@@ -1767,7 +1780,7 @@ html.hero-static .hero__flutes { display: none !important; }
         <div class="kmf__intro">
           <span class="kmf__eyebrow">/ DIAGNÓSTICO IA</span>
           <h3 class="kmf__title" data-form-title>Solicita una sesión de diagnóstico con un experto en IA</h3>
-          <p class="kmf__text"><span data-form-text>Evaluaremos el punto de partida de tu organización e identificaremos las oportunidades de mayor impacto.</span> <span class="pend" data-diag-only>[PENDIENTE: validar formato de la sesión de diagnóstico]</span></p>
+          <p class="kmf__text"><span data-form-text>Evaluaremos el punto de partida de tu organización e identificaremos las oportunidades de mayor impacto.</span></p>
         </div>
 
         <div class="kmf__fields">
@@ -1838,34 +1851,30 @@ html.hero-static .hero__flutes { display: none !important; }
           </div>
         </fieldset>
 
-        <!-- Texto de consentimiento del formulario de HubSpot (Privacidad y consentimiento). -->
+        <!-- Texto de consentimiento del formulario de HubSpot (Privacidad y consentimiento: consentimiento implícito, una casilla). -->
         <div class="kmf__legal">
-          <p class="kmf__legal-text">knowmadmood se compromete a proteger y respetar tu privacidad, y solo usaremos tu información personal para administrar tu cuenta y proporcionar los productos y servicios que nos solicitaste. De vez en cuando, nos gustaría ponernos en contacto contigo acerca de nuestros productos y servicios, así como sobre otros contenidos que puedan interesarte. Si aceptas que nos comuniquemos contigo para este fin, marca la casilla a continuación para indicar cómo deseas que nos comuniquemos:</p>
-          <label class="kmf__consent">
-            <input type="checkbox" name="consent_comms" id="kmf-consent-comms">
-            <span data-comms-text>Acepto recibir otras comunicaciones de knowmadmood.</span>
-          </label>
-          <p class="kmf__legal-text" data-process-intro>Para procesar tu solicitud, necesitamos tu permiso para almacenar y procesar tus datos personales. Marca la casilla de abajo para confirmar tu consentimiento:</p>
+          <p class="kmf__legal-text">knowmad mood se compromete a proteger y respetar tu privacidad, y solo usaremos tu información personal para administrar tu cuenta y proporcionar los productos y servicios que nos solicitaste. De vez en cuando, nos gustaría ponernos en contacto contigo acerca de nuestros productos y servicios, así como sobre otros contenidos que puedan interesarte. Si aceptas que nos comuniquemos contigo para este fin, marca la casilla a continuación para indicar cómo deseas que nos comuniquemos:</p>
           <div class="kmf__consent-wrap">
             <label class="kmf__consent">
               <input type="checkbox" name="consent" id="kmf-consent" aria-describedby="kmf-consent-err">
-              <span data-process-text>Acepto que knowmadmood almacene y trate mis datos personales.</span>
+              <span data-comms-text>Acepto recibir otras comunicaciones de knowmad mood.</span>
             </label>
             <span class="kmf__error" id="kmf-consent-err" aria-live="polite"></span>
           </div>
+          <p class="kmf__legal-text">Puedes darte de baja de estas comunicaciones en cualquier momento. Para obtener más información sobre cómo darte de baja, nuestras prácticas de privacidad y cómo nos comprometemos a proteger y respetar tu privacidad, consulta nuestra <a href="https://www.knowmadmood.com/es/politica-privacidad" target="_blank" rel="noopener">Política de privacidad</a>.</p>
+          <p class="kmf__legal-text" data-process-text>Para prestarte el servicio, necesitamos tu permiso para almacenar y procesar tus datos personales.</p>
         </div>
 
         <div class="kmf__submit-wrap">
           <button class="btn kmf__submit" type="submit"><span data-cta>Solicitar diagnóstico de IA</span> <span aria-hidden="true">→</span></button>
           <p class="kmf__alert" role="alert" data-submit-error hidden>No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos.</p>
-          <p class="kmf__legal-text kmf__legal-text--foot">Puedes darte de baja de estas comunicaciones en cualquier momento. Para obtener más información sobre cómo darte de baja, nuestras prácticas de privacidad y cómo nos comprometemos a proteger y respetar tu privacidad, consulta nuestra <a href="https://www.knowmadmood.com/es/politica-privacidad" target="_blank" rel="noopener">Política de privacidad</a>.</p>
         </div>
       </form>
 
       <div class="kmf__success" role="status" tabindex="-1" hidden>
         <div class="kmf__check" aria-hidden="true">✓</div>
         <h3 class="kmf__success-title">Gracias, <span data-success-name>{{nombre}}</span>. Hemos recibido tu solicitud.</h3>
-        <p class="kmf__success-text">Un experto de knowmad mood revisará la información que nos has enviado y se pondrá en contacto contigo <span class="pend">[PENDIENTE: plazo de respuesta]</span> para acordar <span data-confirm-end>la sesión de diagnóstico.</span></p>
+        <p class="kmf__success-text">Un experto de knowmad mood revisará la información que nos has enviado y se pondrá en contacto contigo para acordar <span data-confirm-end>la sesión de diagnóstico.</span></p>
         <div class="kmf__success-rule"></div>
         <p class="kmf__success-sign"><b>knowmad mood.</b></p>
       </div>
@@ -1899,7 +1908,6 @@ html.hero-static .hero__flutes { display: none !important; }
  * Variantes (equivalen a los «Tweaks» del prototipo), por parámetro de URL:
  *   ?hero=A|B                 titular del hero (A por defecto)
  *   ?cta=diagnostico|experto  texto del CTA en toda la página (apartado 4.12)
- *   ?pendientes=0             oculta los marcadores [PENDIENTE]
  *   ?form=error|success       fuerza un estado del formulario (QA / revisión)
  */
 (function () {
@@ -1937,7 +1945,6 @@ html.hero-static .hero__flutes { display: none !important; }
     setText('[data-form-title]', c.formTitle);
     setText('[data-form-text]', c.formText);
     setText('[data-confirm-end]', c.confirmEnd);
-    document.querySelectorAll('[data-diag-only]').forEach(function (el) { el.hidden = true; });
   }
 
   /* ---------- Titular A/B ---------- */
@@ -1946,13 +1953,10 @@ html.hero-static .hero__flutes { display: none !important; }
     el.hidden = el.getAttribute('data-hero') !== heroVariant;
   });
 
-  /* ---------- Marcadores [PENDIENTE] ---------- */
-  if (params.get('pendientes') === '0') document.documentElement.classList.add('no-pendientes');
-
   /* ---------- Formulario ---------- */
   var FREE_DOMAINS = ['gmail.com', 'googlemail.com', 'hotmail.com', 'hotmail.es', 'outlook.com', 'outlook.es', 'live.com', 'msn.com', 'yahoo.com', 'yahoo.es', 'icloud.com', 'me.com', 'aol.com', 'gmx.com', 'proton.me', 'protonmail.com'];
   var REQ = 'Este campo es obligatorio.';
-  var MSG_CONSENT = 'Para enviar tu solicitud, acepta la política de privacidad.';
+  var MSG_CONSENT = 'Para enviar tu solicitud, marca la casilla.';
   // Nombres = nombres internos de las propiedades de HubSpot (ver la especificación del formulario)
   var REQUIRED = ['firstname', 'lastname', 'email', 'company', 'job_title', 'km_area_interes', 'consent'];
   var HS_FIELDS = ['firstname', 'lastname', 'email', 'company', 'job_title', 'km_area_interes', 'km_madurez_ia'];
@@ -2037,8 +2041,9 @@ html.hero-static .hero__flutes { display: none !important; }
     var submitBtn = form.querySelector('.kmf__submit');
     var submitErr = form.querySelector('[data-submit-error]');
     var clean = function (sel) { return ((form.querySelector(sel) || {}).textContent || '').replace(/\s+/g, ' ').trim(); };
-    var consentText = clean('[data-process-intro]') + ' ' + clean('[data-process-text]');
-    // Consentimiento de comunicaciones: HubSpot lo registra por tipo de suscripción (data-hs-subscription).
+    // Consentimiento implícito: el aviso de tratamiento de datos y una casilla obligatoria de comunicaciones,
+    // que HubSpot registra por tipo de suscripción (data-hs-subscription, «Marketing Information»).
+    var consentText = clean('[data-process-text]');
     var subscriptionId = parseInt(root.getAttribute('data-hs-subscription') || '', 10);
 
     // UTMs de la URL de llegada; se guardan para la sesión por si el usuario recarga
@@ -2099,7 +2104,7 @@ html.hero-static .hero__flutes { display: none !important; }
         context: context,
         legalConsentOptions: { consent: {
           consentToProcess: true, text: consentText,
-          communications: subscriptionId ? [{ value: !!form.elements.consent_comms.checked, subscriptionTypeId: subscriptionId, text: clean('[data-comms-text]') }] : []
+          communications: subscriptionId ? [{ value: value('consent'), subscriptionTypeId: subscriptionId, text: clean('[data-comms-text]') }] : []
         } }
       };
     }
@@ -2915,6 +2920,7 @@ window.KM_PEOPLE = {"count":3500,"w":1000,"h":961,"cell":13.3,"p":[605,7,2,618,7
   function layout() {
     var r = host.getBoundingClientRect();
     W = r.width; H = r.height;
+    if (!W || !H) return;              // aún sin tamaño (oculto o sin maquetar)
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
     var pad = Math.min(W, H) * 0.06;
@@ -2939,6 +2945,7 @@ window.KM_PEOPLE = {"count":3500,"w":1000,"h":961,"cell":13.3,"p":[605,7,2,618,7
   }
 
   function draw() {
+    if (!sprites.length) return;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, W, H);
     var s = cell, i, f, p;

@@ -58,6 +58,7 @@
   function layout() {
     var r = host.getBoundingClientRect();
     W = r.width; H = r.height;
+    if (!W || !H) return;              // aún sin tamaño (oculto o sin maquetar)
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
     var pad = Math.min(W, H) * 0.06;
@@ -82,6 +83,7 @@
   }
 
   function draw() {
+    if (!sprites.length) return;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, W, H);
     var s = cell, i, f, p;

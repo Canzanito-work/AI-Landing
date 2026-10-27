@@ -3,7 +3,6 @@
  * Variantes (equivalen a los «Tweaks» del prototipo), por parámetro de URL:
  *   ?hero=A|B                 titular del hero (A por defecto)
  *   ?cta=diagnostico|experto  texto del CTA en toda la página (apartado 4.12)
- *   ?pendientes=0             oculta los marcadores [PENDIENTE]
  *   ?form=error|success       fuerza un estado del formulario (QA / revisión)
  */
 (function () {
@@ -41,7 +40,6 @@
     setText('[data-form-title]', c.formTitle);
     setText('[data-form-text]', c.formText);
     setText('[data-confirm-end]', c.confirmEnd);
-    document.querySelectorAll('[data-diag-only]').forEach(function (el) { el.hidden = true; });
   }
 
   /* ---------- Titular A/B ---------- */
@@ -50,13 +48,10 @@
     el.hidden = el.getAttribute('data-hero') !== heroVariant;
   });
 
-  /* ---------- Marcadores [PENDIENTE] ---------- */
-  if (params.get('pendientes') === '0') document.documentElement.classList.add('no-pendientes');
-
   /* ---------- Formulario ---------- */
   var FREE_DOMAINS = ['gmail.com', 'googlemail.com', 'hotmail.com', 'hotmail.es', 'outlook.com', 'outlook.es', 'live.com', 'msn.com', 'yahoo.com', 'yahoo.es', 'icloud.com', 'me.com', 'aol.com', 'gmx.com', 'proton.me', 'protonmail.com'];
   var REQ = 'Este campo es obligatorio.';
-  var MSG_CONSENT = 'Para enviar tu solicitud, acepta la política de privacidad.';
+  var MSG_CONSENT = 'Para enviar tu solicitud, marca la casilla.';
   // Nombres = nombres internos de las propiedades de HubSpot (ver la especificación del formulario)
   var REQUIRED = ['firstname', 'lastname', 'email', 'company', 'job_title', 'km_area_interes', 'consent'];
   var HS_FIELDS = ['firstname', 'lastname', 'email', 'company', 'job_title', 'km_area_interes', 'km_madurez_ia'];
@@ -141,8 +136,9 @@
     var submitBtn = form.querySelector('.kmf__submit');
     var submitErr = form.querySelector('[data-submit-error]');
     var clean = function (sel) { return ((form.querySelector(sel) || {}).textContent || '').replace(/\s+/g, ' ').trim(); };
-    var consentText = clean('[data-process-intro]') + ' ' + clean('[data-process-text]');
-    // Consentimiento de comunicaciones: HubSpot lo registra por tipo de suscripción (data-hs-subscription).
+    // Consentimiento implícito: el aviso de tratamiento de datos y una casilla obligatoria de comunicaciones,
+    // que HubSpot registra por tipo de suscripción (data-hs-subscription, «Marketing Information»).
+    var consentText = clean('[data-process-text]');
     var subscriptionId = parseInt(root.getAttribute('data-hs-subscription') || '', 10);
 
     // UTMs de la URL de llegada; se guardan para la sesión por si el usuario recarga
@@ -203,7 +199,7 @@
         context: context,
         legalConsentOptions: { consent: {
           consentToProcess: true, text: consentText,
-          communications: subscriptionId ? [{ value: !!form.elements.consent_comms.checked, subscriptionTypeId: subscriptionId, text: clean('[data-comms-text]') }] : []
+          communications: subscriptionId ? [{ value: value('consent'), subscriptionTypeId: subscriptionId, text: clean('[data-comms-text]') }] : []
         } }
       };
     }

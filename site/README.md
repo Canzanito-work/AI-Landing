@@ -34,11 +34,10 @@ Se eligen con parámetros de URL:
 
 - `?hero=B`: titular B del hero (por defecto se muestra el A).
 - `?cta=experto`: cambia todos los CTA a «Hablar con un experto en IA» y adapta los textos del cierre y del formulario.
-- `?pendientes=0`: oculta los marcadores `[PENDIENTE]`, que por defecto se ven.
 - `?form=error` o `?form=success`: fuerza un estado del formulario para revisarlo.
 - `?fondo=estatico`: el hero usa la imagen fija en lugar de la cinta animada. El isologo sigue animado.
 - `?titulares=cursiva` o `?titulares=serif`: la parte resaltada de los titulares en cursiva (Figtree o Instrument Serif). Para HubSpot: `python3 tools/build-hubspot.py --fondo-estatico --titulares=serif`.
-- Para publicar: `python3 tools/build-hubspot.py --fondo-estatico --sin-pendientes --indexar` genera la plantilla sin marcadores [PENDIENTE] en el HTML y sin `noindex`.
+- Para publicar: `python3 tools/build-hubspot.py --fondo-estatico --indexar` genera la plantilla sin `noindex`.
 
 ## Versión en un solo archivo
 
@@ -50,14 +49,6 @@ Se eligen con parámetros de URL:
 
 ## Formulario
 
-La validación sigue al prototipo: campos obligatorios, formato de email, rechazo de dominios gratuitos («Introduce tu email corporativo.») y consentimiento. Los campos se llaman como las propiedades de HubSpot (`firstname`, `lastname`, `email`, `company`, `job_title`, `km_area_interes`, `km_madurez_ia`).
+La validación sigue al prototipo: campos obligatorios, formato de email, rechazo de dominios gratuitos («Introduce tu email corporativo.») y consentimiento: una sola casilla obligatoria, «Acepto recibir otras comunicaciones de knowmad mood», que HubSpot registra en la suscripción «Marketing Information» cuando `data-hs-subscription` tiene su número interno. Los campos se llaman como las propiedades de HubSpot (`firstname`, `lastname`, `email`, `company`, `job_title`, `km_area_interes`, `km_madurez_ia`).
 
 **Conexión con HubSpot:** el envío va a la Forms API v3 de HubSpot. Está conectado al formulario «Diagnóstico IA» del portal 145598533 (región `eu1`), configurado en los atributos `data-hs-portal`, `data-hs-form` y `data-hs-region` del `<div id="km-form-diagnostico">` de `index.html`. El envío va a `api-eu1.hsforms.com` y, solo si esa dirección no responde, a `api.hsforms.com`. No hace falta pegar el código de inserción de HubSpot: la landing envía los datos directamente. Si se vacían los atributos de portal o formulario, el formulario pasa a modo demostración y muestra la confirmación sin enviar nada. Además de los campos visibles se envían `utm_source`, `utm_campaign` y `utm_content` de la URL (campaña de ChatGPT Ads), `oppref` (identificador de clic de ChatGPT Ads; se conserva 90 días solo con consentimiento de cookies de publicidad en el banner de HubSpot, si no, durante la sesión), la cookie `hubspotutk` y el consentimiento.
-
-## Pendiente antes de publicar
-
-- Todos los `[PENDIENTE]` del documento maestro, que se ven en la página.
-- Logotipos de los clientes, las compañías del grupo y las certificaciones, que ahora aparecen como texto.
-- El SVG oficial del logotipo (`km-logo-white.png` es un recorte) y la confirmación de Figtree como tipografía web.
-- Fotografía real que sustituya a las texturas abstractas de fondo.
-- Las URL de Aviso legal, Privacidad y Cookies, que ahora son anclas provisionales.

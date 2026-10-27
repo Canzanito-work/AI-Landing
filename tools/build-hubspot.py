@@ -27,7 +27,6 @@ def asset_url(a):
 STATIC_HERO = '--fondo-estatico' in sys.argv
 TIT = next((a.split('=',1)[1] for a in sys.argv if a.startswith('--titulares=')), '')   # cursiva | serif
 INDEX = '--indexar' in sys.argv             # sin noindex: Google puede indexar la página
-CLEAN = '--sin-pendientes' in sys.argv      # quita del HTML todos los marcadores [PENDIENTE]
 
 html = open(S + 'index.html').read()
 css = open(S + 'css/styles.css').read()
@@ -40,12 +39,6 @@ head = html[head_open:head_close]; body = html[body_open:body_close]
 head = head.replace('<link rel="stylesheet" href="css/styles.css">', '<style>\n' + css + '\n</style>')
 if INDEX:
     head, k = re.subn(r'<meta name="robots"[^>]*>\n?', '', head); assert k == 1
-if CLEAN:
-    # bloques que solo contienen el marcador, y marcadores sueltos dentro de un texto
-    body, k1 = re.subn(r'\s*<p class="[^"]*\bpend-block\b[^"]*"[^>]*>.*?</p>', '', body, flags=re.S)
-    body, k2 = re.subn(r' ?<span class="pend"[^>]*>\[PENDIENTE:[^<]*</span>', '', body)
-    assert '[PENDIENTE' not in body, 'quedan marcadores'
-    print(f'  sin pendientes: {k1} bloques y {k2} marcadores eliminados')
 scripts = re.findall(r'<script defer src="(js/[^"]+)"></script>\n?', head)
 head = re.sub(r'<script defer src="js/[^"]+"></script>\n?', '', head)
 # título y descripción: los de la configuración de la página en HubSpot, o los de la landing
@@ -84,7 +77,7 @@ out = f'''<!--
 </html>
 '''
 os.makedirs(os.path.join(ROOT, 'hubspot'), exist_ok=True)
-name = ('landing-ia-hubspot-fondo-estatico' if STATIC_HERO else 'landing-ia-hubspot') + (f'-{TIT}' if TIT else '') + ('-sin-pendientes' if CLEAN else '') + ('-indexable' if INDEX else '') + '.html'
+name = ('landing-ia-hubspot-fondo-estatico' if STATIC_HERO else 'landing-ia-hubspot') + (f'-{TIT}' if TIT else '') + ('-indexable' if INDEX else '') + '.html'
 open(os.path.join(ROOT, 'hubspot', name), 'w').write(out)
 assets = sorted(set(re.findall(re.escape(ASSET_BASE) + r'([^"\)\s]+)', out)))
 print(name, len(out.encode()) // 1024, 'KB ·', len(assets), 'imágenes desde', ASSET_BASE)
