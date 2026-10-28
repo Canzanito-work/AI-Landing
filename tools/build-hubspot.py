@@ -39,9 +39,13 @@ head = html[head_open:head_close]; body = html[body_open:body_close]
 head = head.replace('<link rel="stylesheet" href="css/styles.css">', '<style>\n' + css + '\n</style>')
 if INDEX:
     head, k = re.subn(r'<meta name="robots"[^>]*>\n?', '', head); assert k == 1
+    # una sola H1 en la página publicada: fuera la variante B del titular (oculta)
+    body, k = re.subn(r'\s*<h1 [^>]*data-hero="B"[^>]*>.*?</h1>', '', body); assert k == 1
 scripts = re.findall(r'<script defer src="(js/[^"]+)"></script>\n?', head)
 head = re.sub(r'<script defer src="js/[^"]+"></script>\n?', '', head)
 # título y descripción: los de la configuración de la página en HubSpot, o los de la landing
+TITLE = re.search(r'<title>(.*?)</title>', head).group(1)
+DESC = re.search(r'<meta name="description" content="([^"]*)">', head).group(1)
 head = re.sub(r'<title>.*?</title>\n', '', head)
 head = re.sub(r'<meta name="description"[^>]*>\n', '', head)
 head = re.sub(r'<meta charset="utf-8">\n', '', head)
@@ -60,8 +64,8 @@ out = f'''<!--
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{{{ page_meta.html_title|default("knowmad mood · No es lo mismo") }}}}</title>
-<meta name="description" content="{{{{ page_meta.meta_description|default("knowmad mood, multinacional tecnológica española: ocho áreas de especialización y una IA aplicada con sentido, de la estrategia a la operación.") }}}}">
+<title>{{{{ page_meta.html_title|default("{TITLE}") }}}}</title>
+<meta name="description" content="{{{{ page_meta.meta_description|default("{DESC}") }}}}">
 <meta name="km-build" content="{sha[:7]}">
 {{{{ standard_header_includes }}}}
 {{% raw %}}
