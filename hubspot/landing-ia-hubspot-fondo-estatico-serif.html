@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ page_meta.html_title|default("knowmad mood · No es lo mismo") }}</title>
 <meta name="description" content="{{ page_meta.meta_description|default("knowmad mood, multinacional tecnológica española: ocho áreas de especialización y una IA aplicada con sentido, de la estrategia a la operación.") }}">
-<meta name="km-build" content="5532186">
+<meta name="km-build" content="87a85e4">
 {{ standard_header_includes }}
 {% raw %}
 <meta name="theme-color" content="#08061A">
@@ -1349,6 +1349,23 @@ html.hero-static .hero__flutes { display: none !important; }
     setTimeout(function () { if (!window.__kmFx) d.classList.remove('fx'); }, 3000);
   })(document.documentElement);
 </script>
+<script>
+  /* Píxel de OpenAI Ads (campaña de ChatGPT Ads). Solo se carga con consentimiento de cookies de
+     publicidad en el banner de HubSpot; sin el código de seguimiento de HubSpot (vista previa
+     local) no se carga. La conversión lead_created se mide en js/main.js tras un envío correcto.
+     Con ?debug=1, el SDK escribe su actividad en la consola. */
+  (function (w) {
+    var loaded = false;
+    function load() {
+      if (loaded) return; loaded = true;
+      !function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");
+      oaiq("init", { pixelId: "VwLdR5xuPGXzGNGrE9Y5sp", debug: /[?&]debug=1\b/.test(location.search) });
+    }
+    (w._hsp = w._hsp || []).push(['addPrivacyConsentListener', function (c) {
+      if (c && (c.allowed || (c.categories && c.categories.advertisement))) load();
+    }]);
+  })(window);
+</script>
 {% endraw %}
 </head>
 <body>
@@ -2215,7 +2232,12 @@ html.hero-static .hero__flutes { display: none !important; }
         });
       }
       post(0).then(function (res) {
-        if (res.ok) { done(data); return; }
+        if (res.ok) {
+          // Conversión de ChatGPT Ads: solo con un envío aceptado por HubSpot (y si el píxel está cargado, es decir, con consentimiento)
+          if (window.oaiq) window.oaiq('measure', 'lead_created', { type: 'customer_action' });
+          done(data);
+          return;
+        }
         return res.json().catch(function () { return {}; }).then(function (body) {
           report('HubSpot respondió ' + res.status, body, data);
           // HubSpot rechaza el email (gratuito o no válido): se muestra en su campo

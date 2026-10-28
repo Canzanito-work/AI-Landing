@@ -271,7 +271,12 @@
         });
       }
       post(0).then(function (res) {
-        if (res.ok) { done(data); return; }
+        if (res.ok) {
+          // Conversión de ChatGPT Ads: solo con un envío aceptado por HubSpot (y si el píxel está cargado, es decir, con consentimiento)
+          if (window.oaiq) window.oaiq('measure', 'lead_created', { type: 'customer_action' });
+          done(data);
+          return;
+        }
         return res.json().catch(function () { return {}; }).then(function (body) {
           report('HubSpot respondió ' + res.status, body, data);
           // HubSpot rechaza el email (gratuito o no válido): se muestra en su campo
